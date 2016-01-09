@@ -2,6 +2,13 @@ plugins {
     id "war"
 }
 
+apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
+
+gretty {
+    contextPath = "kona"
+    servletContainer = "jetty9"
+    debugSuspend = false
+}
 
 repositories {
     mavenCentral()
