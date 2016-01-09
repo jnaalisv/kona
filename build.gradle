@@ -1,3 +1,7 @@
+plugins {
+   id "java"
+}
+
 wrapper {
     gradleVersion = "2.10"
 }
