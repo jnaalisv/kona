@@ -2,7 +2,7 @@ package jnaalisv.kona;
 
 public class Main {
 
-    public void helloWorld() {
+    public static void main(String[] args) {
         System.out.println("Hello, world!");
     }
 }
