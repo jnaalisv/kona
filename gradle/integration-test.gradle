@@ -1,0 +1,64 @@
+sourceSets {
+    integrationTest {
+        java.srcDir 'src/integrationTest/java'
+        resources.srcDir 'src/integrationTest/resources'
+
+        compileClasspath += main.output + test.output
+        runtimeClasspath += main.output + test.output
+    }
+}
+
+configurations {
+    integrationTestCompile.extendsFrom testCompile
+    integrationTestRuntime.extendsFrom testRuntime
+}
+
+task integrationTest(type: Test, dependsOn: compileTestJava) {
+
+    testClassesDir = sourceSets.integrationTest.output.classesDir
+    classpath = sourceSets.integrationTest.runtimeClasspath
+
+    reports.html.destination = file("${project.reporting.baseDir}/integrationTest")
+
+    testLogging {
+        events "skipped", "failed"
+    }
+}
+check.dependsOn(integrationTest)
+
+plugins.withType(IdeaPlugin) {
+    idea {
+        module {
+            testSourceDirs += sourceSets.integrationTest.java.srcDirs
+            testSourceDirs += sourceSets.integrationTest.resources.srcDirs
+            scopes.TEST.plus.add(configurations.integrationTestCompile)
+            scopes.TEST.plus.add(configurations.integrationTestRuntime)
+        }
+    }
+}
+
+plugins.withType(EclipsePlugin) {
+    eclipse {
+        classpath {
+            plusConfigurations.add(configurations.integrationTestCompile)
+            plusConfigurations.add(configurations.integrationTestRuntime)
+        }
+    }
+}
+
+plugins.withType(JacocoPlugin) {
+
+    task jacocoIntegrationTestReport(type: JacocoReport) {
+        sourceSets sourceSets.main
+        executionData integrationTest
+    }
+
+    integrationTest {
+        jacoco {
+            append = false
+            destinationFile = file("$buildDir/jacoco/jacocoIntegrationTest.exec")
+            classDumpFile = file("$buildDir/jacoco/classpathdumps")
+        }
+        finalizedBy jacocoIntegrationTestReport
+    }
+}
