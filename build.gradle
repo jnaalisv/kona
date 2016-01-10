@@ -19,9 +19,14 @@ ext {
     jacksonVersion = "2.6.0"
 }
 
+configurations {
+    compile.exclude group: "commons-logging"
+}
+
 dependencies {
     runtime "ch.qos.logback:logback-classic:$logbackVersion"
     runtime "org.codehaus.groovy:groovy:2.3.7"
+    runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
     compile "org.slf4j:slf4j-api:$slf4jVersion"
 
