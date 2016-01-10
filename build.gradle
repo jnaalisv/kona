@@ -1,5 +1,6 @@
 plugins {
     id "war"
+    id "jacoco"
 }
 
 apply from: 'https://raw.github.com/akhikhl/gretty/master/pluginScripts/gretty.plugin'
@@ -37,6 +38,15 @@ dependencies {
     testCompile "junit:junit:4.12"
     testCompile "org.assertj:assertj-core:3.1.0"
 
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
+        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    }
+    finalizedBy jacocoTestReport
 }
 
 wrapper {
