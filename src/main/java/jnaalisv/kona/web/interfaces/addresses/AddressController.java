@@ -1,25 +1,42 @@
 package jnaalisv.kona.web.interfaces.addresses;
 
+import javax.inject.Inject;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import jnaalisv.kona.domain.addresses.AddressDTO;
+import jnaalisv.kona.domain.addresses.AddressService;
 
 @RestController
 @RequestMapping("addresses")
 public class AddressController {
 
+    private AddressService addressService;
+
+    @Inject
+    public AddressController(AddressService addressService) {
+        this.addressService = addressService;
+    }
+
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<AddressDTO> post(@RequestBody AddressDTO aNewAddress) {
-        aNewAddress.ID = 99l;
+        AddressDTO savedAddress = addressService.save(aNewAddress);
+
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Location", "addresses/"+aNewAddress.ID);
-        return new ResponseEntity<>(aNewAddress, responseHeaders, HttpStatus.CREATED);
+        responseHeaders.set("Location", "addresses/"+savedAddress.ID);
+        return new ResponseEntity<>(savedAddress, responseHeaders, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(path = "{addressID}", method = RequestMethod.GET)
+    public AddressDTO get(@PathVariable long addressID) {
+        return addressService.get(addressID);
     }
 
 }

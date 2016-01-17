@@ -1,6 +1,7 @@
 package jnaalisv.kona.web.interfaces.addresses;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,18 +23,31 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         aNewAddress.postalCode = "99999";
         aNewAddress.municipality = "Some City";
 
-        MvcResult mvcResult = mockMvc.perform(post("/addresses", aNewAddress)
+        MvcResult postResult = mockMvc.perform(post("/addresses", aNewAddress)
                 .content(objectMapper.writeValueAsString(aNewAddress))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().is(HttpStatus.CREATED.value()))
                 .andExpect(header().string("Location", "addresses/99"))
                 .andReturn();
 
-        AddressDTO returnedAddress = objectMapper.readValue(mvcResult.getResponse().getContentAsString(), AddressDTO.class);
+        AddressDTO savedAddress = objectMapper.readValue(postResult.getResponse().getContentAsString(), AddressDTO.class);
 
-        assertThat(returnedAddress.ID).isGreaterThan(0l);
-        assertThat(returnedAddress.street).isEqualTo(aNewAddress.street);
-        assertThat(returnedAddress.postalCode).isEqualTo(aNewAddress.postalCode);
-        assertThat(returnedAddress.municipality).isEqualTo(aNewAddress.municipality);
+        assertThat(savedAddress.ID).isGreaterThan(0l);
+        assertThat(savedAddress.street).isEqualTo(aNewAddress.street);
+        assertThat(savedAddress.postalCode).isEqualTo(aNewAddress.postalCode);
+        assertThat(savedAddress.municipality).isEqualTo(aNewAddress.municipality);
+
+
+        MvcResult getResult =mockMvc.perform(get("/addresses/" + savedAddress.ID))
+                .andExpect(status().is2xxSuccessful())
+                .andReturn();
+
+        AddressDTO requestedAddress = objectMapper.readValue(getResult.getResponse().getContentAsString(), AddressDTO.class);
+
+        assertThat(savedAddress.ID).isEqualTo(requestedAddress.street);
+        assertThat(savedAddress.street).isEqualTo(requestedAddress.street);
+        assertThat(savedAddress.postalCode).isEqualTo(requestedAddress.postalCode);
+        assertThat(savedAddress.municipality).isEqualTo(requestedAddress.municipality);
+
     }
 }

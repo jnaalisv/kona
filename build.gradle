@@ -18,6 +18,9 @@ ext {
     logbackVersion = "1.1.3"
     springVersion = "4.2.4.RELEASE"
     jacksonVersion = "2.6.0"
+
+    hibernateVersion = "5.0.7.Final"
+    hikariCPVersion = "2.4.3"
 }
 
 configurations {
@@ -36,6 +39,12 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
 
     compile "javax.inject:javax.inject:1"
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+    compile "com.zaxxer:HikariCP:$hikariCPVersion"
+    compile "com.h2database:h2:1.4.185"
+    compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+
     testCompile "junit:junit:4.12"
     testCompile "org.assertj:assertj-core:3.1.0"
 
