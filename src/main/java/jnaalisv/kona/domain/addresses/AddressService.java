@@ -15,6 +15,7 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
+    @Transactional
     public AddressDTO save(AddressDTO addressDTO) {
         Address address = new Address(addressDTO.street, addressDTO.postalCode, addressDTO.municipality);
         addressRepository.save(address);

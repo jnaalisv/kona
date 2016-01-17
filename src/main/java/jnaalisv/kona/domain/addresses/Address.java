@@ -17,6 +17,8 @@ public class Address {
     private String postalCode;
     private String municipality;
 
+    public Address() { /* for hibernate */}
+
     public Address(String street, String postalCode, String municipality) {
         this.street = street;
         this.postalCode = postalCode;

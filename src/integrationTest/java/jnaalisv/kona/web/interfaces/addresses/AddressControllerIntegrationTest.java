@@ -27,7 +27,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
                 .content(objectMapper.writeValueAsString(aNewAddress))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().is(HttpStatus.CREATED.value()))
-                .andExpect(header().string("Location", "addresses/99"))
+                .andExpect(header().string("Location", "addresses/1"))
                 .andReturn();
 
         AddressDTO savedAddress = objectMapper.readValue(postResult.getResponse().getContentAsString(), AddressDTO.class);
@@ -44,7 +44,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
 
         AddressDTO requestedAddress = objectMapper.readValue(getResult.getResponse().getContentAsString(), AddressDTO.class);
 
-        assertThat(savedAddress.ID).isEqualTo(requestedAddress.street);
+        assertThat(savedAddress.ID).isEqualTo(requestedAddress.ID);
         assertThat(savedAddress.street).isEqualTo(requestedAddress.street);
         assertThat(savedAddress.postalCode).isEqualTo(requestedAddress.postalCode);
         assertThat(savedAddress.municipality).isEqualTo(requestedAddress.municipality);
