@@ -45,7 +45,7 @@ public class PersistenceConfiguration {
 
         //Specifies the action that is invoked to the database when the Hibernate
         //SessionFactory is created or closed.
-        jpaProperties.put("hibernate.hbm2ddl.auto","create-drop");
+        jpaProperties.put("hibernate.hbm2ddl.auto","create");
 
         //Configures the naming strategy that is used when Hibernate creates
         //new database objects and schema elements
