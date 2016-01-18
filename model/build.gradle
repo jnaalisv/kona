@@ -1,0 +1,30 @@
+plugins {
+    id "java"
+    id "jacoco"
+}
+
+dependencies {
+    runtime "ch.qos.logback:logback-classic:$logbackVersion"
+    runtime "org.codehaus.groovy:groovy:2.3.7"
+    runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+
+    compile "javax.inject:javax.inject:1"
+
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+    compile "org.springframework:spring-context:$springVersion"
+    compile "org.springframework:spring-tx:$springVersion"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.1.0"
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
+        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    }
+    finalizedBy jacocoTestReport
+}

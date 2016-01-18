@@ -1,0 +1,40 @@
+plugins {
+    id "java"
+    id "jacoco"
+}
+
+apply from: "$rootDir/gradle/integration-test.gradle"
+
+dependencies {
+    runtime "ch.qos.logback:logback-classic:$logbackVersion"
+    runtime "org.codehaus.groovy:groovy:2.3.7"
+    runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+
+    runtime "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+
+    compile project(":model")
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "javax.inject:javax.inject:1"
+    compile "org.springframework:spring-context:$springVersion"
+    compile "org.springframework:spring-orm:$springVersion"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+    compile "com.zaxxer:HikariCP:$hikariCPVersion"
+    compile "com.h2database:h2:1.4.185"
+    //compile "org.springframework.data:spring-data-jpa:1.9.2.RELEASE"
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.1.0"
+
+    integrationTestCompile "org.springframework:spring-test:$springVersion"
+
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
+        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    }
+    finalizedBy jacocoTestReport
+}
+

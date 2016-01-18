@@ -1,0 +1,42 @@
+plugins {
+    id "war"
+    id "jacoco"
+    id "org.akhikhl.gretty" version "1.2.4"
+}
+
+apply from: "$rootDir/gradle/integration-test.gradle"
+
+dependencies {
+    runtime "ch.qos.logback:logback-classic:$logbackVersion"
+    runtime "org.codehaus.groovy:groovy:2.3.7"
+    runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "javax.servlet:javax.servlet-api:3.1.0"
+    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
+    compile "org.springframework:spring-webmvc:$springVersion"
+    compile "javax.inject:javax.inject:1"
+    compile project(':model')
+    compile project(':repository')
+
+    testCompile "junit:junit:4.12"
+    testCompile "org.assertj:assertj-core:3.1.0"
+
+    integrationTestCompile "org.springframework:spring-test:$springVersion"
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
+        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    }
+    finalizedBy jacocoTestReport
+}
+
+gretty {
+    contextPath = "kona"
+    servletContainer = "jetty9"
+    debugSuspend = false
+    integrationTestTask = 'none'
+}
