@@ -3,12 +3,13 @@ package kona.web.configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import kona.configuration.ModelConfiguration;
+import kona.configuration.PersistenceConfiguration;
 
 public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] { ModelConfiguration.class };
+        return new Class[] { ModelConfiguration.class, PersistenceConfiguration.class};
     }
 
     @Override
