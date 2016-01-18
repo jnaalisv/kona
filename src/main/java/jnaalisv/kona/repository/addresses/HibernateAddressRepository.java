@@ -24,9 +24,8 @@ public class HibernateAddressRepository implements AddressRepository {
     */
 
     @Override
-    public Address save(Address address) {
+    public void save(Address address) {
         entityManager.persist(address);
-        return address;
     }
 
     @Override
