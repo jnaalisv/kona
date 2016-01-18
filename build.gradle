@@ -17,6 +17,13 @@ subprojects {
         hibernateVersion = "5.0.7.Final"
         hikariCPVersion = "2.4.3"
         jooqVersion = "3.7.1"
+
+        libraries = {
+            logbackRuntime = [
+                    "ch.qos.logback:logback-classic:$logbackVersion",
+                    "org.codehaus.groovy:groovy:2.3.7",
+                    "org.slf4j:jcl-over-slf4j:$slf4jVersion"]
+        }
     }
 
     configurations {

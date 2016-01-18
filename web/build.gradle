@@ -7,9 +7,7 @@ plugins {
 apply from: "$rootDir/gradle/integration-test.gradle"
 
 dependencies {
-    runtime "ch.qos.logback:logback-classic:$logbackVersion"
-    runtime "org.codehaus.groovy:groovy:2.3.7"
-    runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+    runtime libraries.logbackRuntime
 
     compile "org.slf4j:slf4j-api:$slf4jVersion"
     compile "javax.servlet:javax.servlet-api:3.1.0"
