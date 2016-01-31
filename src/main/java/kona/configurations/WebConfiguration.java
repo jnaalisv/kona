@@ -1,4 +1,4 @@
-package kona.web.configuration;
+package kona.configurations;
 
 import java.util.List;
 
