@@ -7,8 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import kona.model.addresses.Address;
-import kona.model.addresses.AddressRepository;
+import kona.domain.addresses.Address;
+import kona.domain.addresses.AddressRepository;
 
 @Repository
 public class HibernateAddressRepository implements AddressRepository {

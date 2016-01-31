@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kona.configurations.ModelConfiguration;
 import kona.configurations.PersistenceConfiguration;
-import kona.web.configuration.WebConfiguration;
+import kona.configurations.WebConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration

@@ -1,4 +1,4 @@
-package kona.model.addresses;
+package kona.domain.addresses;
 
 import javax.inject.Inject;
 
