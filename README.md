@@ -4,11 +4,11 @@
 ## topics 
 - gradle with integrationTest source set
 - slf4j with logback as implementation, groovy configuration and re-routing of other logging frameworks to slf4j 
-- spring-webmvc and spring-security
+- REST api with spring-webmvc and secured by spring-security, spring java configuration
 - hibernate as jpa implementation
 - gradle jacoco plugin
 
-# todo
+## todo
 - JS web app secured by spring security
 - better integration tests
 
