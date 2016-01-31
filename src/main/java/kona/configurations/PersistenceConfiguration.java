@@ -1,4 +1,4 @@
-package kona.repository.configuration;
+package kona.configurations;
 
 import java.util.Properties;
 

@@ -13,8 +13,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kona.model.configuration.ModelConfiguration;
-import kona.repository.configuration.PersistenceConfiguration;
+import kona.configurations.ModelConfiguration;
+import kona.configurations.PersistenceConfiguration;
 import kona.web.configuration.WebConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
