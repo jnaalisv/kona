@@ -4,6 +4,7 @@ import javax.inject.Inject;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
@@ -38,18 +39,18 @@ public class AuthenticationController {
      * {@link AuthenticationManager} configured in
      * {@link SpringSecurityConfiguration}.
      *
-     * @param credentialsDTO
+     * @param credentials
      * @return A token that should be included in HTTP requests that require
      *         authentication
      * @throws org.springframework.security.core.AuthenticationException
      */
-    @RequestMapping(method = RequestMethod.POST)
-    public String authenticate(@RequestBody CredentialsDTO credentialsDTO) throws Exception {
-        UsernamePasswordAuthenticationToken authenticationRequest = new UsernamePasswordAuthenticationToken(credentialsDTO.username, credentialsDTO.password);
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String authenticate(@RequestBody CredentialsDTO credentials) throws Exception {
+        UsernamePasswordAuthenticationToken authenticationRequest = new UsernamePasswordAuthenticationToken(credentials.username, credentials.password);
 
         authenticationManager.authenticate(authenticationRequest);
 
-        Token token = keyBasedPersistenceTokenService.allocateToken(credentialsDTO.username);
+        Token token = keyBasedPersistenceTokenService.allocateToken(credentials.username);
         return token.getKey();
     }
 }
