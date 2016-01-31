@@ -1,4 +1,4 @@
-package kona.web.interfaces;
+package kona.web.addresses;
 
 import javax.inject.Inject;
 
