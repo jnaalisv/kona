@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({"kona.web.interfaces"})
+@ComponentScan({"kona.web"})
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
