@@ -1,4 +1,4 @@
-package jnaalisv.kona.web.interfaces;
+package kona.web.interfaces;
 
 import javax.inject.Inject;
 
@@ -13,8 +13,8 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kona.configuration.ModelConfiguration;
-import kona.configuration.PersistenceConfiguration;
+import kona.model.configuration.ModelConfiguration;
+import kona.repository.configuration.PersistenceConfiguration;
 import kona.web.configuration.WebConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)

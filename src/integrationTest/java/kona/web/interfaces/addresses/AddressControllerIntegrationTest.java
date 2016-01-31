@@ -1,4 +1,4 @@
-package jnaalisv.kona.web.interfaces.addresses;
+package kona.web.interfaces.addresses;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 
-import jnaalisv.kona.web.interfaces.AbstractSpringRestMvcTest;
+import kona.web.interfaces.AbstractSpringRestMvcTest;
 import kona.model.address.AddressDTO;
 
 public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest {

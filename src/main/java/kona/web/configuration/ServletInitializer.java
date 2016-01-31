@@ -2,8 +2,8 @@ package kona.web.configuration;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-import kona.configuration.ModelConfiguration;
-import kona.configuration.PersistenceConfiguration;
+import kona.model.configuration.ModelConfiguration;
+import kona.repository.configuration.PersistenceConfiguration;
 
 public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
