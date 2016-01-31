@@ -1,4 +1,4 @@
-package kona.model.address;
+package kona.model.addresses;
 
 public class AddressDTO {
 
