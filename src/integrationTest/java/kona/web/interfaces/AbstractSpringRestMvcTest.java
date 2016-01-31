@@ -13,13 +13,13 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kona.configurations.ModelConfiguration;
+import kona.configurations.DomainConfiguration;
 import kona.configurations.PersistenceConfiguration;
 import kona.configurations.WebConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
-@ContextConfiguration(classes = {PersistenceConfiguration.class, ModelConfiguration.class, WebConfiguration.class  })
+@ContextConfiguration(classes = {PersistenceConfiguration.class, DomainConfiguration.class, WebConfiguration.class  })
 public abstract class AbstractSpringRestMvcTest {
 
     @Inject
