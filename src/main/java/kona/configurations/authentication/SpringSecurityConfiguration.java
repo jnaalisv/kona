@@ -5,6 +5,7 @@ import java.util.Arrays;
 import javax.inject.Inject;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -13,10 +14,13 @@ import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
 import org.springframework.security.core.token.SecureRandomFactoryBean;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 
+import kona.authentication.PreAuthUserDetailsService;
 import kona.web.addresses.AddressController;
 import kona.web.authentication.AuthenticationController;
 
+@ComponentScan("kona.authentication")
 @Configuration
 public class SpringSecurityConfiguration {
 
@@ -48,7 +52,6 @@ public class SpringSecurityConfiguration {
         return daoAuthenticationProvider;
     }
 
-
     /**
      * Used by {@link AuthenticationController} to authenticate authentication requests.
      * @param daoAuthProvider
@@ -57,8 +60,8 @@ public class SpringSecurityConfiguration {
      */
     @Inject
     @Bean
-    public AuthenticationManager authenticationManager(DaoAuthenticationProvider daoAuthenticationProvider) {
-        return new ProviderManager(Arrays.asList(daoAuthenticationProvider));
+    public AuthenticationManager authenticationManager(PreAuthenticatedAuthenticationProvider preAuthProvider, DaoAuthenticationProvider daoAuthProvider) {
+        return new ProviderManager(Arrays.asList(preAuthProvider, daoAuthProvider));
     }
 
     /**
@@ -75,6 +78,19 @@ public class SpringSecurityConfiguration {
         keyBasedPersistenceTokenService.setServerInteger(981463275);
         keyBasedPersistenceTokenService.setServerSecret("98sd98fyasdjfh23082n");
         return keyBasedPersistenceTokenService;
+    }
+
+    /**
+     * Provider that links AuthenticationManager and {@link PreAuthUserDetailsService}
+     * @param preAuthUserDetailsService
+     * @return
+     */
+    @Inject
+    @Bean
+    public PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider(PreAuthUserDetailsService preAuthUserDetailsService) {
+        PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider = new PreAuthenticatedAuthenticationProvider();
+        preAuthenticatedAuthenticationProvider.setPreAuthenticatedUserDetailsService(preAuthUserDetailsService);
+        return preAuthenticatedAuthenticationProvider;
     }
 
 }
