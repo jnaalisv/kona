@@ -1,10 +1,14 @@
-# Demo of the following
+## run the application with gretty plugin:
+```$ ./gradle jettyRun```
+
+## topics 
 - gradle with integrationTest source set
-- slf4j with logback as implementation, groovy configuration and re-rerouting of other logging frameworks to slf4j 
+- slf4j with logback as implementation, groovy configuration and re-routing of other logging frameworks to slf4j 
 - spring-webmvc and spring-security
 - hibernate as jpa implementation
+- gradle jacoco plugin
 
-# Todo
+# todo
 - JS web app secured by spring security
 - better integration tests
 
