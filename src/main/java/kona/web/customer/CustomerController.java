@@ -3,8 +3,6 @@ package kona.web.customer;
 import java.util.Collections;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("customers")
 public class CustomerController {
 
-    @Inject
     public CustomerController() {
     }
 
