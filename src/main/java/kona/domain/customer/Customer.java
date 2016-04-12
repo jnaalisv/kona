@@ -16,6 +16,8 @@ public class Customer {
     @Column
     private String name;
 
+    public Customer() {}
+
     public Customer(long id, String name) {
         this.id = id;
         this.name = name;
