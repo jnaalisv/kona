@@ -1,7 +1,7 @@
 package kona.web.customer;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.inject.Inject;
 
@@ -31,7 +31,10 @@ public class CustomerController {
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<CustomerDTO> getAll() {
-        return Collections.emptyList();
+        return customerService.loadAll()
+                .stream()
+                .map(customer -> new CustomerDTO(customer))
+                .collect(Collectors.toList());
     }
 
     @RequestMapping(path = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

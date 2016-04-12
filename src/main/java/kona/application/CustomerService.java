@@ -1,5 +1,7 @@
 package kona.application;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -26,5 +28,10 @@ public class CustomerService {
     @Transactional
     public Customer load(long id) {
         return this.customerRepository.get(id);
+    }
+
+    @Transactional
+    public List<Customer> loadAll() {
+        return this.customerRepository.getAll();
     }
 }

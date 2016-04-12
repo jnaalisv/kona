@@ -1,5 +1,8 @@
 package kona.infrastructure;
 
+import java.util.Collections;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -22,5 +25,10 @@ public class HibernateCustomerRepository implements CustomerRepository {
     @Override
     public Customer get(long id) {
         return entityManager.find(Customer.class, id);
+    }
+
+    @Override
+    public List<Customer> getAll() {
+        return entityManager.createQuery("from Customer").getResultList();
     }
 }
