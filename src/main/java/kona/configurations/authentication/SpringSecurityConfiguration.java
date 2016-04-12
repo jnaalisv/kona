@@ -70,7 +70,6 @@ public class SpringSecurityConfiguration {
      * @return
      * @throws Exception
      */
-    @Inject
     @Bean
     public KeyBasedPersistenceTokenService keyBasedPersistenceTokenService() throws Exception {
         KeyBasedPersistenceTokenService keyBasedPersistenceTokenService = new KeyBasedPersistenceTokenService();
