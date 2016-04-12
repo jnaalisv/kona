@@ -1,4 +1,4 @@
-package kona.domain.users;
+package kona.domain.user;
 
 import javax.inject.Inject;
 

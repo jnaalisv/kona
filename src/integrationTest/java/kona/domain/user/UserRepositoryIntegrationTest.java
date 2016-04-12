@@ -1,4 +1,4 @@
-package kona.domain.users;
+package kona.domain.user;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
