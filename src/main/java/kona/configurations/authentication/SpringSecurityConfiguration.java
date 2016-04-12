@@ -17,7 +17,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 
 import kona.authentication.PreAuthUserDetailsService;
-import kona.web.addresses.AddressController;
+import kona.web.address.AddressController;
 import kona.web.authentication.AuthenticationController;
 
 @ComponentScan("kona.authentication")
