@@ -14,9 +14,19 @@
 
 ```bash
 
-$ curl -X POST \
+curl -X POST \
     -H "Content-Type: application/json" \
     -d '{"username":"admin","password":"admin"}' \
     http://localhost:8080/kona/authenticate
+
+curl -X POST \
+    -H "Content-Type: application/json" \
+    -H "X-Auth-Token: AUTH_TOKEN" \
+    -d '{"id": "0", "name": "Uusi asiakas"}' \
+    http://localhost:8080/kona/customers
+
+curl -X GET \
+    -H "X-Auth-Token: AUTH_TOKEN" \
+    http://localhost:8080/kona/customers
      
 ```
