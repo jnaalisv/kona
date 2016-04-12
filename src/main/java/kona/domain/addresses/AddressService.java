@@ -16,19 +16,15 @@ public class AddressService {
     }
 
     @Transactional
-    public AddressDTO save(AddressDTO addressDTO) {
-        Address address = new Address(addressDTO.street, addressDTO.postalCode, addressDTO.municipality);
+    public void save(Address address) {
         addressRepository.save(address);
-        return new AddressDTO(address);
     }
 
     @Transactional
-    public AddressDTO get(long id) {
-        Address address = addressRepository
+    public Address get(long id) {
+        return addressRepository
                 .get(id)
                 .orElseThrow(() -> new RuntimeException("address not found with id=" + id));
-
-        return new AddressDTO(address);
     }
 
 }

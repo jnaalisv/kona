@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kona.domain.addresses.AddressDTO;
+import kona.domain.addresses.Address;
 import kona.domain.addresses.AddressService;
 
 @RestController
@@ -26,17 +26,20 @@ public class AddressController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<AddressDTO> post(@RequestBody AddressDTO aNewAddress) {
-        AddressDTO savedAddress = addressService.save(aNewAddress);
+    public ResponseEntity<AddressDTO> post(@RequestBody AddressDTO addressDTO) {
+
+        Address aNewAddress = new Address(addressDTO.street, addressDTO.postalCode, addressDTO.municipality);
+
+        addressService.save(aNewAddress);
 
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Location", "addresses/"+savedAddress.ID);
-        return new ResponseEntity<>(savedAddress, responseHeaders, HttpStatus.CREATED);
+        responseHeaders.set("Location", "addresses/"+aNewAddress.getID());
+        return new ResponseEntity<>(new AddressDTO(aNewAddress), responseHeaders, HttpStatus.CREATED);
     }
 
     @RequestMapping(path = "{addressID}", method = RequestMethod.GET)
     public AddressDTO get(@PathVariable long addressID) {
-        return addressService.get(addressID);
+        return new AddressDTO(addressService.get(addressID));
     }
 
 }
