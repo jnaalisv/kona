@@ -1,25 +1,21 @@
 package kona.configurations;
 
-import java.util.Properties;
-
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
-
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
+import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @ComponentScan(basePackages = {"kona.infrastructure"})
 @EnableTransactionManagement
 public class PersistenceConfiguration {
+
+    public static final String[] DOMAIN_ENTITIES = {"kona.domain"};
 
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
@@ -33,12 +29,7 @@ public class PersistenceConfiguration {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("kona.domain");
-
+    public Properties hibernateProperties() {
         Properties jpaProperties = new Properties();
 
         jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
@@ -54,15 +45,6 @@ public class PersistenceConfiguration {
         jpaProperties.put("hibernate.show_sql","false");
         jpaProperties.put("hibernate.format_sql", "true");
 
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
-
-        return entityManagerFactoryBean;
-    }
-
-    @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        return transactionManager;
+        return jpaProperties;
     }
 }

@@ -11,7 +11,8 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
     protected Class<?>[] getRootConfigClasses() {
         return new Class[] {
                 DomainConfiguration.class,
-                PersistenceConfiguration.class,
+                HibernateConfiguration.class,
+                JpaConfiguration.class,
                 SpringSecurityConfiguration.class,
                 WebSecurityConfig.class
         };

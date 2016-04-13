@@ -1,6 +1,5 @@
 package kona.infrastructure;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,6 +15,10 @@ public class HibernateCustomerRepository implements CustomerRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
+
+    public HibernateCustomerRepository() {
+
+    }
 
     @Override
     public void add(Customer customer) {

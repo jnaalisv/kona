@@ -34,15 +34,14 @@ dependencies {
     runtime "org.codehaus.groovy:groovy:2.3.7"
     runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
-    // JPA implementation
-    runtime "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+    runtime "org.hibernate:hibernate-entitymanager:$hibernateVersion" // JPA implementation
 
     compile "org.slf4j:slf4j-api:$slf4jVersion"
     compile "javax.inject:javax.inject:1"
     compile "javax.servlet:javax.servlet-api:3.1.0"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final" // JPA api
 
-    // JPA api
-    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
+    compile "org.hibernate:hibernate-core:$hibernateVersion" // JPA implementation
 
     compile "org.springframework:spring-webmvc:$springVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
