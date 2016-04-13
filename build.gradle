@@ -6,22 +6,26 @@ plugins {
 
 apply from: "$rootDir/gradle/integration-test.gradle"
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+allprojects {
 
-repositories {
-    mavenCentral()
+    repositories {
+        mavenCentral()
+    }
+
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    ext {
+        slf4jVersion = "1.7.20"
+        logbackVersion = "1.1.7"
+        springVersion = "4.2.5.RELEASE"
+        springSecurityVersion = "4.0.4.RELEASE"
+        jacksonVersion = "2.7.3"
+        hibernateVersion = "5.1.0.Final"
+        hikariCPVersion = "2.4.5"
+    }
 }
 
-ext {
-    slf4jVersion = "1.7.20"
-    logbackVersion = "1.1.7"
-    springVersion = "4.2.5.RELEASE"
-    springSecurityVersion = "4.0.4.RELEASE"
-    jacksonVersion = "2.7.3"
-    hibernateVersion = "5.1.0.Final"
-    hikariCPVersion = "2.4.5"
-}
 
 configurations {
     compile.exclude group: "commons-logging"
@@ -40,6 +44,8 @@ dependencies {
     compile "org.slf4j:slf4j-api:$slf4jVersion"
     compile "javax.inject:javax.inject:1"
     compile "javax.servlet:javax.servlet-api:3.1.0"
+
+    compile project(":domain")
 
     // JPA api
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
