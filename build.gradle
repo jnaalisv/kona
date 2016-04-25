@@ -1,4 +1,5 @@
 plugins {
+    id "groovy"
     id "war"
     id "jacoco"
     id "org.akhikhl.gretty" version "1.2.4"
@@ -29,6 +30,8 @@ ext {
 
     junitVersion = "4.12"
     assertJVersion = "3.4.1"
+
+    groovyVersion = "2.4.1"
 }
 
 configurations {
@@ -39,7 +42,7 @@ dependencies {
 
     // logback runtime
     runtime "ch.qos.logback:logback-classic:$logbackVersion"
-    runtime "org.codehaus.groovy:groovy:2.3.7"
+    runtime "org.codehaus.groovy:groovy:$groovyVersion"
     runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
 
     // JPA implementation
@@ -68,6 +71,8 @@ dependencies {
 
     testCompile "junit:junit:$junitVersion"
     testCompile "org.assertj:assertj-core:$assertJVersion"
+    
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
     integrationTestCompile "org.springframework:spring-test:$springVersion"
 }
