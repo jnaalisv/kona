@@ -82,7 +82,7 @@ test {
 }
 
 wrapper {
-    gradleVersion = "2.12"
+    gradleVersion = "2.13"
 }
 
 gretty {
