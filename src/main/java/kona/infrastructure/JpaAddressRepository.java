@@ -1,17 +1,15 @@
 package kona.infrastructure;
 
-import java.util.Optional;
+import kona.domain.address.Address;
+import kona.domain.address.AddressRepository;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import org.springframework.stereotype.Repository;
-
-import kona.domain.address.Address;
-import kona.domain.address.AddressRepository;
+import java.util.Optional;
 
 @Repository
-public class HibernateAddressRepository implements AddressRepository {
+public class JpaAddressRepository implements AddressRepository {
 
     @PersistenceContext
     private EntityManager entityManager;
