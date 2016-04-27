@@ -35,38 +35,28 @@ configurations {
 
 dependencies {
 
-    // logback runtime
     runtime "ch.qos.logback:logback-classic:$logbackVersion"
     runtime "org.codehaus.groovy:groovy:$groovyVersion"
     runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
-
-    // JPA implementation
     runtime "org.hibernate:hibernate-entitymanager:$hibernateVersion"
 
     compile "org.slf4j:slf4j-api:$slf4jVersion"
     compile "javax.inject:javax.inject:1"
     compile "javax.servlet:javax.servlet-api:$servletApiVersion"
-
-    // JPA api
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
-
     compile "org.springframework:spring-webmvc:$springVersion"
     compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-
     compile "org.springframework:spring-context:$springVersion"
     compile "org.springframework:spring-tx:$springVersion"
     compile "org.springframework:spring-orm:$springVersion"
-
     compile "org.springframework.security:spring-security-web:$springSecurityVersion"
     compile "org.springframework.security:spring-security-core:$springSecurityVersion"
     compile "org.springframework.security:spring-security-config:$springSecurityVersion"
-
     compile "com.zaxxer:HikariCP:$hikariCPVersion"
     compile "com.h2database:h2:$h2Version"
 
     testCompile "junit:junit:$junitVersion"
     testCompile "org.assertj:assertj-core:$assertJVersion"
-    
     testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
 
     integrationTestCompile "org.springframework:spring-test:$springVersion"
