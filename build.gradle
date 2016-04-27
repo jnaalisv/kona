@@ -1,99 +1,45 @@
-plugins {
-    id "groovy"
-    id "war"
-    id "jacoco"
-    id "org.akhikhl.gretty" version "1.2.4"
-}
+subprojects {
 
-apply from: "$rootDir/gradle/integration-test.gradle"
+    apply plugin: JavaPlugin
+    apply plugin: JacocoPlugin
 
-sourceCompatibility = JavaVersion.VERSION_1_8
-targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-    mavenCentral()
-}
-
-ext {
-    slf4jVersion = "1.7.20"
-    logbackVersion = "1.1.7"
-
-    servletApiVersion = "3.1.0"
-
-    springVersion = "4.2.5.RELEASE"
-    springSecurityVersion = "4.0.4.RELEASE"
-    jacksonVersion = "2.7.3"
-
-    hibernateVersion = "5.1.0.Final"
-    hikariCPVersion = "2.4.5"
-    h2Version = "1.4.191"
-
-    junitVersion = "4.12"
-    assertJVersion = "3.4.1"
-
-    groovyVersion = "2.4.1"
-}
-
-configurations {
-    compile.exclude group: "commons-logging"
-}
-
-dependencies {
-
-    // logback runtime
-    runtime "ch.qos.logback:logback-classic:$logbackVersion"
-    runtime "org.codehaus.groovy:groovy:$groovyVersion"
-    runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
-
-    // JPA implementation
-    runtime "org.hibernate:hibernate-entitymanager:$hibernateVersion"
-
-    compile "org.slf4j:slf4j-api:$slf4jVersion"
-    compile "javax.inject:javax.inject:1"
-    compile "javax.servlet:javax.servlet-api:$servletApiVersion"
-
-    // JPA api
-    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:1.0.0.Final"
-
-    compile "org.springframework:spring-webmvc:$springVersion"
-    compile "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion"
-
-    compile "org.springframework:spring-context:$springVersion"
-    compile "org.springframework:spring-tx:$springVersion"
-    compile "org.springframework:spring-orm:$springVersion"
-
-    compile "org.springframework.security:spring-security-web:$springSecurityVersion"
-    compile "org.springframework.security:spring-security-core:$springSecurityVersion"
-    compile "org.springframework.security:spring-security-config:$springSecurityVersion"
-
-    compile "com.zaxxer:HikariCP:$hikariCPVersion"
-    compile "com.h2database:h2:$h2Version"
-
-    testCompile "junit:junit:$junitVersion"
-    testCompile "org.assertj:assertj-core:$assertJVersion"
-    
-    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
-
-    integrationTestCompile "org.springframework:spring-test:$springVersion"
-}
-
-test {
-    jacoco {
-        append = false
-        destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
-        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+    repositories {
+        mavenCentral()
     }
-    finalizedBy jacocoTestReport
+
+    ext {
+        slf4jVersion = "1.7.20"
+        logbackVersion = "1.1.7"
+        servletApiVersion = "3.1.0"
+        springVersion = "4.2.5.RELEASE"
+        springSecurityVersion = "4.0.4.RELEASE"
+        jacksonVersion = "2.7.3"
+        hibernateVersion = "5.1.0.Final"
+        hikariCPVersion = "2.4.5"
+        h2Version = "1.4.191"
+        junitVersion = "4.12"
+        assertJVersion = "3.4.1"
+        groovyVersion = "2.4.1"
+    }
+
+    configurations {
+        compile.exclude group: "commons-logging"
+    }
+
+    test {
+        jacoco {
+            append = false
+            destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
+            classDumpFile = file("$buildDir/jacoco/classpathdumps")
+        }
+        finalizedBy jacocoTestReport
+    }
+
 }
 
 wrapper {
     gradleVersion = "2.13"
 }
-
-gretty {
-    contextPath = "kona"
-    servletContainer = "jetty9"
-    debugSuspend = false
-    integrationTestTask = 'none'
-}
-
