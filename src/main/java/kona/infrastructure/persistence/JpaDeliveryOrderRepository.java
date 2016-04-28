@@ -1,4 +1,4 @@
-package kona.infrastructure;
+package kona.infrastructure.persistence;
 
 import kona.domain.order.DeliveryOrder;
 import kona.domain.order.DeliveryOrderRepository;

@@ -1,4 +1,4 @@
-package kona.infrastructure;
+package kona.infrastructure.persistence;
 
 import java.util.List;
 
