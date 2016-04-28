@@ -1,9 +1,9 @@
 package kona.configurations;
 
-import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
 import kona.configurations.authentication.SpringSecurityConfiguration;
 import kona.configurations.authentication.WebSecurityConfig;
+import kona.infrastructure.config.PersistenceConfiguration;
+import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ServletInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
