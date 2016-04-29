@@ -1,7 +1,7 @@
 package kona.infrastructure.persistence;
 
-import kona.domain.address.Address;
-import kona.domain.address.AddressRepository;
+import kona.model.domain.address.Address;
+import kona.model.domain.address.AddressRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

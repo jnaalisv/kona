@@ -1,6 +1,6 @@
-package kona.application
+package kona.model.application
 
-import kona.domain.customer.CustomerRepository
+import kona.model.domain.customer.CustomerRepository
 import spock.lang.Specification
 
 class CustomerServiceSpec extends Specification {

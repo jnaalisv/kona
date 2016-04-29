@@ -1,14 +1,12 @@
-package kona.domain.user;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-import javax.inject.Inject;
+package kona;
 
 import kona.infrastructure.persistence.DummyUserRepository;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import kona.AbstractIntegrationTest;
+import javax.inject.Inject;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DummyUserRepositoryIntegrationTest extends AbstractIntegrationTest {
 

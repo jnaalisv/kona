@@ -1,17 +1,22 @@
-package kona.domain.product;
+package kona.model.domain.order;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Product {
+public class OrderLine {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
 
-    private String name;
+    private long productID;
+
+    @ManyToOne
+    private DeliveryOrder deliveryOrder;
+
 }

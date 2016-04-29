@@ -7,8 +7,8 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import kona.domain.customer.Customer;
-import kona.domain.customer.CustomerRepository;
+import kona.model.domain.customer.Customer;
+import kona.model.domain.customer.CustomerRepository;
 
 @Repository
 public class JpaCustomerRepository implements CustomerRepository {

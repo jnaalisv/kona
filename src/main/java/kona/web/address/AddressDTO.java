@@ -1,6 +1,6 @@
 package kona.web.address;
 
-import kona.domain.address.Address;
+import kona.model.domain.address.Address;
 
 public class AddressDTO {
 

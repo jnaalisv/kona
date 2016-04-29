@@ -1,7 +1,7 @@
 package kona.infrastructure.persistence;
 
-import kona.domain.order.DeliveryOrder;
-import kona.domain.order.DeliveryOrderRepository;
+import kona.model.domain.order.DeliveryOrder;
+import kona.model.domain.order.DeliveryOrderRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

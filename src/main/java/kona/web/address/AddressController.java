@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kona.domain.address.Address;
-import kona.domain.address.AddressService;
+import kona.model.domain.address.Address;
+import kona.model.domain.address.AddressService;
 
 @RestController
 @RequestMapping("addresses")

@@ -1,4 +1,4 @@
-package kona.domain.user;
+package kona.model.domain.user;
 
 import java.util.Collection;
 import java.util.Collections;

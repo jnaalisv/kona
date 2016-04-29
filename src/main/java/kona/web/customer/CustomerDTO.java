@@ -1,6 +1,6 @@
 package kona.web.customer;
 
-import kona.domain.customer.Customer;
+import kona.model.domain.customer.Customer;
 
 public class CustomerDTO {
 

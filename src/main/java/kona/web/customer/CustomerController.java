@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kona.application.CustomerService;
-import kona.domain.customer.Customer;
+import kona.model.application.CustomerService;
+import kona.model.domain.customer.Customer;
 
 @RestController
 @RequestMapping("customers")

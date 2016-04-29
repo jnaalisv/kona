@@ -1,4 +1,4 @@
-package kona.domain.order;
+package kona.model.domain.order;
 
 import java.util.ArrayList;
 import java.util.List;

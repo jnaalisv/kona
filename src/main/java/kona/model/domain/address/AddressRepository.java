@@ -1,4 +1,4 @@
-package kona.domain.address;
+package kona.model.domain.address;
 
 import java.util.Optional;
 
