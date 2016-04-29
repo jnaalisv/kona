@@ -25,16 +25,6 @@ import kona.web.authentication.AuthenticationController;
 public class SpringSecurityConfiguration {
 
     /**
-     * Use BCrypt password encoding with default strength of 10 log rounds.
-     *
-     * @return BCryptPasswordEncoder instance
-     */
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-
-    /**
      * Configure authentication provider for Spring Security to use BCrypt
      * password encoding and {@link UserDetailsService} implementation.
      *

@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
@@ -18,6 +19,16 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"kona.infrastructure.persistence"})
 @EnableTransactionManagement
 public class PersistenceConfiguration {
+
+    /**
+     * Use BCrypt password encoding with default strength of 10 log rounds.
+     *
+     * @return BCryptPasswordEncoder instance
+     */
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
