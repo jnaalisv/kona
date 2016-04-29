@@ -1,5 +1,6 @@
-package kona;
+package kona.infrastructure;
 
+import kona.AbstractIntegrationTest;
 import kona.infrastructure.persistence.DummyUserRepository;
 import org.junit.Test;
 import org.springframework.security.core.userdetails.UserDetails;

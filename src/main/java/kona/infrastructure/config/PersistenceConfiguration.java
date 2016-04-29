@@ -35,7 +35,7 @@ public class PersistenceConfiguration {
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setDataSource(dataSource);
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("kona.domain");
+        entityManagerFactoryBean.setPackagesToScan("kona.model.domain");
 
         Properties jpaProperties = new Properties();
 
