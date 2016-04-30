@@ -1,4 +1,4 @@
-package kona.web.customer;
+package kona.web.interfaces.customer;
 
 import java.util.List;
 import java.util.stream.Collectors;

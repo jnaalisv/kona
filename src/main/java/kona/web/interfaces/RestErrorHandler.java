@@ -1,4 +1,4 @@
-package kona.web;
+package kona.web.interfaces;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -12,7 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 
 import kona.web.interfaces.AbstractSpringRestMvcTest;
-import kona.web.address.AddressDTO;
+import kona.web.interfaces.address.AddressDTO;
 
 public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest {
 

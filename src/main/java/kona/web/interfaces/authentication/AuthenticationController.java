@@ -1,4 +1,4 @@
-package kona.web.authentication;
+package kona.web.interfaces.authentication;
 
 import javax.inject.Inject;
 
