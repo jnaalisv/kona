@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kona.configurations.authentication.SpringSecurityConfiguration;
+import kona.web.config.authentication.SpringSecurityConfiguration;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package kona.authentication;
+package kona.web.config.authentication;
 
 import javax.servlet.Filter;
 

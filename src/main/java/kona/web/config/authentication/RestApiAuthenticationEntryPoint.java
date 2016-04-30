@@ -1,4 +1,4 @@
-package kona.configurations.authentication;
+package kona.web.config.authentication;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
-import kona.authentication.PreAuthTokenFilter;
+import kona.web.authentication.PreAuthTokenFilter;
 
 class RestApiAuthenticationEntryPoint implements AuthenticationEntryPoint {
 

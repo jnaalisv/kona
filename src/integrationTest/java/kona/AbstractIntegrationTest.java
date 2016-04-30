@@ -1,7 +1,7 @@
 package kona;
 
 import kona.model.config.DomainConfiguration;
-import kona.configurations.authentication.SpringSecurityConfiguration;
+import kona.web.config.authentication.SpringSecurityConfiguration;
 import kona.infrastructure.config.PersistenceConfiguration;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

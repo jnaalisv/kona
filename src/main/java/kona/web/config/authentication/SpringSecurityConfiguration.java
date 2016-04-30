@@ -1,4 +1,4 @@
-package kona.configurations.authentication;
+package kona.web.config.authentication;
 
 import java.util.Arrays;
 
@@ -16,11 +16,11 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 
-import kona.authentication.PreAuthUserDetailsService;
+import kona.web.authentication.PreAuthUserDetailsService;
 import kona.web.interfaces.address.AddressController;
 import kona.web.interfaces.authentication.AuthenticationController;
 
-@ComponentScan("kona.authentication")
+@ComponentScan("kona.web.authentication")
 @Configuration
 public class SpringSecurityConfiguration {
 

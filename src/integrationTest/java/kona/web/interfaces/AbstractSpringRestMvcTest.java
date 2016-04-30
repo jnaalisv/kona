@@ -12,7 +12,7 @@ import org.springframework.web.context.WebApplicationContext;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import kona.AbstractIntegrationTest;
-import kona.configurations.WebConfiguration;
+import kona.web.config.WebConfiguration;
 
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebConfiguration.class })

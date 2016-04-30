@@ -1,4 +1,4 @@
-package kona.configurations.authentication;
+package kona.web.config.authentication;
 
 import javax.inject.Inject;
 
@@ -9,7 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import kona.authentication.PreAuthTokenFilter;
+import kona.web.authentication.PreAuthTokenFilter;
 
 @Configuration
 @EnableWebSecurity
