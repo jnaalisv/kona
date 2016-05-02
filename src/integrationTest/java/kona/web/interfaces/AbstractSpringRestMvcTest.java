@@ -1,7 +1,8 @@
 package kona.web.interfaces;
 
-import javax.inject.Inject;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
+import kona.AbstractIntegrationTest;
+import kona.web.config.WebConfiguration;
 import org.junit.Before;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -9,10 +10,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import javax.inject.Inject;
 
-import kona.AbstractIntegrationTest;
-import kona.web.config.WebConfiguration;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @WebAppConfiguration
 @ContextConfiguration(classes = {WebConfiguration.class })
@@ -30,5 +30,18 @@ public abstract class AbstractSpringRestMvcTest extends AbstractIntegrationTest 
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .build();
+    }
+
+
+    protected MockMvcResponseBuilder httpGet(String url) {
+        return new MockMvcResponseBuilder(mockMvc, objectMapper, get(url));
+    }
+
+    protected MockMvcResponseBuilder httpPost(String url) {
+        return new MockMvcResponseBuilder(mockMvc, objectMapper, post(url));
+    }
+
+    protected MockMvcResponseBuilder httpPut(String url) {
+        return new MockMvcResponseBuilder(mockMvc, objectMapper, put(url));
     }
 }
