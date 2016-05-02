@@ -1,18 +1,17 @@
 package kona.web.interfaces.addresses;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
+import kona.web.interfaces.AbstractSpringRestMvcTest;
+import kona.web.interfaces.address.AddressDTO;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 
-import kona.web.interfaces.AbstractSpringRestMvcTest;
-import kona.web.interfaces.address.AddressDTO;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
@@ -23,7 +22,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         aNewAddress.postalCode = "99999";
         aNewAddress.municipality = "Some City";
 
-        MvcResult postResult = mockMvc.perform(post("/addresses", aNewAddress)
+        MvcResult postResult = mockMvc.perform(post("/addresses")
                 .content(objectMapper.writeValueAsString(aNewAddress))
                 .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .andExpect(status().is(HttpStatus.CREATED.value()))
@@ -37,17 +36,25 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         assertThat(savedAddress.postalCode).isEqualTo(aNewAddress.postalCode);
         assertThat(savedAddress.municipality).isEqualTo(aNewAddress.municipality);
 
+        AddressDTO requestedAddress = httpGet("/addresses/" + savedAddress.ID, AddressDTO.class);
 
-        MvcResult getResult =mockMvc.perform(get("/addresses/" + savedAddress.ID))
-                .andExpect(status().is2xxSuccessful())
-                .andReturn();
-
-        AddressDTO requestedAddress = objectMapper.readValue(getResult.getResponse().getContentAsString(), AddressDTO.class);
 
         assertThat(savedAddress.ID).isEqualTo(requestedAddress.ID);
         assertThat(savedAddress.street).isEqualTo(requestedAddress.street);
         assertThat(savedAddress.postalCode).isEqualTo(requestedAddress.postalCode);
         assertThat(savedAddress.municipality).isEqualTo(requestedAddress.municipality);
-
     }
+
+
+    public MvcResult performGet(String url) throws Exception {
+        return mockMvc.perform(get(url))
+                .andExpect(status().is2xxSuccessful())
+                .andReturn();
+    }
+
+    public <T> T httpGet(String url, Class<T> responseBodyType) throws Exception {
+        MvcResult mvcResult = performGet(url);
+        return objectMapper.readValue(mvcResult.getResponse().getContentAsString(), responseBodyType);
+    }
+
 }

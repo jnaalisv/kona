@@ -1,5 +1,6 @@
 package kona.model.domain.address;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AddressRepository {
@@ -7,4 +8,6 @@ public interface AddressRepository {
     void save(Address address);
 
     Optional<Address> get(long id);
+
+    List<Address> getAll();
 }

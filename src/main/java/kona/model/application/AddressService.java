@@ -1,9 +1,12 @@
-package kona.model.domain.address;
+package kona.model.application;
 
-import javax.inject.Inject;
-
+import kona.model.domain.address.Address;
+import kona.model.domain.address.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class AddressService {
@@ -27,4 +30,8 @@ public class AddressService {
                 .orElseThrow(() -> new RuntimeException("address not found with id=" + id));
     }
 
+    @Transactional
+    public List<Address> loadAll() {
+        return this.addressRepository.getAll();
+    }
 }

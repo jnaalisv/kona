@@ -2,10 +2,12 @@ package kona.infrastructure.persistence;
 
 import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
+import kona.model.domain.customer.Customer;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -22,5 +24,10 @@ public class JpaAddressRepository implements AddressRepository {
     @Override
     public Optional<Address> get(long id) {
         return Optional.ofNullable(entityManager.find(Address.class, id));
+    }
+
+    @Override
+    public List<Address> getAll() {
+        return entityManager.createQuery("from Address").getResultList();
     }
 }
