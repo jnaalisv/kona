@@ -90,7 +90,7 @@ public class MockMvcResponseBuilder {
         }
     }
 
-    private String responseBody() {
+    public String responseBody() {
         try {
             return resultActions.andReturn().getResponse().getContentAsString();
         } catch (UnsupportedEncodingException e) {

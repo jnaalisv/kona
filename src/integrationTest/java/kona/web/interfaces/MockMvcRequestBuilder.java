@@ -36,9 +36,20 @@ public class MockMvcRequestBuilder {
         return accept(MediaType.APPLICATION_JSON);
     }
 
+    public MockMvcRequestBuilder acceptTextPlain() {
+        return accept(MediaType.TEXT_PLAIN);
+    }
 
     public MockMvcRequestBuilder contentTypeApplicationJson() {
-        servletRequestBuilder.contentType(MediaType.APPLICATION_JSON);
+        return contentType(MediaType.APPLICATION_JSON);
+    }
+
+    public MockMvcRequestBuilder contentTypeTextPlain() {
+        return contentType(MediaType.TEXT_PLAIN);
+    }
+
+    private MockMvcRequestBuilder contentType(MediaType contentType) {
+        servletRequestBuilder.contentType(contentType);
         return this;
     }
 
