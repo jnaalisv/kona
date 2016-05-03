@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.servlet.ResultActions;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
@@ -22,55 +23,78 @@ public class MockMvcResponseBuilder {
         this.resultActions = resultActions;
     }
 
-    public MockMvcResponseBuilder expect404() throws Exception {
-        resultActions.andExpect(status().isNotFound());
+    public MockMvcResponseBuilder expect200() {
+        return expectStatus(HttpStatus.OK);
+    }
+
+    public MockMvcResponseBuilder expect201() {
+        return expectStatus(HttpStatus.CREATED);
+    }
+
+    public MockMvcResponseBuilder expect400() {
+        return expectStatus(HttpStatus.BAD_REQUEST);
+    }
+
+    public MockMvcResponseBuilder expect401() {
+        return expectStatus(HttpStatus.UNAUTHORIZED);
+    }
+
+    public MockMvcResponseBuilder expect403() {
+        return expectStatus(HttpStatus.FORBIDDEN);
+    }
+
+    public MockMvcResponseBuilder expect404() {
+        return expectStatus(HttpStatus.NOT_FOUND);
+    }
+
+    private MockMvcResponseBuilder expectStatus(HttpStatus httpStatus) {
+        try {
+            resultActions.andExpect(status().is(httpStatus.value()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
-    public MockMvcResponseBuilder expect200() throws Exception {
-        resultActions.andExpect(status().isOk());
+    public MockMvcResponseBuilder expectHeader(String name, String value) {
+        try {
+            resultActions.andExpect(header().string(name, value));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
-    public MockMvcResponseBuilder expect403() throws Exception {
-        resultActions.andExpect(status().isForbidden());
-        return this;
+    public <T> T returnResponseBody() {
+        try {
+            return objectMapper.readValue(responseBody(), new TypeReference<T>() { });
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public MockMvcResponseBuilder expect401() throws Exception {
-        resultActions.andExpect(status().isUnauthorized());
-        return this;
+    public <T> T responseBodyAs(Class<T> responseType) {
+        try {
+            return objectMapper.readValue(responseBody(), responseType);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public MockMvcResponseBuilder expect400() throws Exception {
-        resultActions.andExpect(status().isBadRequest());
-        return this;
-    }
-
-    public MockMvcResponseBuilder expectStatus(HttpStatus httpStatus) throws Exception {
-        resultActions.andExpect(status().is(httpStatus.value()));
-        return this;
-    }
-
-    public MockMvcResponseBuilder expectHeader(String name, String value) throws Exception {
-        resultActions.andExpect(header().string(name, value));
-        return this;
-    }
-
-    public <T> T returnResponseBody() throws Exception {
-        return objectMapper.readValue(responseBody(), new TypeReference<T>() { });
-    }
-
-    public <T> T responseBodyAs(Class<T> responseType) throws Exception {
-        return objectMapper.readValue(responseBody(), responseType);
-    }
-
-    public <T> List<T> responseBodyAsListOf(Class<T> listItemType) throws Exception {
+    public <T> List<T> responseBodyAsListOf(Class<T> listItemType) {
         JavaType responseType = objectMapper.getTypeFactory().constructCollectionType(List.class, listItemType);
-        return objectMapper.readValue(responseBody(), responseType);
+        try {
+            return objectMapper.readValue(responseBody(), responseType);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private String responseBody() throws UnsupportedEncodingException {
-        return resultActions.andReturn().getResponse().getContentAsString();
+    private String responseBody() {
+        try {
+            return resultActions.andReturn().getResponse().getContentAsString();
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

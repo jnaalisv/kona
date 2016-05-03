@@ -33,15 +33,15 @@ public abstract class AbstractSpringRestMvcTest extends AbstractIntegrationTest 
     }
 
 
-    protected MockMvcRequestBuilder httpGet(String url) {
-        return new MockMvcRequestBuilder(mockMvc, objectMapper, get(url));
+    protected MockMvcRequestBuilder httpGet(String urlTemplate, Object... urlVars) {
+        return new MockMvcRequestBuilder(mockMvc, objectMapper, get(urlTemplate, urlVars));
     }
 
-    protected MockMvcRequestBuilder httpPost(String url) {
-        return new MockMvcRequestBuilder(mockMvc, objectMapper, post(url));
+    protected MockMvcRequestBuilder httpPost(String urlTemplate, Object... urlVars) {
+        return new MockMvcRequestBuilder(mockMvc, objectMapper, post(urlTemplate, urlVars));
     }
 
-    protected MockMvcRequestBuilder httpPut(String url) {
-        return new MockMvcRequestBuilder(mockMvc, objectMapper, put(url));
+    protected MockMvcRequestBuilder httpPut(String urlTemplate, Object... urlVars) {
+        return new MockMvcRequestBuilder(mockMvc, objectMapper, put(urlTemplate, urlVars));
     }
 }

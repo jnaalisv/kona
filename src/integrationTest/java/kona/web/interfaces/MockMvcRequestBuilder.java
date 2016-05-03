@@ -47,12 +47,16 @@ public class MockMvcRequestBuilder {
         return this;
     }
 
-    public MockMvcRequestBuilder content(Object content) throws JsonProcessingException {
-        servletRequestBuilder.content(objectMapper.writeValueAsString(content));
+    public MockMvcRequestBuilder content(Object content) {
+        try {
+            servletRequestBuilder.content(objectMapper.writeValueAsString(content));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
         return this;
     }
 
-    public MockMvcRequestBuilder content(byte[] content) throws JsonProcessingException {
+    public MockMvcRequestBuilder content(byte[] content) {
         servletRequestBuilder.content(content);
         return this;
     }
@@ -60,19 +64,35 @@ public class MockMvcRequestBuilder {
     /**
      * Use this method to post a list of items
      */
-    public <T> MockMvcRequestBuilder contentAsListOf(Class<T> clazz, T...content) throws JsonProcessingException {
+    public <T> MockMvcRequestBuilder contentAsListOf(Class<T> clazz, T...content)  {
 
         JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class, clazz);
 
-        servletRequestBuilder.content(
-                objectMapper
-                        .writerFor(type)
-                        .writeValueAsString(Arrays.asList(content)));
+        try {
+            servletRequestBuilder.content(
+                    objectMapper
+                            .writerFor(type)
+                            .writeValueAsString(Arrays.asList(content)));
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
 
         return this;
     }
 
-    public MockMvcResponseBuilder perform() throws Exception {
-        return new MockMvcResponseBuilder(objectMapper, mockMvc.perform(servletRequestBuilder));
+    public MockMvcResponseBuilder expect200() {
+        return perform().expect200();
+    }
+
+    public MockMvcResponseBuilder expect201() {
+        return perform().expect201();
+    }
+
+    public MockMvcResponseBuilder perform() {
+        try {
+            return new MockMvcResponseBuilder(objectMapper, mockMvc.perform(servletRequestBuilder));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

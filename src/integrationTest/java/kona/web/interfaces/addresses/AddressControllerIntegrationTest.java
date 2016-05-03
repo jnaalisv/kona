@@ -3,14 +3,13 @@ package kona.web.interfaces.addresses;
 import kona.web.interfaces.AbstractSpringRestMvcTest;
 import kona.web.interfaces.address.AddressDTO;
 import org.junit.Test;
-import org.springframework.http.HttpStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
     @Test
-    public void shouldSuccesfullyCreateNewAddress() throws Exception {
+    public void shouldSuccesfullyCreateNewAddress() {
         AddressDTO aNewAddress = new AddressDTO();
         aNewAddress.street = "Street Address";
         aNewAddress.postalCode = "99999";
@@ -19,8 +18,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         AddressDTO savedAddress = httpPost("/addresses")
                 .contentTypeApplicationJson()
                 .content(aNewAddress)
-                .perform()
-                .expectStatus(HttpStatus.CREATED)
+                .expect201()
                 .expectHeader("Location", "addresses/1")
                 .responseBodyAs(AddressDTO.class);
 
@@ -30,9 +28,9 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         assertThat(savedAddress.municipality).isEqualTo(aNewAddress.municipality);
 
         AddressDTO requestedAddress =
-                httpGet("/addresses/" + savedAddress.ID)
+                httpGet("/addresses/{id}", savedAddress.ID)
                         .acceptApplicationJson()
-                        .perform()
+                        .expect200()
                         .responseBodyAs(AddressDTO.class);
 
 
