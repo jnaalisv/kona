@@ -23,7 +23,7 @@ public class AddressController {
         this.addressService = addressService;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AddressDTO> post(@RequestBody AddressDTO addressDTO) {
 
         Address aNewAddress = new Address(addressDTO.street, addressDTO.postalCode, addressDTO.municipality);
@@ -35,12 +35,12 @@ public class AddressController {
         return new ResponseEntity<>(new AddressDTO(aNewAddress), responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(path = "{addressID}", method = RequestMethod.GET)
+    @GetMapping(path = "{addressID}")
     public AddressDTO get(@PathVariable long addressID) {
         return new AddressDTO(addressService.get(addressID));
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<AddressDTO> getAll() {
         return addressService.loadAll()
                 .stream()

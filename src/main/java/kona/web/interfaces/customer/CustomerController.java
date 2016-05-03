@@ -1,22 +1,16 @@
 package kona.web.interfaces.customer;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.inject.Inject;
-
+import kona.model.application.CustomerService;
+import kona.model.domain.customer.Customer;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import kona.model.application.CustomerService;
-import kona.model.domain.customer.Customer;
+import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("customers")
@@ -29,7 +23,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<CustomerDTO> getAll() {
         return customerService.loadAll()
                 .stream()
@@ -37,12 +31,12 @@ public class CustomerController {
                 .collect(Collectors.toList());
     }
 
-    @RequestMapping(path = "{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CustomerDTO get(@PathVariable long id) {
         return new CustomerDTO(customerService.load(id));
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CustomerDTO> post(@RequestBody CustomerDTO customerDTO) {
 
         Customer customer = new Customer(0l, customerDTO.name);
