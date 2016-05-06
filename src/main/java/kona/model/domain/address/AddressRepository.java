@@ -5,7 +5,7 @@ import java.util.Optional;
 
 public interface AddressRepository {
 
-    void save(Address address);
+    void add(Address address);
 
     Optional<Address> get(long id);
 

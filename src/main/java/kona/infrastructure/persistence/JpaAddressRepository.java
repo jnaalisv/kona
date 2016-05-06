@@ -17,7 +17,7 @@ public class JpaAddressRepository implements AddressRepository {
     private EntityManager entityManager;
 
     @Override
-    public void save(Address address) {
+    public void add(Address address) {
         entityManager.persist(address);
     }
 

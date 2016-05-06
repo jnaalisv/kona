@@ -20,7 +20,7 @@ public class AddressService {
 
     @Transactional
     public void save(Address address) {
-        addressRepository.save(address);
+        addressRepository.add(address);
     }
 
     @Transactional
