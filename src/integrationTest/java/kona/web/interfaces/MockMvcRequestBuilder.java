@@ -99,6 +99,10 @@ public class MockMvcRequestBuilder {
         return perform().expect201();
     }
 
+    public MockMvcResponseBuilder expect401() {
+        return perform().expect401();
+    }
+
     public MockMvcResponseBuilder perform() {
         try {
             return new MockMvcResponseBuilder(objectMapper, mockMvc.perform(servletRequestBuilder));
