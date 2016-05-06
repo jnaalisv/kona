@@ -12,6 +12,20 @@
 - JS web app secured by spring security
 - better integration tests
 
+## test plan
+repository-layer
+- data access code should be integration tested to verify configuration and SQL
+
+model-layer
+- domain entities and services should be thoroughly unit tested
+- application servces should be integration tested to test transactions and core functionality
+
+web-layer
+- spring webmvc configuration and rest interfaces should be unit tested with Spring MockMvc
+
+Also there should be some e2e/smoke tests against the full application
+
+## curl stuff
 ```bash
 
 curl -X POST \
