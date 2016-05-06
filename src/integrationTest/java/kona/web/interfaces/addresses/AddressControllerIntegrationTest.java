@@ -4,6 +4,7 @@ import kona.web.interfaces.AbstractSpringRestMvcTest;
 import kona.web.interfaces.address.AddressDTO;
 import org.junit.Test;
 
+import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest {
@@ -18,6 +19,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         AddressDTO savedAddress = httpPost("/addresses")
                 .contentTypeApplicationJson()
                 .content(aNewAddress)
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect201()
                 .expectHeader("Location", "addresses/1")
                 .responseBodyAs(AddressDTO.class);
@@ -30,6 +32,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         AddressDTO requestedAddress =
                 httpGet("/addresses/{id}", savedAddress.ID)
                         .acceptApplicationJson()
+                        .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                         .expect200()
                         .responseBodyAs(AddressDTO.class);
 

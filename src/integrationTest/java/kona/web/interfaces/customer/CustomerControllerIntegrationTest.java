@@ -6,6 +6,7 @@ import org.junit.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest {
@@ -19,6 +20,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         CustomerDTO aPostedCustomer = httpPost("/customers")
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect201()
                 .responseBodyAs(CustomerDTO.class);
 
@@ -34,6 +36,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         httpPost("/customers")
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect201();
 
 
@@ -42,11 +45,13 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         httpPost("/customers")
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect201()
                 .responseBodyAs(CustomerDTO.class);
 
         List<CustomerDTO> postedCustomers = httpGet("/customers")
                 .acceptApplicationJson()
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect200()
                 .responseBodyAsListOf(CustomerDTO.class);
 
@@ -57,6 +62,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
 
         CustomerDTO postedCustomer = httpGet("/customers/{id}", postedCustomers.get(0).id)
                 .acceptApplicationJson()
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect200()
                 .responseBodyAs(CustomerDTO.class);
 

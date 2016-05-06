@@ -106,4 +106,9 @@ public class MockMvcRequestBuilder {
             throw new RuntimeException(e);
         }
     }
+
+    public MockMvcRequestBuilder header(String headerName, String headerValue) {
+        servletRequestBuilder.header(headerName, headerValue);
+        return this;
+    }
 }
