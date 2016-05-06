@@ -1,9 +1,8 @@
 package kona.web.config.authentication;
 
-import java.util.Arrays;
-
-import javax.inject.Inject;
-
+import kona.web.authentication.PreAuthUserDetailsService;
+import kona.web.interfaces.address.AddressController;
+import kona.web.interfaces.authentication.AuthenticationController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,9 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationProvider;
 
-import kona.web.authentication.PreAuthUserDetailsService;
-import kona.web.interfaces.address.AddressController;
-import kona.web.interfaces.authentication.AuthenticationController;
+import java.util.Arrays;
 
 @ComponentScan("kona.web.authentication")
 @Configuration
@@ -32,8 +29,6 @@ public class SpringSecurityConfiguration {
      *            database
      * @return configured DaoAuthenticationProvider instance
      */
-
-    @Inject
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider(UserDetailsService userDetailsService, BCryptPasswordEncoder passwordEncoder) {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
@@ -48,7 +43,6 @@ public class SpringSecurityConfiguration {
      * @param preAuthProvider
      * @return
      */
-    @Inject
     @Bean
     public AuthenticationManager authenticationManager(PreAuthenticatedAuthenticationProvider preAuthProvider, DaoAuthenticationProvider daoAuthProvider) {
         return new ProviderManager(Arrays.asList(preAuthProvider, daoAuthProvider));
@@ -74,7 +68,6 @@ public class SpringSecurityConfiguration {
      * @param preAuthUserDetailsService
      * @return
      */
-    @Inject
     @Bean
     public PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider(PreAuthUserDetailsService preAuthUserDetailsService) {
         PreAuthenticatedAuthenticationProvider preAuthenticatedAuthenticationProvider = new PreAuthenticatedAuthenticationProvider();
