@@ -18,10 +18,10 @@ repository-layer
 
 model-layer
 - domain entities and services should be thoroughly unit tested
-- application servces should be integration tested to test transactions and core functionality
+- application services should be integration tested to test transactions and core functionality
 
 web-layer
-- spring webmvc configuration and rest interfaces should be unit tested with Spring MockMvc
+- spring webmvc configuration and rest interfaces should be integration tested with Spring MockMvc
 
 Also there should be some e2e/smoke tests against the full application
 
