@@ -1,19 +1,27 @@
 package kona.web.interfaces.customer;
 
-import kona.model.application.CustomerService;
-import kona.model.domain.customer.Customer;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-import java.util.List;
-import java.util.stream.Collectors;
+import kona.model.application.CustomerService;
+import kona.model.domain.customer.Customer;
+import kona.web.interfaces.KonaWebResources;
 
 @RestController
-@RequestMapping("customers")
+@RequestMapping(KonaWebResources.CUSTOMERS)
 public class CustomerController {
 
     private CustomerService customerService;
@@ -27,7 +35,7 @@ public class CustomerController {
     public List<CustomerDTO> getAll() {
         return customerService.loadAll()
                 .stream()
-                .map(customer -> new CustomerDTO(customer))
+                .map(CustomerDTO::new)
                 .collect(Collectors.toList());
     }
 
