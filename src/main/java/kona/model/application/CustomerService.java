@@ -34,4 +34,13 @@ public class CustomerService {
     public List<Customer> loadAll() {
         return this.customerRepository.getAll();
     }
+
+    @Transactional
+    public List<Customer> findBy(String name) {
+        if (name != null) {
+            return customerRepository.findByName(name);
+        } else {
+            return customerRepository.getAll();
+        }
+    }
 }

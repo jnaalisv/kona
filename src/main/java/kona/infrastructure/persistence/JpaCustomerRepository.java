@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +29,17 @@ public class JpaCustomerRepository implements CustomerRepository {
 
     @Override
     public List<Customer> getAll() {
-        return entityManager.createQuery("from Customer").getResultList();
+        return entityManager
+                .createQuery("select c from Customer c", Customer.class)
+                .getResultList();
+    }
+
+    @Override
+    public List<Customer> findByName(String name) {
+        TypedQuery<Customer> customerQuery = entityManager
+                .createQuery("SELECT c FROM Customer c where c.name like :name", Customer.class)
+                .setParameter("name", "%"+name + "%");
+
+        return customerQuery.getResultList();
     }
 }

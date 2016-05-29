@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kona.model.application.CustomerService;
@@ -32,8 +33,9 @@ public class CustomerController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<CustomerDTO> getAll() {
-        return customerService.loadAll()
+    public List<CustomerDTO> getCustomers(@RequestParam(required = false) String name) {
+        return customerService
+                .findBy(name)
                 .stream()
                 .map(CustomerDTO::new)
                 .collect(Collectors.toList());

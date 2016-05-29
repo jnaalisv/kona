@@ -9,4 +9,6 @@ public interface CustomerRepository {
     Customer get(long id);
 
     List<Customer> getAll();
+
+    List<Customer> findByName(String name);
 }
