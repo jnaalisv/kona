@@ -14,4 +14,12 @@ public class Product {
     private long id;
 
     private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public long getId() {
+        return id;
+    }
 }
