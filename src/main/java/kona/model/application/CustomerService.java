@@ -1,14 +1,12 @@
 package kona.model.application;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import kona.model.domain.customer.Customer;
+import kona.model.domain.customer.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerRepository;
+import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class CustomerService {
@@ -28,11 +26,6 @@ public class CustomerService {
     @Transactional
     public Customer load(long id) {
         return this.customerRepository.get(id);
-    }
-
-    @Transactional
-    public List<Customer> loadAll() {
-        return this.customerRepository.getAll();
     }
 
     @Transactional

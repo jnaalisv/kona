@@ -1,5 +1,6 @@
 package kona.model.application
 
+import kona.model.domain.customer.Customer
 import kona.model.domain.customer.CustomerRepository
 import spock.lang.Specification
 
@@ -7,27 +8,35 @@ class CustomerServiceSpec extends Specification {
 
     def customerRepositoryMock = Mock(CustomerRepository)
     def customerService = new CustomerService(customerRepositoryMock);
+    def customer = new Customer()
 
-    def "loadAll should call getAll" () {
+    def "save should call add" () {
 
         when:
-        customerService.loadAll()
+        customerService.save(customer)
+
+        then:
+        1 * customerRepositoryMock.add(customer)
+        0 * _
+    }
+
+    def "find by null should call getAll" () {
+
+        when:
+        customerService.findBy(null)
 
         then:
         1 * customerRepositoryMock.getAll()
         0 * _
     }
 
-    def "load should call get with id" () {
-
-        given:
-        long customerID = 124l
+    def "find by name should call findByName" () {
 
         when:
-        customerService.load(customerID)
+        customerService.findBy("Spooky")
 
         then:
-        1 * customerRepositoryMock.get(customerID)
+        1 * customerRepositoryMock.findByName("Spooky")
         0 * _
     }
 }

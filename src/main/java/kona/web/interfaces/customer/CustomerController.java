@@ -1,25 +1,17 @@
 package kona.web.interfaces.customer;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.inject.Inject;
-
+import kona.model.application.CustomerService;
+import kona.model.domain.customer.Customer;
+import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import kona.model.application.CustomerService;
-import kona.model.domain.customer.Customer;
-import kona.web.interfaces.KonaWebResources;
+import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(KonaWebResources.CUSTOMERS)
@@ -33,7 +25,7 @@ public class CustomerController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public List<CustomerDTO> getCustomers(@RequestParam(required = false) String name) {
+    public List<CustomerDTO> searchForCustomers(@RequestParam(required = false) String name) {
         return customerService
                 .findBy(name)
                 .stream()
@@ -47,7 +39,7 @@ public class CustomerController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<CustomerDTO> post(@RequestBody CustomerDTO customerDTO) {
+    public ResponseEntity<CustomerDTO> createANewCustomer(@RequestBody CustomerDTO customerDTO) {
 
         Customer customer = new Customer(0l, customerDTO.name);
         customerService.save(customer);
