@@ -23,6 +23,8 @@ public class DeliveryOrder {
     @OneToMany(mappedBy = "deliveryOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderLine> orderLines = new ArrayList<>();
 
+    public DeliveryOrder() { /* hibernate*/}
+
     public DeliveryOrder(final long id, final long payerID, final List<OrderLine> orderLines) {
         this.id = id;
         this.payerID = payerID;

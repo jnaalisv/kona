@@ -47,6 +47,14 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                 .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .contentTypeApplicationJson()
                 .content(deliveryOrderDTO)
-                .expect201();
+                .expect201()
+                .expectHeader("Location", "/delivery-orders/1");
+
+        DeliveryOrderDTO postedDeliveryOrder = httpGet("/delivery-orders/1")
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .acceptApplicationJson()
+                .expect200()
+                .responseBodyAs(DeliveryOrderDTO.class);
+        
     }
 }

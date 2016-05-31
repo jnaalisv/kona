@@ -19,4 +19,9 @@ public class DeliveryOrderService {
     public void save(DeliveryOrder deliveryOrder) {
         this.deliveryOrderRepository.add(deliveryOrder);
     }
+
+    @Transactional
+    public DeliveryOrder load(long id) {
+        return deliveryOrderRepository.get(id);
+    }
 }
