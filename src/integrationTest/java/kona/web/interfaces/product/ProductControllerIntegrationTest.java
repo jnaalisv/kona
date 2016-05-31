@@ -1,17 +1,22 @@
 package kona.web.interfaces.product;
 
-import kona.web.interfaces.AbstractSpringRestMvcTest;
-import org.junit.Test;
-import org.springframework.test.context.jdbc.Sql;
-
-import java.util.List;
-
 import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
+import org.junit.Test;
+import org.springframework.test.context.jdbc.Sql;
+
+import kona.web.interfaces.AbstractSpringRestMvcTest;
+
 public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
-    @Sql("classpath:products.sql")
+    @Sql({
+            "classpath:init-database.sql"
+            , "classpath:products.sql"
+            , "classpath:customers.sql"
+    })
     @Test
     public void shouldFindProductByNameSearch() {
 

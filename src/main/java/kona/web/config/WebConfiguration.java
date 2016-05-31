@@ -29,6 +29,7 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder = new Jackson2ObjectMapperBuilder();
+        jackson2ObjectMapperBuilder.indentOutput(true);
         converters.add(new MappingJackson2HttpMessageConverter(jackson2ObjectMapperBuilder.build()));
         converters.add(new StringHttpMessageConverter());
     }

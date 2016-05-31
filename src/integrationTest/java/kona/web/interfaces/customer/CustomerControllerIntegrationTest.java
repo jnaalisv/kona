@@ -41,7 +41,6 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
                 .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .expect201();
 
-
         aNewCustomer.name = "Mr. Smith";
 
         httpPost(KonaWebResources.CUSTOMERS)

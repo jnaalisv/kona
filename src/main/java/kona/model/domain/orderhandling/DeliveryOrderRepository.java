@@ -1,4 +1,4 @@
-package kona.model.domain.order;
+package kona.model.domain.orderhandling;
 
 public interface DeliveryOrderRepository {
 
