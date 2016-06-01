@@ -58,7 +58,7 @@ public class MockMvcResponseBuilder {
 
     public MockMvcResponseBuilder expectHeader(String name, String value) {
         try {
-            resultActions.andExpect(header().string(name, value));
+            resultActions.andExpect(header().string(name, new StringMatcher(value)));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
