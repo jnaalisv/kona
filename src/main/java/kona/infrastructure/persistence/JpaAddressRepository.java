@@ -28,6 +28,8 @@ public class JpaAddressRepository implements AddressRepository {
 
     @Override
     public List<Address> getAll() {
-        return entityManager.createQuery("from Address").getResultList();
+        return entityManager
+                .createQuery("select a from Address a", Address.class)
+                .getResultList();
     }
 }

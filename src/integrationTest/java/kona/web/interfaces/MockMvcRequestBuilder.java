@@ -75,7 +75,8 @@ public class MockMvcRequestBuilder {
     /**
      * Use this method to post a list of items
      */
-    public <T> MockMvcRequestBuilder contentAsListOf(Class<T> clazz, T...content)  {
+    @SafeVarargs
+    final public <T> MockMvcRequestBuilder contentAsListOf(Class<T> clazz, T...content)  {
 
         JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class, clazz);
 

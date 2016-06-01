@@ -1,22 +1,23 @@
 package kona.web.authentication;
 
-import javax.inject.Inject;
-
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
 import org.springframework.security.core.token.Token;
 import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
+
+import javax.inject.Inject;
 
 /**
  * Verifies given authentication token and loads UserDetails
  */
 @Component
-public class PreAuthUserDetailsService implements AuthenticationUserDetailsService {
+public class PreAuthUserDetailsService implements AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> {
+
 
     private final UserDetailsService userDetailsService;
     private final KeyBasedPersistenceTokenService keyBasedPersistenceTokenService;
@@ -30,7 +31,7 @@ public class PreAuthUserDetailsService implements AuthenticationUserDetailsServi
     }
 
     @Override
-    public UserDetails loadUserDetails(Authentication authentication) throws UsernameNotFoundException {
+    public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken authentication) throws UsernameNotFoundException {
 
         String principal = authentication.getPrincipal().toString();
         Token verifiedToken = tryToVerifyKey(principal);

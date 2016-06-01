@@ -27,7 +27,8 @@ public class GenericBuilder<T> {
         return this;
     }
 
-    public GenericBuilder<T> with(Consumer<T>... setters) {
+    @SafeVarargs
+    public final GenericBuilder<T> with(Consumer<T>... setters) {
         Stream.of(setters).forEach(s -> {
             Consumer<T> c = instance -> s.accept(instance);
             instanceModifiers.add(c);
