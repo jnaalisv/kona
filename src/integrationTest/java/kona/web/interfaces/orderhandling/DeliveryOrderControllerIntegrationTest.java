@@ -12,6 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
@@ -47,14 +48,17 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                 .contentTypeApplicationJson()
                 .content(deliveryOrderDTO)
                 .expect201()
-                .expectHeader("Location", "/delivery-orders/5")
+                .expectHeader("Location", "/delivery-orders/[0-9]")
                 .responseBodyAs(DeliveryOrderDTO.class);
 
-        httpGet("/delivery-orders/" + postedDeliveryOrder.id)
+        assertThat(postedDeliveryOrder.orderLines).hasSize(1);
+
+        postedDeliveryOrder = httpGet("/delivery-orders/" + postedDeliveryOrder.id)
                 .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .acceptApplicationJson()
                 .expect200()
                 .responseBodyAs(DeliveryOrderDTO.class);
-        
+
+        assertThat(postedDeliveryOrder.orderLines).hasSize(1);
     }
 }

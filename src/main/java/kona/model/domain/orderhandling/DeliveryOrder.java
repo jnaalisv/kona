@@ -1,14 +1,9 @@
 package kona.model.domain.orderhandling;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class DeliveryOrder {
@@ -29,6 +24,11 @@ public class DeliveryOrder {
         this.id = id;
         this.payerID = payerID;
         this.orderLines = orderLines;
+        this.orderLines.forEach(orderLine -> orderLine.setDeliveryOrder(this));
+    }
+
+    public DeliveryOrder(final long id, final long payerID, final OrderLine...orderLines) {
+        this(id, payerID, Arrays.asList(orderLines));
     }
 
     public long getId() {

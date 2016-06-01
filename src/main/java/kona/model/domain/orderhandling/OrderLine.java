@@ -1,12 +1,7 @@
 package kona.model.domain.orderhandling;
 
+import javax.persistence.*;
 import java.math.BigDecimal;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 public class OrderLine {
@@ -23,11 +18,12 @@ public class OrderLine {
     @ManyToOne
     private DeliveryOrder deliveryOrder;
 
-    public OrderLine(long id, long productID, BigDecimal amount, DeliveryOrder deliveryOrder) {
+    public OrderLine() { /* hibernate */}
+
+    public OrderLine(long id, long productID, BigDecimal amount) {
         this.id = id;
         this.productID = productID;
         this.amount = amount;
-        this.deliveryOrder = deliveryOrder;
     }
 
     public long getId() {
@@ -40,5 +36,9 @@ public class OrderLine {
 
     public BigDecimal getAmount() {
         return amount;
+    }
+
+    public void setDeliveryOrder(DeliveryOrder deliveryOrder) {
+        this.deliveryOrder = deliveryOrder;
     }
 }

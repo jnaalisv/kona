@@ -1,10 +1,10 @@
 package kona.web.interfaces.orderhandling;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 import kona.model.domain.orderhandling.DeliveryOrder;
 import kona.model.domain.orderhandling.OrderLine;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class DeliveryOrderAssembler {
 
@@ -16,8 +16,7 @@ public class DeliveryOrderAssembler {
                 .map(orderLineDTO -> new OrderLine(
                         orderLineDTO.id,
                         orderLineDTO.productID,
-                        orderLineDTO.amount,
-                        null
+                        orderLineDTO.amount
                 ))
                 .collect(Collectors.toList());
 
