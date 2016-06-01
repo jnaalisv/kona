@@ -21,4 +21,12 @@ public class AuthenticationIntegrationTest extends AbstractSpringRestMvcTest {
                 .header(X_AUTH_TOKEN_HEADERNAME, "invalidAuthenticationToken")
                 .expect401();
     }
+
+    @Test
+    public void httpGetWithValidAuthTokenShouldReturnHttpOK(){
+        httpGet("/customers")
+                .acceptApplicationJson()
+                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .expect200();
+    }
 }
