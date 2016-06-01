@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 
-/**
- * Verifies given authentication token and loads UserDetails
- */
 @Component
 public class PreAuthUserDetailsService implements AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> {
 
@@ -31,17 +28,20 @@ public class PreAuthUserDetailsService implements AuthenticationUserDetailsServi
     }
 
     @Override
-    public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken authentication) throws UsernameNotFoundException {
+    public UserDetails loadUserDetails(PreAuthenticatedAuthenticationToken preAuthenticatedAuthentication) throws UsernameNotFoundException {
 
-        String principal = authentication.getPrincipal().toString();
-        Token verifiedToken = tryToVerifyKey(principal);
+        // PreAuthTokenFilter populates the preAuthenticatedAuthentication
+        String tokenKey = preAuthenticatedAuthentication.getCredentials().toString();
 
+        Token verifiedToken = tryToVerify(tokenKey);
+
+        // when generating the token, username is presented as extended information
         return userDetailsService.loadUserByUsername(verifiedToken.getExtendedInformation());
     }
 
-    private Token tryToVerifyKey(String key) {
+    private Token tryToVerify(String tokenKey) {
         try {
-            return keyBasedPersistenceTokenService.verifyToken(key);
+            return keyBasedPersistenceTokenService.verifyToken(tokenKey);
         } catch (Exception e) {
             throw new BadCredentialsException("Token verification failed");
         }
