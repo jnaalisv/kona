@@ -1,6 +1,6 @@
 package kona.web.interfaces.product;
 
-import kona.model.domain.product.ProductService;
+import kona.model.application.ProductService;
 import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;

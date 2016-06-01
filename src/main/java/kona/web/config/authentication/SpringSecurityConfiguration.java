@@ -25,7 +25,7 @@ public class SpringSecurityConfiguration {
      * Configure authentication provider for Spring Security to use BCrypt
      * password encoding and {@link UserDetailsService} implementation.
      *
-     * @param userDetailsService implementation that can load a user from the
+     * @param userDetailsService implementation that can loadBy a user from the
      *            database
      * @return configured DaoAuthenticationProvider instance
      */

@@ -1,27 +1,29 @@
-package kona.model.domain.orderhandling;
+package kona.model.application;
 
-import javax.inject.Inject;
-
+import kona.model.domain.orderhandling.DeliveryOrder;
+import kona.model.domain.orderhandling.DeliveryOrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.inject.Inject;
+
 @Service
-public class DeliveryOrderService {
+public class OrderHandlingService {
 
     private final DeliveryOrderRepository deliveryOrderRepository;
 
     @Inject
-    public DeliveryOrderService(final DeliveryOrderRepository deliveryOrderRepository) {
+    public OrderHandlingService(final DeliveryOrderRepository deliveryOrderRepository) {
         this.deliveryOrderRepository = deliveryOrderRepository;
     }
 
     @Transactional
-    public void save(DeliveryOrder deliveryOrder) {
+    public void saveNew(DeliveryOrder deliveryOrder) {
         this.deliveryOrderRepository.add(deliveryOrder);
     }
 
     @Transactional
-    public DeliveryOrder load(long id) {
+    public DeliveryOrder loadBy(long id) {
         return deliveryOrderRepository.get(id);
     }
 }

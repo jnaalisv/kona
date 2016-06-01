@@ -1,5 +1,7 @@
-package kona.model.domain.product;
+package kona.model.application;
 
+import kona.model.domain.product.Product;
+import kona.model.domain.product.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
