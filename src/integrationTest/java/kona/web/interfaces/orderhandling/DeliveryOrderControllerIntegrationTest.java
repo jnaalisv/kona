@@ -1,18 +1,17 @@
 package kona.web.interfaces.orderhandling;
 
-import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
+import kona.web.interfaces.AbstractSpringRestMvcTest;
+import kona.web.interfaces.KonaWebResources;
+import kona.web.interfaces.customer.CustomerDTO;
+import kona.web.interfaces.product.ProductDTO;
+import org.junit.Test;
+import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.Test;
-import org.springframework.test.context.jdbc.Sql;
-
-import kona.web.interfaces.AbstractSpringRestMvcTest;
-import kona.web.interfaces.KonaWebResources;
-import kona.web.interfaces.customer.CustomerDTO;
-import kona.web.interfaces.product.ProductDTO;
+import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
 
 public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
@@ -43,14 +42,15 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
 
         deliveryOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).id, new BigDecimal("10")));
 
-        httpPost("/delivery-orders")
+        DeliveryOrderDTO postedDeliveryOrder = httpPost("/delivery-orders")
                 .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .contentTypeApplicationJson()
                 .content(deliveryOrderDTO)
                 .expect201()
-                .expectHeader("Location", "/delivery-orders/1");
+                .expectHeader("Location", "/delivery-orders/5")
+                .responseBodyAs(DeliveryOrderDTO.class);
 
-        DeliveryOrderDTO postedDeliveryOrder = httpGet("/delivery-orders/1")
+        httpGet("/delivery-orders/" + postedDeliveryOrder.id)
                 .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
                 .acceptApplicationJson()
                 .expect200()
