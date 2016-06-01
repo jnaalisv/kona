@@ -6,6 +6,7 @@ plugins {
 }
 
 apply from: "$rootDir/gradle/integration-test.gradle"
+apply from: "$rootDir/gradle/javac-options.gradle"
 apply from: "$rootDir/gradle/wrapper-version.gradle"
 
 sourceCompatibility = JavaVersion.VERSION_1_8
