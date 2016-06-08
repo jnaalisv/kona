@@ -3,21 +3,20 @@ package kona.infrastructure;
 import kona.infrastructure.config.PersistenceConfiguration;
 import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Inject
+    private SessionFactory sessionFactory;
 
     @Inject
     private AddressRepository addressRepository;
@@ -30,7 +29,7 @@ public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit
 
         addressRepository.add(mannerheimintieYksi);
 
-        entityManager.flush();
+        sessionFactory.getCurrentSession().flush();
 
         assertThat(mannerheimintieYksi.getID()).isGreaterThan(0);
 
@@ -46,7 +45,7 @@ public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit
 
         addressRepository.add(mannerheimintieYksi);
 
-        entityManager.flush();
+        sessionFactory.getCurrentSession().flush();
 
         Address addressFromRepository = addressRepository
                 .get(mannerheimintieYksi.getID())

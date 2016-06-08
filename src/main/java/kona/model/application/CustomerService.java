@@ -25,7 +25,7 @@ public class CustomerService {
 
     @Transactional
     public Customer load(long id) {
-        return this.customerRepository.get(id);
+        return customerRepository.get(id);
     }
 
     @Transactional

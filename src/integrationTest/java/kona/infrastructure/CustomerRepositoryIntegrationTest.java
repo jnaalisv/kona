@@ -3,22 +3,21 @@ package kona.infrastructure;
 import kona.infrastructure.config.PersistenceConfiguration;
 import kona.model.domain.customer.Customer;
 import kona.model.domain.customer.CustomerRepository;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class CustomerRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Inject
+    private SessionFactory sessionFactory;
 
     @Inject
     private CustomerRepository customerRepository;
@@ -35,7 +34,7 @@ public class CustomerRepositoryIntegrationTest extends AbstractTransactionalJUni
 
         customerRepository.add(aNewCustomer);
 
-        entityManager.flush();
+        sessionFactory.getCurrentSession().flush();
         assertThat(customerRepository.getAll().size()).isEqualTo(1);
     }
 }

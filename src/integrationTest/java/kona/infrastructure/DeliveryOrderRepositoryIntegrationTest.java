@@ -8,14 +8,13 @@ import kona.model.domain.orderhandling.DeliveryOrderRepository;
 import kona.model.domain.orderhandling.OrderLine;
 import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductRepository;
+import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -29,8 +28,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @PersistenceContext
-    private EntityManager entityManager;
+    @Inject
+    private SessionFactory sessionFactory;
 
     @Inject
     private DeliveryOrderRepository deliveryOrderRepository;
@@ -51,7 +50,7 @@ public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactiona
 
         deliveryOrderRepository.add(deliveryOrder);
 
-        entityManager.flush();
+        sessionFactory.getCurrentSession().flush();
 
         DeliveryOrder fetchedDeliveryOrder = deliveryOrderRepository.get(deliveryOrder.getId());
 

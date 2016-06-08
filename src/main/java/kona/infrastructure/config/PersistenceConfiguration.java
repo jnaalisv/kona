@@ -2,17 +2,17 @@ package kona.infrastructure.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
-import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.orm.hibernate5.HibernateTransactionManager;
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
@@ -34,44 +34,51 @@ public class PersistenceConfiguration {
     public DataSource dataSource() {
         HikariConfig dataSourceConfig = new HikariConfig();
         dataSourceConfig.setDriverClassName("org.h2.Driver");
-        dataSourceConfig.setJdbcUrl("jdbc:h2:mem:datajpa");
+        dataSourceConfig.setJdbcUrl("jdbc:h2:mem:db");
         dataSourceConfig.setUsername("sa");
         dataSourceConfig.setPassword("");
 
         return new HikariDataSource(dataSourceConfig);
     }
 
-    @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManagerFactoryBean.setPackagesToScan("kona.model.domain");
+    private static final Properties hibernateProperties() {
+        Properties hibernateProperties = new Properties();
 
-        Properties jpaProperties = new Properties();
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 
-        jpaProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-
-        //Specifies the action that is invoked to the database when the Hibernate
-        //SessionFactory is created or closed.
-        jpaProperties.put("hibernate.hbm2ddl.auto","create");
+        //Specifies the action that is invoked to the database when the Hibernate SessionFactory is created or closed.
+        hibernateProperties.put("hibernate.hbm2ddl.auto","create");
 
         //Configures the naming strategy that is used when Hibernate creates
         //new database objects and schema elements
-        jpaProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
+        hibernateProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
 
-        jpaProperties.put("hibernate.show_sql","false");
-        jpaProperties.put("hibernate.format_sql", "true");
+        hibernateProperties.put("hibernate.show_sql","true");
+        hibernateProperties.put("hibernate.format_sql", "true");
+        return hibernateProperties;
+    }
 
-        entityManagerFactoryBean.setJpaProperties(jpaProperties);
+//    @Bean
+//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+//        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+//        entityManagerFactoryBean.setDataSource(dataSource);
+//        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+//        entityManagerFactoryBean.setPackagesToScan("kona.model.domain");
+//        entityManagerFactoryBean.setJpaProperties(hibernateProperties());
+//        return entityManagerFactoryBean;
+//    }
 
-        return entityManagerFactoryBean;
+    @Bean
+    public LocalSessionFactoryBean sessionFactory(DataSource dataSource) throws PropertyVetoException {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        sessionFactory.setDataSource(dataSource);
+        sessionFactory.setPackagesToScan(new String[] { "kona.model.domain" });
+        sessionFactory.setHibernateProperties(hibernateProperties());
+        return sessionFactory;
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
-        JpaTransactionManager transactionManager = new JpaTransactionManager();
-        transactionManager.setEntityManagerFactory(entityManagerFactory);
-        return transactionManager;
+    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
+        return new HibernateTransactionManager(sessionFactory);
     }
 }
