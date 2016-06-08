@@ -31,13 +31,16 @@ public class HibernateAddressRepository implements AddressRepository {
 
     @Override
     public Optional<Address> get(long id) {
-        return Optional.ofNullable(getCurrentSession().get(Address.class, id));
+        return getCurrentSession()
+                .createQuery("select a from Address a where a.id = :id", Address.class)
+                .setParameter("id", id)
+                .uniqueResultOptional();
     }
 
     @Override
     public List<Address> getAll() {
         return getCurrentSession()
-                .createQuery("select a from Address a")
+                .createQuery("select a from Address a", Address.class)
                 .list();
     }
 }

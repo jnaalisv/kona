@@ -24,7 +24,7 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<CustomerDTO> searchForCustomers(@RequestParam(required = false) String name) {
         return customerService
                 .findBy(name)
@@ -33,12 +33,12 @@ public class CustomerController {
                 .collect(Collectors.toList());
     }
 
-    @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.GET, path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CustomerDTO get(@PathVariable long id) {
         return new CustomerDTO(customerService.load(id));
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<CustomerDTO> createANewCustomer(@RequestBody CustomerDTO customerDTO) {
 
         Customer customer = new Customer(0l, customerDTO.name);

@@ -33,8 +33,8 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
 
     @Override
     public DeliveryOrder get(long id) {
-        return (DeliveryOrder) getCurrentSession()
-                .createQuery("select o from DeliveryOrder o left join fetch o.orderLines where o.id = :id")
+        return getCurrentSession()
+                .createQuery("select o from DeliveryOrder o left join fetch o.orderLines where o.id = :id", DeliveryOrder.class)
                 .setParameter("id", id)
                 .uniqueResult();
     }

@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
+import kona.model.domain.address.Address;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -35,20 +36,24 @@ public class HibernateCustomerRepository implements CustomerRepository {
 
     @Override
     public Customer get(long id) {
-        return getCurrentSession().get(Customer.class, id);
+        return getCurrentSession()
+                .createQuery("select c from Customer c where c.id = :id", Customer.class)
+                .setParameter("id", id)
+                .uniqueResult();
     }
 
     @Override
     public List<Customer> getAll() {
         return getCurrentSession()
-                .createQuery("select c from Customer c")
+                .createQuery("select c from Customer c", Customer.class)
                 .list();
     }
 
     @Override
     public List<Customer> findByName(String name) {
         return getCurrentSession()
-                .createQuery("SELECT c FROM Customer c where c.name like :name")
-                .setParameter("name", "%"+name + "%").list();
+                .createQuery("SELECT c FROM Customer c where c.name like :name", Customer.class)
+                .setParameter("name", "%"+name + "%")
+                .list();
     }
 }

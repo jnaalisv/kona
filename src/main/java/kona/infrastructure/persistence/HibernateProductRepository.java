@@ -29,7 +29,7 @@ public class HibernateProductRepository implements ProductRepository {
     @Override
     public List<Product> findBy(String name) {
         return getCurrentSession()
-                .createQuery("SELECT p FROM Product p where p.name like :name")
+                .createQuery("SELECT p FROM Product p where p.name like :name", Product.class)
                 .setParameter("name", "%"+name + "%")
                 .list();
     }
@@ -37,7 +37,7 @@ public class HibernateProductRepository implements ProductRepository {
     @Override
     public List<Product> getAll() {
         return getCurrentSession()
-                .createQuery("select p from Product p")
+                .createQuery("select p from Product p", Product.class)
                 .list();
     }
 }
