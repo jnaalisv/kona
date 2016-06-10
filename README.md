@@ -41,7 +41,7 @@ curl -X POST \
 ### Look up customers by name
 ```bash
 curl -X GET \
-    -H "Authentication: AUTH_TOKEN" \
+    -H "Authorization: AUTH_TOKEN" \
     http://localhost:8080/kona/customers?name=jeppe
 ```
 

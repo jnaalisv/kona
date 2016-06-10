@@ -2,8 +2,7 @@ package kona.web.interfaces.authentication;
 
 import kona.web.interfaces.AbstractSpringRestMvcTest;
 import org.junit.Test;
-
-import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
+import org.springframework.http.HttpHeaders;
 
 public class AuthenticationIntegrationTest extends AbstractSpringRestMvcTest {
 
@@ -18,7 +17,7 @@ public class AuthenticationIntegrationTest extends AbstractSpringRestMvcTest {
     public void httpGetWithInvalidAuthTokenShouldReturnUnauthorized(){
         httpGet("/customers")
                 .acceptApplicationJson()
-                .header(X_AUTH_TOKEN_HEADERNAME, "invalidAuthenticationToken")
+                .header(HttpHeaders.AUTHORIZATION, "invalidAuthenticationToken")
                 .expect401();
     }
 
@@ -26,7 +25,7 @@ public class AuthenticationIntegrationTest extends AbstractSpringRestMvcTest {
     public void httpGetWithValidAuthTokenShouldReturnHttpOK(){
         httpGet("/customers")
                 .acceptApplicationJson()
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect200();
     }
 }

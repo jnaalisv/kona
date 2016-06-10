@@ -5,13 +5,13 @@ import kona.web.interfaces.KonaWebResources;
 import kona.web.interfaces.customer.CustomerDTO;
 import kona.web.interfaces.product.ProductDTO;
 import org.junit.Test;
+import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.jdbc.Sql;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
@@ -27,7 +27,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
         List<CustomerDTO> customers =
                 httpGet(KonaWebResources.CUSTOMERS)
                         .acceptApplicationJson()
-                        .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                         .expect200()
                         .responseBodyAsListOf(CustomerDTO.class);
 
@@ -36,7 +36,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
 
         List<ProductDTO> products =
                 httpGet(KonaWebResources.PRODUCTS)
-                        .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                         .acceptApplicationJson()
                         .expect200()
                         .responseBodyAsListOf(ProductDTO.class);
@@ -44,7 +44,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
         deliveryOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).id, new BigDecimal("10")));
 
         DeliveryOrderDTO postedDeliveryOrder = httpPost("/delivery-orders")
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .contentTypeApplicationJson()
                 .content(deliveryOrderDTO)
                 .expect201()
@@ -54,7 +54,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
         assertThat(postedDeliveryOrder.orderLines).hasSize(1);
 
         postedDeliveryOrder = httpGet("/delivery-orders/" + postedDeliveryOrder.id)
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .acceptApplicationJson()
                 .expect200()
                 .responseBodyAs(DeliveryOrderDTO.class);

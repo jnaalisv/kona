@@ -1,15 +1,14 @@
 package kona.web.interfaces.customer;
 
-import static kona.web.authentication.PreAuthTokenFilter.X_AUTH_TOKEN_HEADERNAME;
-import static org.assertj.core.api.Assertions.assertThat;
+import kona.web.interfaces.AbstractSpringRestMvcTest;
+import kona.web.interfaces.KonaWebResources;
+import org.junit.Test;
+import org.springframework.http.HttpHeaders;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.junit.Test;
-
-import kona.web.interfaces.AbstractSpringRestMvcTest;
-import kona.web.interfaces.KonaWebResources;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
@@ -22,7 +21,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         CustomerDTO aPostedCustomer = httpPost("/customers")
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect201()
                 .responseBodyAs(CustomerDTO.class);
 
@@ -38,7 +37,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         httpPost(KonaWebResources.CUSTOMERS)
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect201();
 
         aNewCustomer.name = "Mr. Smith";
@@ -46,13 +45,13 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         httpPost(KonaWebResources.CUSTOMERS)
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect201()
                 .responseBodyAs(CustomerDTO.class);
 
         List<CustomerDTO> postedCustomers = httpGet(KonaWebResources.CUSTOMERS)
                 .acceptApplicationJson()
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect200()
                 .responseBodyAsListOf(CustomerDTO.class);
 
@@ -63,7 +62,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
 
         CustomerDTO postedCustomer = httpGet(KonaWebResources.CUSTOMERS + "/{id}", postedCustomers.get(0).id)
                 .acceptApplicationJson()
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect200()
                 .responseBodyAs(CustomerDTO.class);
 
@@ -76,7 +75,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
                 httpGet(KonaWebResources.CUSTOMERS)
                         .param("name", "Smith")
                 .acceptApplicationJson()
-                .header(X_AUTH_TOKEN_HEADERNAME, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .expect200()
                 .responseBodyAsListOf(CustomerDTO.class);
 
