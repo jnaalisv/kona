@@ -22,7 +22,7 @@ public class DeliveryOrderController {
         this.orderHandlingService = orderHandlingService;
     }
 
-    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<DeliveryOrderDTO> createANewDeliveryOrder(@RequestBody DeliveryOrderDTO deliveryOrderDTO) {
 
         DeliveryOrder deliveryOrder = DeliveryOrderAssembler.assembleFrom(deliveryOrderDTO);
@@ -34,7 +34,7 @@ public class DeliveryOrderController {
         return new ResponseEntity<>(DeliveryOrderAssembler.assembleTo(deliveryOrder), responseHeaders, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public DeliveryOrderDTO get(@PathVariable long id) {
         return DeliveryOrderAssembler.assembleTo(orderHandlingService.loadBy(id));
     }

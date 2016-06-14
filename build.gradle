@@ -14,16 +14,13 @@ targetCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://repo.spring.io/libs-milestone'
-    }
 }
 
 ext {
     slf4jVersion = "1.7.20"
     logbackVersion = "1.1.7"
     servletApiVersion = "3.1.0"
-    springVersion = "4.2.6.RELEASE"
+    springVersion = "4.3.0.RELEASE"
     springSecurityVersion = "4.1.0.RELEASE"
     jacksonVersion = "2.7.3"
     hibernateVersion = "5.2.0.Final"
