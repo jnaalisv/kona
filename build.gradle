@@ -67,14 +67,15 @@ dependencies {
     integrationTestCompile "org.springframework:spring-test:$springVersion"
 }
 
-test {
-    jacoco {
-        append = false
-        destinationFile = file("$buildDir/jacoco/jacocoUnitTest.exec")
-        classDumpFile = file("$buildDir/jacoco/classpathdumps")
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco/test/html"
     }
-    finalizedBy jacocoTestReport
 }
+
+test.finalizedBy jacocoTestReport
 
 gretty {
     contextPath = "kona"
