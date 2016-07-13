@@ -17,11 +17,11 @@ repositories {
 }
 
 ext {
-    slf4jVersion = "1.7.20"
+    slf4jVersion = "1.7.21"
     logbackVersion = "1.1.7"
     servletApiVersion = "3.1.0"
-    springVersion = "4.3.0.RELEASE"
-    springSecurityVersion = "4.1.0.RELEASE"
+    springVersion = "4.3.1.RELEASE"
+    springSecurityVersion = "4.1.1.RELEASE"
     jacksonVersion = "2.7.3"
     hibernateVersion = "5.2.1.Final"
     hikariCPVersion = "2.4.6"
