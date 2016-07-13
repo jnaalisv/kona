@@ -15,6 +15,8 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import kona.model.application.NotFoundException;
+
 @ControllerAdvice
 public final class RestErrorHandler extends ResponseEntityExceptionHandler {
 
@@ -42,6 +44,12 @@ public final class RestErrorHandler extends ResponseEntityExceptionHandler {
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         return handleExceptionInternal(ex, ex.getMessage(), headers, status, request);
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<String> handleAuthenticationException(NotFoundException ex, HttpServletRequest httpRequest) {
+        logBadRequest(httpRequest, ex);
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(AuthenticationException.class)

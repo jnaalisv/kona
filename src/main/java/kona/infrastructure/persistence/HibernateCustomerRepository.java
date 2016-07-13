@@ -1,6 +1,7 @@
 package kona.infrastructure.persistence;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -35,11 +36,11 @@ public class HibernateCustomerRepository implements CustomerRepository {
     }
 
     @Override
-    public Customer get(long id) {
+    public Optional<Customer> get(long id) {
         return getCurrentSession()
                 .createQuery("select c from Customer c where c.id = :id", Customer.class)
                 .setParameter("id", id)
-                .uniqueResult();
+                .uniqueResultOptional();
     }
 
     @Override

@@ -1,14 +1,15 @@
 package kona.web.interfaces;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JavaType;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.Arrays;
+import java.util.List;
+
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
 
-import java.util.Arrays;
-import java.util.List;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class MockMvcRequestBuilder {
 
@@ -102,6 +103,10 @@ public class MockMvcRequestBuilder {
 
     public MockMvcResponseBuilder expect401() {
         return perform().expect401();
+    }
+
+    public MockMvcResponseBuilder expect404() {
+        return perform().expect404();
     }
 
     public MockMvcResponseBuilder perform() {

@@ -1,12 +1,14 @@
 package kona.model.application;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerRepository;
+import java.util.List;
+
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
-import java.util.List;
+import kona.model.domain.customer.Customer;
+import kona.model.domain.customer.CustomerRepository;
 
 @Service
 public class CustomerService {
@@ -25,7 +27,9 @@ public class CustomerService {
 
     @Transactional
     public Customer load(long id) {
-        return customerRepository.get(id);
+        return customerRepository
+                .get(id)
+                .orElseThrow(() -> NotFoundException.byId(Customer.class, id));
     }
 
     @Transactional
