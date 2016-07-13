@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class HibernateProductRepository implements ProductRepository {
@@ -39,5 +40,18 @@ public class HibernateProductRepository implements ProductRepository {
         return getCurrentSession()
                 .createQuery("select p from Product p", Product.class)
                 .list();
+    }
+
+    @Override
+    public void add(Product product) {
+        getCurrentSession().save(product);
+    }
+
+    @Override
+    public Optional<Product> get(long id) {
+        return getCurrentSession()
+                .createQuery("SELECT p FROM Product p where p.id = :id", Product.class)
+                .setParameter("id", id)
+                .uniqueResultOptional();
     }
 }
