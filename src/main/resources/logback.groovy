@@ -1,6 +1,3 @@
-import ch.qos.logback.classic.encoder.PatternLayoutEncoder
-import ch.qos.logback.core.ConsoleAppender
-
 println "Configuring logback"
 
 appender("STDOUT", ConsoleAppender) {
