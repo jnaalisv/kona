@@ -8,19 +8,6 @@
 - hibernate as jpa implementation
 - gradle jacoco plugin
 
-## Test plan
-repository-layer
-- data access code should be integration tested to verify configuration and SQL
-
-model-layer
-- domain entities and services should be thoroughly unit tested
-- application services should be integration tested to test transactions and core functionality
-
-web-layer
-- spring webmvc configuration and rest interfaces should be integration tested with Spring MockMvc
-
-Also there should be some e2e/smoke tests against the full application
-
 ## Use cases
 ### Authentication
 ```bash
@@ -45,8 +32,3 @@ curl -X GET \
     http://localhost:8080/kona/customers?name=jeppe
 ```
 
-## Todo
-- JS web app secured by spring security
-- better integration tests
-- better business logic
-- Use proper database
