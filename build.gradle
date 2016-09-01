@@ -40,7 +40,6 @@ configurations {
 dependencies {
 
     compile "org.slf4j:slf4j-api:$slf4jVersion"
-    compile "com.h2database:h2:$h2Version"
     compile "com.zaxxer:HikariCP:$hikariCPVersion"
     compile "org.hibernate:hibernate-core:$hibernateVersion"
     compile "javax.inject:javax.inject:1"
@@ -57,6 +56,7 @@ dependencies {
     runtime "org.slf4j:jcl-over-slf4j:$slf4jVersion"
     runtime "org.codehaus.groovy:groovy:$groovyVersion"
     runtime "ch.qos.logback:logback-classic:$logbackVersion"
+    runtime "com.h2database:h2:$h2Version"
 
     testCompile "junit:junit:$junitVersion"
     testCompile "org.assertj:assertj-core:$assertJVersion"
