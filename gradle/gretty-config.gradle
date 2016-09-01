@@ -1,0 +1,6 @@
+gretty {
+    contextPath = "kona"
+    servletContainer = "jetty9"
+    debugSuspend = false
+    integrationTestTask = 'none'
+}
