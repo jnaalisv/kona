@@ -3,4 +3,5 @@ gretty {
     servletContainer = "jetty9"
     debugSuspend = false
     integrationTestTask = 'none'
+    port = 9999
 }

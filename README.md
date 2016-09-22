@@ -14,7 +14,7 @@
 $ curl -X POST \
 	-H "Content-Type: application/json" \
 	-d '{"username":"admin","password":"admin"}' \
-	http://localhost:8080/kona/authenticate
+	http://localhost:9999/kona/authenticate
 ```
 ### Create a new Customer
 ```bash
@@ -22,13 +22,13 @@ curl -X POST \
     -H "Content-Type: application/json" \
     -H "Authentication: AUTH_TOKEN" \
     -d '{"name": "Uusi asiakas"}' \
-    http://localhost:8080/kona/customers
+    http://localhost:9999/kona/customers
 ```
 
 ### Look up customers by name
 ```bash
 curl -X GET \
     -H "Authorization: AUTH_TOKEN" \
-    http://localhost:8080/kona/customers?name=jeppe
+    http://localhost:9999/kona/customers?name=jeppe
 ```
 
