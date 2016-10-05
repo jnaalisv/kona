@@ -11,24 +11,18 @@
 ## Use cases
 ### Authentication
 ```bash
-$ curl -X POST \
-	-H "Content-Type: application/json" \
-	-d '{"username":"admin","password":"admin"}' \
-	http://localhost:9999/kona/authenticate
+httpstat http://localhost:9999/kona/authenticate -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
 ```
 ### Create a new Customer
 ```bash
-curl -X POST \
-    -H "Content-Type: application/json" \
-    -H "Authentication: AUTH_TOKEN" \
-    -d '{"name": "Uusi asiakas"}' \
-    http://localhost:9999/kona/customers
+httpstat http://localhost:9999/kona/customers -X POST -H "Content-Type: application/json" \
+    -H "Authorization: AUTH_TOKEN" \
+    -d '{"name": "Uusi asiakas"}'
 ```
 
 ### Look up customers by name
 ```bash
-curl -X GET \
-    -H "Authorization: AUTH_TOKEN" \
-    http://localhost:9999/kona/customers?name=jeppe
+httpstat http://localhost:9999/kona/customers?name=jeppe -X GET \
+    -H "Authorization: AUTH_TOKEN" 
 ```
 
