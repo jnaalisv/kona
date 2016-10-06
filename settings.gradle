@@ -1,1 +1,1 @@
-rootProject.name = 'kona'
+include 'server'

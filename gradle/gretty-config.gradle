@@ -1,7 +1,0 @@
-gretty {
-    contextPath = "kona"
-    servletContainer = "jetty9"
-    debugSuspend = false
-    integrationTestTask = 'none'
-    port = 9999
-}
