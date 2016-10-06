@@ -21,9 +21,13 @@ class KonaWebApp extends Component {
                 password: password,
             })
         }).then(function (response) {
-            console.log('response ' + response)
+            console.log('response ' + response);
+            // set auth credentials,
+            // redirect to somewhere
+
         }).catch(function(error) {
             console.log('There has been a problem with your fetch operation: ' + error.message);
+            // show error message
         });
     }
 

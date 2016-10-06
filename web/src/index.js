@@ -1,6 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import KonaWebApp from './KonaWebApp';
-import './index.css';
+import { render } from 'react-dom';
+import KonaWebApp from './components/KonaWebApp';
 
-ReactDOM.render(<KonaWebApp />, document.getElementById('root'));
+render(<KonaWebApp />, document.getElementById('root'));
