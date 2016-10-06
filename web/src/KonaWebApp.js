@@ -4,11 +4,27 @@ class KonaWebApp extends Component {
 
     login(event) {
         event.preventDefault();
-        console.log('this.username='+ this.username.value);
-        console.log('this.password='+ this.password.value);
-        if (this.username.value && this.password.value) {
 
-        }
+        const username = this.username.value;
+        const password = this.password.value;
+
+        const authenticationUrl = 'http://localhost:9999/kona/authenticate';
+
+        fetch(authenticationUrl, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username,
+                password: password,
+            })
+        }).then(function (response) {
+            console.log('response ' + response)
+        }).catch(function(error) {
+            console.log('There has been a problem with your fetch operation: ' + error.message);
+        });
     }
 
     render() {
