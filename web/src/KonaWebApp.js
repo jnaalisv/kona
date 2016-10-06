@@ -4,9 +4,9 @@ import './App.css';
 
 class KonaWebApp extends Component {
     render() {
-    return (
-        <p>Hello, World!</p>
-    );
+        return (
+            <p>Hello, World!</p>
+        );
     }
 }
 
