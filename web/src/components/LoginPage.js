@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class KonaWebApp extends Component {
+class LoginPage extends Component {
 
     login(event) {
         event.preventDefault();
@@ -44,4 +44,4 @@ class KonaWebApp extends Component {
     }
 }
 
-export default KonaWebApp;
+export default LoginPage;

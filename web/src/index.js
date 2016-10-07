@@ -1,6 +1,18 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Match, Miss } from 'react-router';
-import KonaWebApp from './components/KonaWebApp';
+import NotFound from './components/NotFound';
+import LoginPage from './components/LoginPage';
 
-render(<KonaWebApp />, document.getElementById('root'));
+const Root = () => {
+    return (
+        <BrowserRouter>
+            <div>
+                <Match exactly pattern="/login" component={LoginPage} />
+                <Miss component={NotFound} />
+            </div>
+        </BrowserRouter>
+    )
+};
+
+render(<Root/>, document.querySelector('#main'));
