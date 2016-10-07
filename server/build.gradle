@@ -29,6 +29,7 @@ ext {
     junitVersion = "4.12"
     assertJVersion = "3.5.2"
     groovyVersion = "2.4.7"
+    postgreSqlVersion = "9.4.1211.jre7"
 }
 
 configurations {
@@ -57,7 +58,7 @@ dependencies {
         "org.slf4j:jcl-over-slf4j:$slf4jVersion",
         "org.codehaus.groovy:groovy:$groovyVersion",
         "ch.qos.logback:logback-classic:$logbackVersion",
-        "com.h2database:h2:$h2Version"
+        "org.postgresql:postgresql:$postgreSqlVersion"
     )
 
     testCompile (

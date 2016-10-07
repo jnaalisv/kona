@@ -32,19 +32,19 @@ public class PersistenceConfiguration {
 
     @Bean(destroyMethod = "close")
     public DataSource dataSource() {
-        HikariConfig dataSourceConfig = new HikariConfig();
-        dataSourceConfig.setDriverClassName("org.h2.Driver");
-        dataSourceConfig.setJdbcUrl("jdbc:h2:mem:db");
-        dataSourceConfig.setUsername("sa");
-        dataSourceConfig.setPassword("");
-
+        Properties props = new Properties();
+        props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource");
+        props.setProperty("dataSource.user", "kona");
+        props.setProperty("dataSource.password", "kona");
+        props.setProperty("dataSource.databaseName", "kona");
+        HikariConfig dataSourceConfig = new HikariConfig(props);
         return new HikariDataSource(dataSourceConfig);
     }
 
     private static final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
 
-        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+        hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
         //Specifies the action that is invoked to the database when the Hibernate SessionFactory is created or closed.
         hibernateProperties.put("hibernate.hbm2ddl.auto","create");
