@@ -28,6 +28,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().addFilterBefore(authenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/authenticate").permitAll()
-                .anyRequest().authenticated();
+                .anyRequest()
+                .permitAll();
+                //.authenticated();
     }
 }
