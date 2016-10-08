@@ -1,3 +1,7 @@
+import org.flywaydb.gradle.FlywayExtension
+import org.flywaydb.gradle.task.FlywayInfoTask
+import org.flywaydb.gradle.task.FlywayMigrateTask
+
 plugins {
     id "groovy"
     id "org.flywaydb.flyway" version "4.0.3"
@@ -81,3 +85,24 @@ gretty {
     integrationTestTask = 'none'
     port = 9999
 }
+
+def integTestFlywayExtension;
+
+task initIntegTestFlywayExtension() {
+    integTestFlywayExtension = new FlywayExtension();
+    integTestFlywayExtension.locations = ["filesystem:$rootDir/sql-migrations/"]
+    integTestFlywayExtension.user = 'kona_test'
+    integTestFlywayExtension.password = 'kona_test'
+    integTestFlywayExtension.url = 'jdbc:postgresql://localhost:5432/kona_test'
+}
+
+task flywayInfoIntegTest(type: FlywayInfoTask, dependsOn: initIntegTestFlywayExtension) {
+    extension = integTestFlywayExtension
+}
+
+task flywayMigrateIntegTest(type: FlywayMigrateTask, dependsOn: initIntegTestFlywayExtension) {
+    extension = integTestFlywayExtension
+}
+
+integrationTest.dependsOn flywayMigrateIntegTest
+

@@ -1,5 +1,6 @@
 package kona.infrastructure;
 
+import kona.IntegrationTestConfig;
 import kona.infrastructure.config.PersistenceConfiguration;
 import kona.model.domain.customer.Customer;
 import kona.model.domain.customer.CustomerRepository;
@@ -21,7 +22,7 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql({"classpath:init-database.sql", "classpath:products.sql", "classpath:customers.sql"})
-@ContextConfiguration(classes = {PersistenceConfiguration.class})
+@ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
 public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Inject

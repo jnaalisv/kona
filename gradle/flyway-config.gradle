@@ -52,15 +52,8 @@ flywayMigrate {
 flyway {
     baselineOnMigrate=false
     baselineVersion=999
-
-    //driver = 'com.mysql.jdbc.Driver'
     url = 'jdbc:postgresql://' + migrationHost + ':'+ migrationPort + '/' + migrationDatabase
-
     user = 'kona'
     password = 'kona'
-
-    // default public schema used
-    //schemas = []
-
     locations = ["filesystem:$rootDir/sql-migrations/"]
 }

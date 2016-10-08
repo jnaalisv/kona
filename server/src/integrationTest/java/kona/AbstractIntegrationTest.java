@@ -10,7 +10,12 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @Sql({"classpath:init-database.sql"})
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {SpringSecurityConfiguration.class, DomainConfiguration.class, PersistenceConfiguration.class})
+@ContextConfiguration(classes = {
+        SpringSecurityConfiguration.class,
+        DomainConfiguration.class,
+        PersistenceConfiguration.class,
+        IntegrationTestConfig.class
+})
 public abstract class AbstractIntegrationTest {
 
 }

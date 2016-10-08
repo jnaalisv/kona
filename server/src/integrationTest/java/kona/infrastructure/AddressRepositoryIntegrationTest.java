@@ -1,5 +1,6 @@
 package kona.infrastructure;
 
+import kona.IntegrationTestConfig;
 import kona.infrastructure.config.PersistenceConfiguration;
 import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
@@ -14,7 +15,7 @@ import javax.inject.Inject;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql({"classpath:init-database.sql"})
-@ContextConfiguration(classes = {PersistenceConfiguration.class})
+@ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
 public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Inject
