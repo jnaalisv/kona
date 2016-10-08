@@ -1,18 +1,19 @@
 package kona.infrastructure;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import javax.inject.Inject;
-
-import org.hibernate.SessionFactory;
-import org.junit.Test;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-
 import kona.infrastructure.config.PersistenceConfiguration;
 import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductRepository;
+import org.hibernate.SessionFactory;
+import org.junit.Test;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
+import javax.inject.Inject;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@Sql({"classpath:init-database.sql"})
 @ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 

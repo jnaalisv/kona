@@ -16,11 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
-    @Sql({
-            "classpath:init-database.sql"
-            , "classpath:products.sql"
-            , "classpath:customers.sql"
-    })
+    @Sql({"classpath:products.sql", "classpath:customers.sql"})
     @Test
     public void shouldPostNewDeliveryOrder() {
 
@@ -48,7 +44,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                 .contentTypeApplicationJson()
                 .content(deliveryOrderDTO)
                 .expect201()
-                .expectHeader("Location", "/delivery-orders/[0-9]")
+                .expectHeader("Location", "/delivery-orders/[0-9]{1,2}")
                 .responseBodyAs(DeliveryOrderDTO.class);
 
         assertThat(postedDeliveryOrder.orderLines).hasSize(1);

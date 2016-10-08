@@ -47,7 +47,7 @@ public class PersistenceConfiguration {
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
         //Specifies the action that is invoked to the database when the Hibernate SessionFactory is created or closed.
-        hibernateProperties.put("hibernate.hbm2ddl.auto","create");
+        hibernateProperties.put("hibernate.hbm2ddl.auto","validate");
 
         //Configures the naming strategy that is used when Hibernate creates
         //new database objects and schema elements
@@ -57,16 +57,6 @@ public class PersistenceConfiguration {
         hibernateProperties.put("hibernate.format_sql", "true");
         return hibernateProperties;
     }
-
-//    @Bean
-//    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
-//        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
-//        entityManagerFactoryBean.setDataSource(dataSource);
-//        entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-//        entityManagerFactoryBean.setPackagesToScan("kona.model.domain");
-//        entityManagerFactoryBean.setJpaProperties(hibernateProperties());
-//        return entityManagerFactoryBean;
-//    }
 
     @Bean
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) throws PropertyVetoException {

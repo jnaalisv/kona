@@ -10,6 +10,7 @@ public class Product {
 
     @Id
     @GeneratedValue
+    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hibernate_sequence") // this is actually default
     @Column(name = "id")
     private long id;
 

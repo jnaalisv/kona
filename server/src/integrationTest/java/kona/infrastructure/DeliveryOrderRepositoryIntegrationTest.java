@@ -20,11 +20,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Sql({
-        "classpath:init-database.sql"
-        , "classpath:products.sql"
-        , "classpath:customers.sql"
-})
+@Sql({"classpath:init-database.sql", "classpath:products.sql", "classpath:customers.sql"})
 @ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 

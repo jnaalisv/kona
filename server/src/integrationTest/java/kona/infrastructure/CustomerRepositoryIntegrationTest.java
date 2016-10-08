@@ -13,6 +13,7 @@ import javax.inject.Inject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@Sql({"classpath:init-database.sql"})
 @ContextConfiguration(classes = {PersistenceConfiguration.class})
 public class CustomerRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 

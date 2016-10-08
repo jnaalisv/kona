@@ -67,20 +67,20 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
                 .responseBodyAs(CustomerDTO.class);
 
         assertThat(postedCustomer.id).isEqualTo(postedCustomers.get(0).id);
-    }
 
-    @Test
-    public void shouldFindCustomersByName() {
-        List<CustomerDTO> postedCustomers =
+
+        postedCustomers =
                 httpGet(KonaWebResources.CUSTOMERS)
                         .param("name", "Smith")
-                .acceptApplicationJson()
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
-                .expect200()
-                .responseBodyAsListOf(CustomerDTO.class);
+                        .acceptApplicationJson()
+                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                        .expect200()
+                        .responseBodyAsListOf(CustomerDTO.class);
 
         assertThat(postedCustomers.size()).isEqualTo(1);
         assertThat(postedCustomers.get(0).name).isEqualTo("Mr. Smith");
+
     }
+
 
 }

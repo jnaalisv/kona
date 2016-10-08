@@ -1,4 +1,5 @@
 insert
 into customer(id, name)
-values(1, 'Some Customer')
-  , (2, 'Another Customer');
+values
+  ((select nextval('hibernate_sequence')), 'Some Customer'),
+  ((select nextval('hibernate_sequence')), 'Another Customer');

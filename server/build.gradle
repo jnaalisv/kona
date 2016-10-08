@@ -1,10 +1,12 @@
 plugins {
     id "groovy"
+    id "org.flywaydb.flyway" version "4.0.3"
     id "war"
     id "jacoco"
     id "org.akhikhl.gretty" version "1.4.0"
 }
 
+apply from: "$rootDir/gradle/flyway-config.gradle"
 apply from: "$rootDir/gradle/integration-test.gradle"
 apply from: "$rootDir/gradle/jacoco-config.gradle"
 apply from: "$rootDir/gradle/javac-options.gradle"

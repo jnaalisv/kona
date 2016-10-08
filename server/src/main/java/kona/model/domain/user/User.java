@@ -1,17 +1,18 @@
 package kona.model.domain.user;
 
-import java.util.Collection;
-import java.util.Collections;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import javax.persistence.Table;
+import java.util.Collection;
+import java.util.Collections;
 
 @Entity
+@Table(name ="Users")
 public class User implements UserDetails{
 
     @Id
