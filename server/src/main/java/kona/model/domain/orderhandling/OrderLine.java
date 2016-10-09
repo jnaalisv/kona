@@ -11,7 +11,7 @@ public class OrderLine {
     @Column(name = "id")
     private long id;
 
-    private long productID;
+    private String productCode;
 
     private BigDecimal amount;
 
@@ -20,9 +20,9 @@ public class OrderLine {
 
     public OrderLine() { /* hibernate */}
 
-    public OrderLine(long id, long productID, BigDecimal amount) {
+    public OrderLine(long id, String productCode, BigDecimal amount) {
         this.id = id;
-        this.productID = productID;
+        this.productCode = productCode;
         this.amount = amount;
     }
 
@@ -30,8 +30,8 @@ public class OrderLine {
         return id;
     }
 
-    public long getProductID() {
-        return productID;
+    public String getProductCode() {
+        return productCode;
     }
 
     public BigDecimal getAmount() {

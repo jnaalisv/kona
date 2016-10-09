@@ -1,6 +1,5 @@
 package kona.infrastructure.persistence;
 
-import kona.model.domain.customer.Customer;
 import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductRepository;
 import org.hibernate.Session;
@@ -8,8 +7,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,10 +45,10 @@ public class HibernateProductRepository implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> get(long id) {
+    public Optional<Product> get(String productCode) {
         return getCurrentSession()
-                .createQuery("SELECT p FROM Product p where p.id = :id", Product.class)
-                .setParameter("id", id)
+                .createQuery("SELECT p FROM Product p where p.productCode = :productCode", Product.class)
+                .setParameter("productCode", productCode)
                 .uniqueResultOptional();
     }
 }

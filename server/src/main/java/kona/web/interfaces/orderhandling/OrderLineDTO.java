@@ -4,14 +4,14 @@ import java.math.BigDecimal;
 
 public class OrderLineDTO {
     public long id;
-    public long productID;
+    public String productCode;
     public BigDecimal amount;
 
     public OrderLineDTO() {}
 
-    public OrderLineDTO(final long id, final long productID, final BigDecimal amount) {
+    public OrderLineDTO(final long id, final String productCode, final BigDecimal amount) {
         this.id = id;
-        this.productID = productID;
+        this.productCode = productCode;
         this.amount = amount;
     }
 }

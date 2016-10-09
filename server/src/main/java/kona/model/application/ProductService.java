@@ -1,14 +1,12 @@
 package kona.model.application;
 
-import java.util.List;
-
-import javax.inject.Inject;
-
+import kona.model.domain.product.Product;
+import kona.model.domain.product.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kona.model.domain.product.Product;
-import kona.model.domain.product.ProductRepository;
+import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class ProductService {
@@ -35,9 +33,9 @@ public class ProductService {
     }
 
     @Transactional
-    public Product load(long id) {
+    public Product load(String productCode) {
         return productRepository
-                .get(id)
-                .orElseThrow(() -> NotFoundException.byId(Product.class, id));
+                .get(productCode)
+                .orElseThrow(() -> new NotFoundException(Product.class, "productCode="+productCode));
     }
 }

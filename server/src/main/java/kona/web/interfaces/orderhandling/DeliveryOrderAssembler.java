@@ -15,7 +15,7 @@ public class DeliveryOrderAssembler {
                 .stream()
                 .map(orderLineDTO -> new OrderLine(
                         orderLineDTO.id,
-                        orderLineDTO.productID,
+                        orderLineDTO.productCode,
                         orderLineDTO.amount
                 ))
                 .collect(Collectors.toList());
@@ -31,7 +31,7 @@ public class DeliveryOrderAssembler {
         deliveryOrderDTO.orderLines = deliveryOrder
                 .getOrderLines()
                 .stream()
-                .map(orderLine -> new OrderLineDTO(orderLine.getId(), orderLine.getProductID(), orderLine.getAmount()))
+                .map(orderLine -> new OrderLineDTO(orderLine.getId(), orderLine.getProductCode(), orderLine.getAmount()))
                 .collect(Collectors.toList());
 
         return deliveryOrderDTO;

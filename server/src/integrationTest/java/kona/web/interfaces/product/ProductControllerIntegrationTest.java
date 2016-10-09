@@ -1,14 +1,13 @@
 package kona.web.interfaces.product;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-import java.util.List;
-
+import kona.web.interfaces.AbstractSpringRestMvcTest;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.jdbc.Sql;
 
-import kona.web.interfaces.AbstractSpringRestMvcTest;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
@@ -57,19 +56,20 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
     @Test
     public void shouldAddNewProduct() {
 
-        ProductDTO aNewProduct = new ProductDTO();
-        aNewProduct.name = "Crude Oil";
+        ProductDTO arabicaBeans = new ProductDTO();
+        arabicaBeans.name = "Arabica";
+        arabicaBeans.productCode = "ABC";
 
         ProductDTO postedProduct = httpPost("/products")
                 .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .contentTypeApplicationJson()
-                .content(aNewProduct)
+                .content(arabicaBeans)
                 .expect201()
                 .responseBodyAs(ProductDTO.class);
 
-        assertThat(postedProduct.id).isGreaterThan(0);
+        assertThat(postedProduct.productCode).isEqualTo(arabicaBeans.productCode);
 
-        httpGet("/products/" + postedProduct.id)
+        httpGet("/products/" + postedProduct.productCode)
                 .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .acceptApplicationJson()
                 .expect200();

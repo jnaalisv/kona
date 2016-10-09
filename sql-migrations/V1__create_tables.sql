@@ -37,7 +37,7 @@ CREATE TABLE DeliveryOrder (
 CREATE TABLE OrderLine (
     id int8 NOT NULL,
     amount NUMERIC(19, 2),
-    productID int8 NOT NULL,
+    productCode VARCHAR(255) NOT NULL,
     deliveryOrder_id int8,
     PRIMARY KEY (id)
 );

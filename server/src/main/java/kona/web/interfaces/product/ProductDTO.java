@@ -4,7 +4,6 @@ import kona.model.domain.product.Product;
 
 public class ProductDTO {
 
-    public Long id;
     public String name;
     public String productCode;
 
@@ -12,7 +11,6 @@ public class ProductDTO {
 
     public ProductDTO(Product product) {
         this.name = product.getName();
-        this.id = product.getId();
         this.productCode = product.getProductCode();
     }
 }

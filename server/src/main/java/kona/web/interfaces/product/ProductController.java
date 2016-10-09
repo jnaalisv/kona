@@ -30,9 +30,9 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ProductDTO get(@PathVariable long id) {
-        return new ProductDTO(productService.load(id));
+    @GetMapping(path = "/{productCode}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ProductDTO get(@PathVariable String productCode) {
+        return new ProductDTO(productService.load(productCode));
     }
 
 
@@ -52,7 +52,7 @@ public class ProductController {
         productService.save(product);
 
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("Location", "products/" + product.getId());
+        responseHeaders.set("Location", "products/" + product.getProductCode());
         return new ResponseEntity<>(new ProductDTO(product), responseHeaders, HttpStatus.CREATED);
     }
 }

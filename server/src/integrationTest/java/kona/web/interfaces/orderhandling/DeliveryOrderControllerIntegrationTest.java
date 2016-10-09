@@ -37,7 +37,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                         .expect200()
                         .responseBodyAsListOf(ProductDTO.class);
 
-        deliveryOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).id, new BigDecimal("10")));
+        deliveryOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).productCode, new BigDecimal("10")));
 
         DeliveryOrderDTO postedDeliveryOrder = httpPost("/delivery-orders")
                 .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)

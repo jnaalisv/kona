@@ -34,9 +34,9 @@ public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit
 
         sessionFactory.getCurrentSession().flush();
 
-        assertThat(aNewProduct.getId()).isGreaterThan(0);
+        assertThat(productRepository.get("ABC")).isNotNull();
 
         assertThat(countRowsInTableWhere("product", "name='NotThere'")).isEqualTo(0);
-        assertThat(countRowsInTableWhere("product", "name='Arabica'")).isEqualTo(1);
+        assertThat(countRowsInTableWhere("product", "name='Arabica' and productCode='ABC' and id > 0")).isEqualTo(1);
     }
 }

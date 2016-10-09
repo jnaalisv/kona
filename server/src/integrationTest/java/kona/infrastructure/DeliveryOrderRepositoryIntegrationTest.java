@@ -43,7 +43,7 @@ public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactiona
         List<Customer> customers = customerRepository.getAll();
         List<Product> products = productRepository.getAll();
 
-        DeliveryOrder deliveryOrder = new DeliveryOrder(0l, customers.get(0).getId(), new OrderLine(0l, products.get(0).getId(), new BigDecimal("4.0")));
+        DeliveryOrder deliveryOrder = new DeliveryOrder(0l, customers.get(0).getId(), new OrderLine(0l, products.get(0).getProductCode(), new BigDecimal("4.0")));
 
         deliveryOrderRepository.add(deliveryOrder);
 

@@ -11,5 +11,5 @@ public interface ProductRepository {
 
     void add(Product product);
 
-    Optional<Product> get(long id);
+    Optional<Product> get(String productCode);
 }
