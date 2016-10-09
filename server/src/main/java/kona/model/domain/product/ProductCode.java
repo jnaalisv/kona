@@ -1,10 +1,13 @@
 package kona.model.domain.product;
 
 import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import java.io.Serializable;
 
-public class ProductCode {
+@Embeddable
+public class ProductCode implements Serializable{
 
-    @Column(name="product_code")
+    @Column(name="productCode")
     private String value;
 
     public ProductCode(String value) {
@@ -15,4 +18,6 @@ public class ProductCode {
     public String toString() {
         return value;
     }
+
+    public ProductCode() {/* for Hibernate */}
 }
