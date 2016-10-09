@@ -25,8 +25,8 @@ public class Product {
         return name;
     }
 
-    public String getProductCode() {
-        return productCode.toString();
+    public ProductCode getProductCode() {
+        return productCode;
     }
 
     /* surrogate key and no arg ctor for hibernate */

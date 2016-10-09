@@ -11,6 +11,6 @@ public class ProductDTO {
 
     public ProductDTO(Product product) {
         this.name = product.getName();
-        this.productCode = product.getProductCode();
+        this.productCode = product.getProductCode().toString();
     }
 }
