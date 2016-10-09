@@ -1,11 +1,8 @@
 package kona.web.interfaces.product;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import javax.inject.Inject;
-import javax.websocket.server.PathParam;
-
+import kona.model.application.ProductService;
+import kona.model.domain.product.Product;
+import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,9 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import kona.model.application.ProductService;
-import kona.model.domain.product.Product;
-import kona.web.interfaces.KonaWebResources;
+import javax.inject.Inject;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(KonaWebResources.PRODUCTS)
@@ -51,7 +48,7 @@ public class ProductController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ProductDTO> postNewProduct(@RequestBody ProductDTO aNewProduct) {
 
-        Product product = new Product(0l, aNewProduct.name);
+        Product product = new Product(0l, aNewProduct.name, aNewProduct.productCode);
         productService.save(product);
 
         HttpHeaders responseHeaders = new HttpHeaders();

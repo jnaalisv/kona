@@ -28,7 +28,7 @@ public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit
     public void shouldAddProduct() {
         assertThat(countRowsInTable("product")).isEqualTo(0);
 
-        Product aNewProduct = new Product(0l, "Crude Oil");
+        Product aNewProduct = new Product(0l, "Arabica", "ABC");
 
         productRepository.add(aNewProduct);
 
@@ -36,7 +36,7 @@ public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit
 
         assertThat(aNewProduct.getId()).isGreaterThan(0);
 
-        assertThat(countRowsInTableWhere("product", "name='derp'")).isEqualTo(0);
-        assertThat(countRowsInTableWhere("product", "name='Crude Oil'")).isEqualTo(1);
+        assertThat(countRowsInTableWhere("product", "name='NotThere'")).isEqualTo(0);
+        assertThat(countRowsInTableWhere("product", "name='Arabica'")).isEqualTo(1);
     }
 }

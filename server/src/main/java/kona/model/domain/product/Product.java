@@ -11,13 +11,16 @@ public class Product {
     @GeneratedValue
     private long id;
 
+    private String productCode;
+
     private String name;
 
     public Product() {/* hibernate */}
 
-    public Product(long id, String name) {
+    public Product(long id, String name, String productCode) {
         this.id = id;
         this.name = name;
+        this.productCode = productCode;
     }
 
     public String getName() {
@@ -26,5 +29,9 @@ public class Product {
 
     public long getId() {
         return id;
+    }
+
+    public String getProductCode() {
+        return productCode;
     }
 }
