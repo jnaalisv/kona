@@ -9,9 +9,10 @@ CREATE TABLE Users (
 
 CREATE TABLE Product (
   id int8 NOT NULL,
-  name VARCHAR(255),
+  name TEXT,
   productCode VARCHAR(255),
-  PRIMARY KEY (id)
+  PRIMARY KEY (id),
+  UNIQUE (productCode)
 );
 
 CREATE TABLE Address (
