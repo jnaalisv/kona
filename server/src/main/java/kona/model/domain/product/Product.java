@@ -1,6 +1,5 @@
 package kona.model.domain.product;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -10,8 +9,6 @@ public class Product {
 
     @Id
     @GeneratedValue
-    //@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "hibernate_sequence") // this is actually default
-    @Column(name = "id")
     private long id;
 
     private String name;
