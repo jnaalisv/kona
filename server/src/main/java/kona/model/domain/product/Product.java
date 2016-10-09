@@ -7,18 +7,11 @@ import javax.persistence.Id;
 @Entity
 public class Product {
 
-    @Id
-    @GeneratedValue
-    private long id;
-
     private String productCode;
 
     private String name;
 
-    public Product() {/* hibernate */}
-
-    public Product(long id, String name, String productCode) {
-        this.id = id;
+    public Product(String name, String productCode) {
         this.name = name;
         this.productCode = productCode;
     }
@@ -27,11 +20,15 @@ public class Product {
         return name;
     }
 
-    public long getId() {
-        return id;
-    }
-
     public String getProductCode() {
         return productCode;
     }
+
+    /* surrogate key and no arg ctor for hibernate */
+
+    @Id
+    @GeneratedValue
+    private long id;
+
+    public Product() {}
 }

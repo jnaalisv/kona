@@ -28,7 +28,7 @@ public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit
     public void shouldAddProduct() {
         assertThat(countRowsInTable("product")).isEqualTo(0);
 
-        Product aNewProduct = new Product(0l, "Arabica", "ABC");
+        Product aNewProduct = new Product("Arabica", "ABC");
 
         productRepository.add(aNewProduct);
 

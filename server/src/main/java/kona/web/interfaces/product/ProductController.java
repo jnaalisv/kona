@@ -48,7 +48,7 @@ public class ProductController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ProductDTO> postNewProduct(@RequestBody ProductDTO aNewProduct) {
 
-        Product product = new Product(0l, aNewProduct.name, aNewProduct.productCode);
+        Product product = new Product(aNewProduct.name, aNewProduct.productCode);
         productService.save(product);
 
         HttpHeaders responseHeaders = new HttpHeaders();
