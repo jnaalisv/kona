@@ -3,6 +3,7 @@ package kona.infrastructure;
 import kona.IntegrationTestConfig;
 import kona.infrastructure.config.PersistenceConfiguration;
 import kona.model.domain.product.Product;
+import kona.model.domain.product.ProductCode;
 import kona.model.domain.product.ProductRepository;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
@@ -28,7 +29,7 @@ public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit
     public void shouldAddProduct() {
         assertThat(countRowsInTable("product")).isEqualTo(0);
 
-        Product aNewProduct = new Product("Arabica", "ABC");
+        Product aNewProduct = new Product("Arabica", new ProductCode("ABC"));
 
         productRepository.add(aNewProduct);
 

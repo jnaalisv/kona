@@ -2,6 +2,7 @@ package kona.web.interfaces.product;
 
 import kona.model.application.ProductService;
 import kona.model.domain.product.Product;
+import kona.model.domain.product.ProductCode;
 import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -48,7 +49,7 @@ public class ProductController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ProductDTO> postNewProduct(@RequestBody ProductDTO aNewProduct) {
 
-        Product product = new Product(aNewProduct.name, aNewProduct.productCode);
+        Product product = new Product(aNewProduct.name, new ProductCode(aNewProduct.productCode));
         productService.save(product);
 
         HttpHeaders responseHeaders = new HttpHeaders();

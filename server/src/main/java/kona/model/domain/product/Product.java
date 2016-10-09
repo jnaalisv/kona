@@ -16,9 +16,9 @@ public class Product {
 
     private String name;
 
-    public Product(String name, String productCode) {
+    public Product(String name, ProductCode productCode) {
         this.name = name;
-        this.productCode = new ProductCode(productCode);
+        this.productCode = productCode;
     }
 
     public String getName() {
