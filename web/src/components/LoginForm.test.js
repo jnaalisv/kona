@@ -20,30 +20,23 @@ describe('LoginForm', () => {
 
     });
 
+    it('LoginForm calls login after click', () => {
 
-    // shallow-render it, and assert on the presence of the two inputs and the button
-    // shallow-render it, and assert that the root is a <form> with an "onSubmit" prop that has a function
-    // it('LoginForm calls login after click', () => {
-    //
-    //     const loginMockFunction = jest.fn();
-    //
-    //     const loginPage = shallow(<LoginForm login={loginMockFunction} />);
-    //
-    //     const usernameInput = loginPage.find('input').at(0);
-    //     const passwordInput = loginPage.find('input').at(1);
-    //
-    //     usernameInput.simulate('change', { target: { value: 'admin' } });
-    //     passwordInput.simulate('change', { target: { value: 'salasana' } });
-    //
-    //     const form = loginPage.find('form').at(0);
-    //     const children = form.render().children().children();
-    //     form.simulate('submit', { target: { children }, preventDefault() {} });
-    //
-    //     //loginPage.simulate('submit');
-    //     //loginPage.find('button').simulate('click');
-    //
-    //     expect(loginMockFunction.mock.calls.length).toBe(1);
-    //     expect(loginMockFunction.mock.calls[0][0]).toBe('first arg');
-    // });
+        const loginMockFunction = jest.fn();
+
+        const loginPage = shallow(<LoginForm login={loginMockFunction} />);
+
+        const usernameInput = loginPage.find('input').at(0);
+        const passwordInput = loginPage.find('input').at(1);
+
+        usernameInput.simulate('change', { target: { name: 'username', value: 'admin'} });
+        passwordInput.simulate('change', { target: { name: 'password', value: '4dminPa55'} });
+
+        loginPage.find('form').simulate('submit', { preventDefault() {} });
+
+        expect(loginMockFunction.mock.calls.length).toBe(1);
+        expect(loginMockFunction.mock.calls[0][0]).toBe('admin');
+        expect(loginMockFunction.mock.calls[0][1]).toBe('4dminPa55');
+    });
 });
 
