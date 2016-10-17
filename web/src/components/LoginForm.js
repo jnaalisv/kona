@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class LoginPage extends Component {
+class LoginForm extends Component {
 
     loginHandler(event) {
         event.preventDefault();
@@ -24,8 +24,8 @@ class LoginPage extends Component {
     }
 }
 
-LoginPage.propTypes = {
+LoginForm.propTypes = {
     login: React.PropTypes.func.isRequired
 };
 
-export default LoginPage;
+export default LoginForm;
