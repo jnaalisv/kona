@@ -1,8 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import {shallow} from 'enzyme';
 import LoginPage from './LoginPage';
 
-it('renders without crashing', () => {
-  // const div = document.createElement('div');
-  // ReactDOM.render(<LoginPage />, div);
+it('LoginPage calls login after click', () => {
+
+    const loginMock = jest.fn();
+
+    const loginPage = shallow(<LoginPage login={loginMock} />);
 });
