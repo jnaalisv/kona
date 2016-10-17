@@ -2,21 +2,20 @@ import React from 'react';
 import {shallow, mount} from 'enzyme';
 import LoginForm from './LoginForm';
 
-
 describe('LoginForm', () => {
 
     it('contains two inputs and a button', () => {
         const loginMockFunction = jest.fn();
 
-        const loginPage = shallow(<LoginForm login={loginMockFunction} />);
+        const wrapper = shallow(<LoginForm login={loginMockFunction} />);
 
-        const usernameInput = loginPage.find('input').at(0);
+        const usernameInput = wrapper.find('input').at(0);
         expect(usernameInput).toBeDefined();
 
-        const passwordInput = loginPage.find('input').at(1);
+        const passwordInput = wrapper.find('input').at(1);
         expect(passwordInput).toBeDefined();
 
-        const submitButton = loginPage.find('button');
+        const submitButton = wrapper.find('button');
         expect(submitButton).toBeDefined();
 
     });
