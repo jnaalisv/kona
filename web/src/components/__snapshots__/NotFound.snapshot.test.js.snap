@@ -1,0 +1,5 @@
+exports[`test NotFound renders some html 1`] = `
+<p>
+  Not found:(
+</p>
+`;
