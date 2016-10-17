@@ -2,39 +2,19 @@ import React, { Component } from 'react';
 
 class LoginPage extends Component {
 
-    login(event) {
+    loginHandler(event) {
         event.preventDefault();
 
         const username = this.username.value;
         const password = this.password.value;
 
-        const authenticationUrl = 'http://localhost:9999/kona/authenticate';
-
-        fetch(authenticationUrl, {
-            method: 'POST',
-            mode: 'cors',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: username,
-                password: password,
-            })
-        }).then(function (response) {
-            console.log('response ' + response);
-            // set auth credentials,
-            // redirect to somewhere
-
-        }).catch(function(error) {
-            console.log('There has been a problem with your fetch operation: ' + error.message);
-            // show error message
-        });
+        this.props.login(username, password)
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={(e) => this.login(e)} >
+                <form onSubmit={(e) => this.loginHandler(e)} >
                     username: <input required type="text" ref={(input) => this.username = input} placeholder="username"/>
                     password: <input required type="password" ref={(input) => this.password = input} placeholder="password"/>
                     <button type="submit">login</button>
@@ -43,5 +23,9 @@ class LoginPage extends Component {
         );
     }
 }
+
+LoginPage.propTypes = {
+    login: React.PropTypes.func.isRequired
+};
 
 export default LoginPage;
