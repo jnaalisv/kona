@@ -1,30 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import NotFound from './components/NotFound'
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
-
-const App = () => (
-    // 2. render a `Router`, it will listen to the url changes
-    //    and make the location available to other components
-    //    automatically
-    <BrowserRouter>
-        <div>
-            <ul>
-                {/* 3. Link to some paths with `Link` */}
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/topics">Topics</Link></li>
-            </ul>
-
-            <hr/>
-
-            <Match exactly pattern="/" component={Home} />
-            <Match pattern="/about" component={About} />
-            <Match pattern="/topics" component={Topics} />
-            <Miss component={NoMatch}/>
-        </div>
-    </BrowserRouter>
-);
 
 const Home = () => (
     <div>
@@ -38,10 +14,20 @@ const About = () => (
     </div>
 );
 
-const NoMatch = ({ location }) => (
+const NoMatch = () => (
     <div>
         <h2>Whoops</h2>
         <p>Sorry but {location.pathname} didn’t match any pages</p>
+    </div>
+);
+
+const Topic = (props) => (
+    <div>
+        <h3>{props.params.topicId}</h3>
+        <p>location.pathname: {location.pathname}</p>
+        <p>params.topicId: {props.params.topicId}</p>
+        <p>pathname: {props.pathname}</p>
+        <p>pattern: {props.pattern}</p>
     </div>
 );
 
@@ -72,12 +58,27 @@ const Topics = ({ pathname, pattern }) => (
     </div>
 );
 
-const Topic = ({ params }) => (
-    // 9. the dynamic segments of a `pattern` (in this case `:topicId`)
-    //    are parsed and sent to the component from `Match`.
-    <div>
-        <h3>{params.topicId}</h3>
-    </div>
-)
+const App = () => (
+    // 2. render a `Router`, it will listen to the url changes
+    //    and make the location available to other components
+    //    automatically
+    <BrowserRouter>
+        <div>
+            <ul>
+                {/* 3. Link to some paths with `Link` */}
+                <li><Link to="/">Home</Link></li>
+                <li><Link to="/about">About</Link></li>
+                <li><Link to="/topics">Topics</Link></li>
+            </ul>
+
+            <hr/>
+
+            <Match exactly pattern="/" component={Home} />
+            <Match pattern="/about" component={About} />
+            <Match pattern="/topics" component={Topics} />
+            <Miss component={NoMatch}/>
+        </div>
+    </BrowserRouter>
+);
 
 render(<App/>, document.querySelector('#main'));
