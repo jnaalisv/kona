@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
 
+import Products from './components/Products'
+
 const Home = () => (
     <div>
         <h2>Home</h2>
@@ -76,6 +78,7 @@ const App = () => (
             <Match exactly pattern="/" component={Home} />
             <Match pattern="/about" component={About} />
             <Match pattern="/topics" component={Topics} />
+            <Match pattern="/products" component={Products} />
             <Miss component={NoMatch}/>
         </div>
     </BrowserRouter>
