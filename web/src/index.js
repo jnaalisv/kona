@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
+import LocationHeader from './components/LocationHeader'
 
 import Products from './components/Products'
 
@@ -72,6 +73,8 @@ const App = () => (
                 <li><Link to="/about">About</Link></li>
                 <li><Link to="/topics">Topics</Link></li>
             </ul>
+
+            <LocationHeader />
 
             <hr/>
 
