@@ -1,33 +1,59 @@
 import React from 'react'
+import ProductRow from './ProductRow'
+
+const url = 'http://localhost:9999/kona/products';
+
+const httpInit = {
+    method: 'GET',
+    mode: 'cors',
+    headers: {
+        'ContentType': 'application/json'
+    }
+};
 
 class Products extends React.Component {
+    constructor() {
+        super();
+        this.getProducts = this.getProducts.bind(this);
+
+        this.state = {
+            products: []
+        }
+    };
 
     getProducts() {
+        return window
+            .fetch(url, httpInit)
+            .then((response) => {
+                return response.json();
+            }).catch((error) => {
+                return [];
+            });
+    }
 
-        const url = 'http://localhost:9999/kona/products';
-        
-        fetch(url, {
-            method: 'GET',
-            mode: 'cors',
-            headers: {
-                'ContentType': 'application/json'
-            }
-        }).then(function (response) {
-            console.log('response ' + response);
-            // set auth credentials,
-            // redirect to somewhere
-        }).catch(function(error) {
-            console.log('There has been a problem with your fetch operation: ' + error.message);
-            // show error message
-        });
+    componentDidMount() {
+        this.getProducts()
+            .then((products => {
+                const productRows = products.map((product, index) => <ProductRow key={index} product={product}/>);
+                this.setState({products: productRows});
+            }));
     }
 
     render() {
-
-        this.getProducts();
-
         return (
-            <p>Product list should go here</p>
+            <div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>code</th>
+                            <th>name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.products}
+                    </tbody>
+                </table>
+            </div>
         )
     }
 }
