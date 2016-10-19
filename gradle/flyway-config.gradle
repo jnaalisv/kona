@@ -55,5 +55,5 @@ flyway {
     url = 'jdbc:postgresql://' + migrationHost + ':'+ migrationPort + '/' + migrationDatabase
     user = 'kona'
     password = 'kona'
-    locations = ["filesystem:$rootDir/sql-migrations/"]
+    locations = ["filesystem:$rootDir/sql-migrations/schema", "filesystem:$rootDir/sql-migrations/data"]
 }

@@ -90,7 +90,7 @@ def integTestFlywayExtension;
 
 task initIntegTestFlywayExtension() {
     integTestFlywayExtension = new FlywayExtension();
-    integTestFlywayExtension.locations = ["filesystem:$rootDir/sql-migrations/"]
+    integTestFlywayExtension.locations = ["filesystem:$rootDir/sql-migrations/schema"]
     integTestFlywayExtension.user = 'kona_test'
     integTestFlywayExtension.password = 'kona_test'
     integTestFlywayExtension.url = 'jdbc:postgresql://localhost:5432/kona_test'
