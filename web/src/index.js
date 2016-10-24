@@ -11,12 +11,6 @@ const Home = () => (
     </div>
 );
 
-const About = () => (
-    <div>
-        <h2>About</h2>
-    </div>
-);
-
 const NoMatch = () => (
     <div>
         <h2>Whoops</h2>
@@ -70,7 +64,6 @@ const App = () => (
             <ul>
                 {/* 3. Link to some paths with `Link` */}
                 <li><Link to="/">Home</Link></li>
-                <li><Link to="/about">About</Link></li>
                 <li><Link to="/topics">Topics</Link></li>
                 <li><Link to="/products">Products</Link></li>
             </ul>
