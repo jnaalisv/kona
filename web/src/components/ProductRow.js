@@ -1,12 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router'
 
 class ProductRow extends React.Component {
 
     render() {
         const product = this.props.product;
+        const productCode = product.productCode;
+
         return (
             <tr>
-                <td>{product.productCode}</td>
+                <td>
+                    <Link to={`/products/${productCode}`}>{productCode}</Link>
+                </td>
                 <td>{product.name}</td>
             </tr>
         )
