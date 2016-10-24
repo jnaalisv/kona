@@ -1,5 +1,8 @@
 import React from 'react'
+import {Match} from 'react-router'
+
 import ProductRow from './ProductRow'
+import Product from './Product'
 
 const url = 'http://localhost:9999/kona/products';
 
@@ -42,6 +45,9 @@ class Products extends React.Component {
     render() {
         return (
             <div>
+
+                <Match pattern={`${this.props.pathname}/:productId`} component={Product}/>
+
                 <table>
                     <thead>
                         <tr>
