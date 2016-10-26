@@ -1,7 +1,7 @@
 import React from 'react'
 import LoginForm from './LoginForm';
 
-class App extends React.Component {
+class Login extends React.Component {
     constructor() {
         super();
 
@@ -32,4 +32,4 @@ class App extends React.Component {
     }
 }
 
-export default App;
+export default Login;

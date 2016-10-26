@@ -1,8 +1,8 @@
 import React from 'react'
 import {render } from 'react-dom'
-import App from './App'
+import Login from './Login'
 
-test('App renders without crashing', () => {
+test('Login renders without crashing', () => {
     const div = document.createElement('div');
-    render(<App />, div);
+    render(<Login />, div);
 });
