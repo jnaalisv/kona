@@ -50,20 +50,22 @@ class Products extends React.Component {
 
         return (
             <div>
-
                 <Match pattern={`${this.props.pathname}/:productId`} component={Product}/>
+
                 {lastError && <p >{lastError}</p>}
-                <table>
-                    <thead>
+                <Match pattern={this.props.pathname} exactly render={() => (
+                    <table>
+                        <thead>
                         <tr>
                             <th>code</th>
                             <th>name</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         {this.state.products}
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                )}/>
             </div>
         )
     }
