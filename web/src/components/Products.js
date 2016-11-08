@@ -20,7 +20,8 @@ class Products extends React.Component {
         this.getProducts = this.getProducts.bind(this);
 
         this.state = {
-            products: []
+            products: [],
+            lastError: null
         }
     };
 
@@ -30,6 +31,7 @@ class Products extends React.Component {
             .then((response) => {
                 return response.json();
             }).catch((error) => {
+                this.setState({lastError: error.message});
                 return [];
             });
     }
@@ -43,11 +45,14 @@ class Products extends React.Component {
     }
 
     render() {
+
+        const lastError = this.state.lastError;
+
         return (
             <div>
 
                 <Match pattern={`${this.props.pathname}/:productId`} component={Product}/>
-
+                {lastError && <p >{lastError}</p>}
                 <table>
                     <thead>
                         <tr>
