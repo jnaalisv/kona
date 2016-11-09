@@ -9,25 +9,26 @@ const httpInit = {
     }
 };
 
-class ProductService {
+const api = {
+    getProducts: getProducts,
+    getProduct: getProduct
+};
 
-    getProducts() {
-        return window
-            .fetch(url, httpInit)
-            .then((response) => {
-                return response.json();
-            });
-    }
 
-    getProduct(productId) {
-        return window
-            .fetch(url + '/'+productId, httpInit)
-            .then((response) => {
-                return response.json();
-            });
-    }
+function getProducts() {
+    return window
+        .fetch(url, httpInit)
+        .then((response) => {
+            return response.json();
+        });
 }
 
-const productService = new ProductService();
+function getProduct(productId) {
+    return window
+        .fetch(url + '/'+productId, httpInit)
+        .then((response) => {
+            return response.json();
+        });
+}
 
-export default productService;
+export default api;
