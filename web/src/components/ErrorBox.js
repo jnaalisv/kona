@@ -1,5 +1,6 @@
 import React from 'react'
 import errors from './errors'
+import HttpError from './HttpError'
 
 class ErrorBox extends React.Component {
     constructor() {
@@ -11,11 +12,17 @@ class ErrorBox extends React.Component {
         errors.registerErrorHandler(this.showError);
     }
 
-    showError(httpError) {
-        httpError.response.json().then((message) => {
-            const newErrorMessage = `${httpError.response.status} ${httpError.message} ${message}`;
-            this.setState({errorMessage: newErrorMessage})
-        });
+    showError(error) {
+
+        if (error instanceof HttpError) {
+            error
+                .getDetailedMessage()
+                .then((message) => {
+                    this.setState({errorMessage: `${error.getStatusText()} ${error.getMessage()} ${message}`})
+                });
+        } else {
+            this.setState({errorMessage: error.message})
+        }
     }
 
     render() {

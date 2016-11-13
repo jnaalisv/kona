@@ -16,11 +16,7 @@ class ProductTable extends React.Component {
             .then((products => {
                 const productRows = products.map((product, index) => <ProductRow key={index} product={product}/>);
                 this.setState({products: productRows});
-            }))
-            .catch((error) => {
-                console.log('error ' + error);
-                return [];
-            })
+            }));
     }
 
     render() {
