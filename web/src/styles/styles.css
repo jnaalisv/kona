@@ -34,3 +34,8 @@ div#content {
     position: absolute;
     width: 80vw;
 }
+
+div#errorbox {
+    color: white;
+    background-color: red;
+}
