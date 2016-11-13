@@ -3,7 +3,7 @@ import React from 'react'
 class LocationHeader extends React.Component {
     render() {
         return (
-            <span>You are at {location.pathname}</span>
+            <span id="location"> {location.pathname}</span>
         )
     }
 }

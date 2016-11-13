@@ -1,0 +1,36 @@
+body {
+    margin: 0;
+}
+
+div.main {
+
+}
+
+header {
+    height: 10vh;
+    background-color: blanchedalmond;
+    position: relative;
+}
+
+span#location {
+    margin-left: 3vw;
+    position: absolute;
+    bottom: 2px;
+}
+
+nav {
+    float: left;
+    min-width: 16vw;
+    height: 80vh;
+    border-right: solid black 1px;
+    background-color: coral;
+}
+
+div#content {
+    height: 76vh;
+    margin-left: 17vw;
+    background-color: crimson;
+    padding: 1em;
+    position: absolute;
+    width: 80vw;
+}

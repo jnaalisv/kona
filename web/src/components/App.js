@@ -57,30 +57,34 @@ class App extends React.Component {
 
     render() {
         return (
-            // 2. render a `Router`, it will listen to the url changes
-            //    and make the location available to other components
-            //    automatically
             <BrowserRouter>
                 <div>
-                    <ul>
-                        {/* 3. Link to some paths with `Link` */}
-                        <li><Link to="/">Home</Link></li>
-                        <li><Link to="/topics">Topics</Link></li>
-                        <li><Link to="/products">Products</Link></li>
-                    </ul>
 
-                    <LocationHeader />
+                    <header>
+                        <LocationHeader />
+                    </header>
 
-                    <hr/>
+                    <nav>
+                        <ul>
+                            <li><Link to="/">Home</Link></li>
+                            <li><Link to="/topics">Topics</Link></li>
+                            <li><Link to="/products">Products</Link></li>
+                        </ul>
+                    </nav>
 
-                    <Match exactly pattern="/" component={Home} />
-                    <Match pattern="/topics" component={Topics} />
-                    <Match pattern="/products" component={Products} />
-                    <Miss component={NoMatch}/>
+                    <div id="content">
+                        <Match exactly pattern="/" component={Home} />
+                        <Match pattern="/topics" component={Topics} />
+                        <Match pattern="/products" component={Products} />
+                        <Miss component={NoMatch}/>
+                    </div>
+                    <footer></footer>
                 </div>
             </BrowserRouter>
         )
     }
 }
+
+
 
 export default App;
