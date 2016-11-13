@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import LocationHeader from './LocationHeader'
-import Products from './Products'
+import ProductsTable from './products/ProductsTable'
 
 const Home = () => (
     <div>
@@ -75,7 +75,7 @@ class App extends React.Component {
                     <div id="content">
                         <Match exactly pattern="/" component={Home} />
                         <Match pattern="/topics" component={Topics} />
-                        <Match pattern="/products" component={Products} />
+                        <Match pattern="/products" component={ProductsTable} />
                         <Miss component={NoMatch}/>
                     </div>
                     <footer></footer>
