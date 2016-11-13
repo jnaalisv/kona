@@ -46,7 +46,7 @@ function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
         return response;
     } else {
-        var error = new Error(response.statusText);
+        const error = new Error(response.statusText);
         error.response = response;
         throw error;
     }
@@ -56,28 +56,28 @@ function httpGet(url) {
     return fetch(url, getConfig)
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errors.handleError)
+        .catch(errors.handleHttpError)
 }
 
 function httpPost(url, body) {
     return fetch(url, Object.assign({}, postConfig, { body: JSON.stringify(body)}))
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errors.handleError)
+        .catch(errors.handleHttpError)
 }
 
 function httpPut(url, body) {
     return fetch(url, Object.assign({}, putConfig, { body: JSON.stringify(body)}))
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errors.handleError)
+        .catch(errors.handleHttpError)
 }
 
 function httpDelete(url) {
     return fetch(url, deleteConfig)
         .then(checkStatus)
         .then((response) => response.status)
-        .catch(errors.handleError)
+        .catch(errors.handleHttpError)
 }
 
 export default api;

@@ -4,19 +4,20 @@ function registerErrorHandler(errorHandler) {
     _errorHandler = errorHandler;
 }
 
-function handleError(error) {
+function handleHttpError(httpError) {
     if(_errorHandler) {
-        _errorHandler(error);
+        _errorHandler(httpError);
     } else {
-        error.response.json().then((body) => {
-            console.log('status ' + error.response.status);
-            console.log('error msg' + body);
+        httpError.response.json().then((message) => {
+            console.log('-- DEFAULT ERROR HANDLER --');
+            console.log(`${httpError.response.status} ${httpError.message}`);
+            console.log(`${message}`);
         });
     }
 }
 
 const api = {
-    handleError: handleError,
+    handleHttpError: handleHttpError,
     registerErrorHandler: registerErrorHandler
 };
 
