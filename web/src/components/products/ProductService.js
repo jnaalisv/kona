@@ -1,7 +1,7 @@
 
 const url = 'http://localhost:9999/kona/products';
 
-const httpInit = {
+const getConfig = {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -11,21 +11,52 @@ const httpInit = {
 
 const api = {
     getProducts: getProducts,
-    getProduct: getProduct
+    getProduct: getProduct,
+    save: save,
 };
+
+function save(product) {
+    console.log('save product ' + product.productCode);
+
+    if (product.id) {
+        return fetch(url +'/' + product.id, {
+                method: 'PUT',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(product)
+            })
+            .then((response) => {
+                return response.json();
+            });
+    } else {
+        return fetch(url, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(product)
+            })
+            .then((response) => {
+                return response.json();
+            });
+    }
+}
 
 
 function getProducts() {
-    return window
-        .fetch(url, httpInit)
+    return fetch(url, getConfig)
         .then((response) => {
             return response.json();
         });
 }
 
 function getProduct(productId) {
-    return window
-        .fetch(url + '/'+productId, httpInit)
+    return fetch(url + '/'+productId, getConfig)
         .then((response) => {
             return response.json();
         });

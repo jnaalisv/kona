@@ -14,11 +14,16 @@ class Product extends React.Component {
             }));
     }
 
+    saveProduct(e) {
+        productService.save(this.state.product);
+    }
+
     render () {
         return (
             <div>
                 <div>name: {this.state.product.name}</div>
                 <div>productCode: {this.state.product.productCode}</div>
+                <button onClick={(e) => this.saveProduct(e)}>Save</button>
             </div>
         )
     }
