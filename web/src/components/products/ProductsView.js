@@ -5,7 +5,7 @@ import ProductRow from './ProductRow'
 import Product from './Product'
 import productService from './ProductService'
 
-class Products extends React.Component {
+class ProductsView extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -33,8 +33,6 @@ class Products extends React.Component {
         return (
             <div>
                 <Match pattern={`${this.props.pathname}/:productId`} component={Product}/>
-
-                {lastError && <p >{lastError}</p>}
                 <Match pattern={this.props.pathname} exactly render={() => (
                     <table>
                         <thead>
@@ -48,9 +46,10 @@ class Products extends React.Component {
                         </tbody>
                     </table>
                 )}/>
+                {lastError && <p >{lastError}</p>}
             </div>
         )
     }
 }
 
-export default Products;
+export default ProductsView;
