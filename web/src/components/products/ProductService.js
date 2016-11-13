@@ -1,3 +1,10 @@
+import errors from '../errors'
+
+const api = {
+    getProducts: getProducts,
+    getProduct: getProduct,
+    save: save,
+};
 
 const url = 'http://localhost:9999/kona/products';
 
@@ -9,15 +16,21 @@ const getConfig = {
     }
 };
 
-const api = {
-    getProducts: getProducts,
-    getProduct: getProduct,
-    save: save,
-};
+function parseJSON(response) {
+    return response.json();
+}
+
+function checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+        return response;
+    } else {
+        var error = new Error(response.statusText);
+        error.response = response;
+        throw error;
+    }
+}
 
 function save(product) {
-    console.log('save product ' + product.productCode);
-
     if (product.id) {
         return fetch(url +'/' + product.id, {
                 method: 'PUT',
@@ -28,9 +41,9 @@ function save(product) {
                 },
                 body: JSON.stringify(product)
             })
-            .then((response) => {
-                return response.json();
-            });
+            .then(checkStatus)
+            .then(parseJSON)
+            .catch(errors.handleError);
     } else {
         return fetch(url, {
                 method: 'POST',
@@ -41,25 +54,24 @@ function save(product) {
                 },
                 body: JSON.stringify(product)
             })
-            .then((response) => {
-                return response.json();
-            });
+            .then(checkStatus)
+            .then(parseJSON)
+            .catch(errors.handleError);
     }
 }
 
-
 function getProducts() {
     return fetch(url, getConfig)
-        .then((response) => {
-            return response.json();
-        });
+        .then(checkStatus)
+        .then(parseJSON)
+        .catch(errors.handleError);
 }
 
 function getProduct(productId) {
     return fetch(url + '/'+productId, getConfig)
-        .then((response) => {
-            return response.json();
-        });
+        .then(checkStatus)
+        .then(parseJSON)
+        .catch(errors.handleError);
 }
 
 export default api;
