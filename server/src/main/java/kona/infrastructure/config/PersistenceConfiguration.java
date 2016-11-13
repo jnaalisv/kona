@@ -52,8 +52,7 @@ public class PersistenceConfiguration {
         //Configures the naming strategy that is used when Hibernate creates
         //new database objects and schema elements
         hibernateProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
-
-        hibernateProperties.put("hibernate.show_sql","true");
+        
         hibernateProperties.put("hibernate.format_sql", "true");
         return hibernateProperties;
     }
