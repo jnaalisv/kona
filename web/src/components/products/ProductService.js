@@ -1,4 +1,4 @@
-import errors from '../errors'
+import http from '../http'
 
 const api = {
     getProducts: getProducts,
@@ -6,72 +6,22 @@ const api = {
     save: save,
 };
 
-const url = 'http://localhost:9999/kona/products';
-
-const getConfig = {
-    method: 'GET',
-    mode: 'cors',
-    headers: {
-        'ContentType': 'application/json'
-    }
-};
-
-function parseJSON(response) {
-    return response.json();
-}
-
-function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    } else {
-        var error = new Error(response.statusText);
-        error.response = response;
-        throw error;
-    }
-}
+const productsUrl = 'http://localhost:9999/kona/products';
 
 function save(product) {
     if (product.id) {
-        return fetch(url +'/' + product.id, {
-                method: 'PUT',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(product)
-            })
-            .then(checkStatus)
-            .then(parseJSON)
-            .catch(errors.handleError);
+        return http.PUT(`${productsUrl}/${product.id}`, product);
     } else {
-        return fetch(url, {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(product)
-            })
-            .then(checkStatus)
-            .then(parseJSON)
-            .catch(errors.handleError);
+        return http.POST(productsUrl, product);
     }
 }
 
 function getProducts() {
-    return fetch(url, getConfig)
-        .then(checkStatus)
-        .then(parseJSON)
-        .catch(errors.handleError);
+    return http.GET(productsUrl);
 }
 
 function getProduct(productId) {
-    return fetch(url + '/'+productId, getConfig)
-        .then(checkStatus)
-        .then(parseJSON)
-        .catch(errors.handleError);
+    return http.GET(`${productsUrl}/${productId}`);
 }
 
 export default api;
