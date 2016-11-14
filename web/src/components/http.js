@@ -1,4 +1,4 @@
-import errors from './errors'
+import errorHandling from './errorHandling'
 import HttpError from './HttpError'
 
 const api = {
@@ -55,28 +55,28 @@ function httpGet(url) {
     return fetch(url, getConfig)
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errors.handleHttpError)
+        .catch(errorHandling.handleError)
 }
 
 function httpPost(url, body) {
     return fetch(url, Object.assign({}, postConfig, { body: JSON.stringify(body)}))
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errors.handleHttpError)
+        .catch(errorHandling.handleError)
 }
 
 function httpPut(url, body) {
     return fetch(url, Object.assign({}, putConfig, { body: JSON.stringify(body)}))
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errors.handleHttpError)
+        .catch(errorHandling.handleError)
 }
 
 function httpDelete(url) {
     return fetch(url, deleteConfig)
         .then(checkStatus)
         .then((response) => response.status)
-        .catch(errors.handleHttpError)
+        .catch(errorHandling.handleError)
 }
 
 export default api;
