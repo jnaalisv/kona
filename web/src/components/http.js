@@ -39,9 +39,7 @@ const deleteConfig = {
     mode: 'cors',
 };
 
-function parseJSON(response) {
-    return response.json();
-}
+const parseJSON = response => response.json();
 
 function checkStatus(response) {
     if (response.status >= 200 && response.status < 300) {
@@ -75,7 +73,7 @@ function httpPut(url, body) {
 function httpDelete(url) {
     return fetch(url, deleteConfig)
         .then(checkStatus)
-        .then((response) => response.status)
+        .then(response => response.status)
         .catch(errorHandling.handleError)
 }
 
