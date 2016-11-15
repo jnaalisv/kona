@@ -53,7 +53,10 @@ function httpGet(url) {
     return fetch(url, getConfig)
         .then(checkStatus)
         .then(parseJSON)
-        .catch(errorHandling.handleError)
+        .catch(error => {
+            errorHandling.handleError(error);
+            return [];
+        });
 }
 
 function httpPost(url, body) {
