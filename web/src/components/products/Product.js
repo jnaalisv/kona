@@ -1,6 +1,7 @@
 import React from 'react'
 import productService from './ProductService'
 import ErrorBox from '../ErrorBox'
+import HttpError from '../HttpError'
 
 class Product extends React.Component {
     constructor() {
@@ -11,9 +12,17 @@ class Product extends React.Component {
     }
 
     addError(error) {
+        let errorMessage;
+
+        if (error instanceof TypeError) {
+            errorMessage = error.message;
+        } else if (error instanceof HttpError) {
+            const response = error.response;
+            errorMessage = `${response.status} ${response.statusText}`;
+        }
+
         const errors = [...this.state.errors];
-        const response = error.response;
-        errors.push(`${response.status} ${response.statusText}`);
+        errors.push(errorMessage);
         this.setState({ errors: errors });
     }
 
