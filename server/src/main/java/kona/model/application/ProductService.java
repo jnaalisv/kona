@@ -18,7 +18,7 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<Product> findBy(String name) {
         if (name == null) {
             return productRepository.getAll();
@@ -32,7 +32,7 @@ public class ProductService {
         productRepository.add(product);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public Product load(String productCode) {
         return productRepository
                 .get(productCode)
