@@ -13,10 +13,7 @@ class ProductTable extends React.Component {
 
     componentDidMount() {
         productService.getProducts()
-            .then((products => {
-                const productRows = products.map((product, index) => <ProductRow key={index} product={product}/>);
-                this.setState({products: productRows});
-            }));
+            .then((products => this.setState({products})));
     }
 
     render() {
@@ -29,7 +26,12 @@ class ProductTable extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.state.products}
+                {Object
+                    .keys(this.state.products)
+                    .map(index => {
+                        return <ProductRow key={index} product={this.state.products[index]}/>
+                    })
+                }
                 </tbody>
             </table>
         )
