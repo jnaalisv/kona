@@ -9,6 +9,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Product (
   id int8 NOT NULL,
+  version int8 NOT NULL DEFAULT 1,
   name TEXT,
   productCode VARCHAR(255),
   PRIMARY KEY (id),

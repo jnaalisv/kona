@@ -6,9 +6,13 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
 public class Product {
+
+    @Version
+    private long version = 0l;
 
     @NaturalId
     @Embedded
@@ -21,6 +25,12 @@ public class Product {
         this.productCode = productCode;
     }
 
+    public Product(long version, String name, ProductCode productCode) {
+        this.version = version;
+        this.name = name;
+        this.productCode = productCode;
+    }
+
     public String getName() {
         return name;
     }
@@ -29,8 +39,11 @@ public class Product {
         return productCode;
     }
 
-    /* surrogate key and no arg ctor for hibernate */
+    public long getVersion() {
+        return version;
+    }
 
+    /* surrogate key and no arg ctor for hibernate */
     @Id
     @GeneratedValue
     private long id;
