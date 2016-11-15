@@ -15,7 +15,11 @@ class Product extends React.Component {
     }
 
     saveProduct(e) {
-        productService.save(this.state.product);
+        productService
+            .save(this.state.product)
+            .then((product => {
+                this.setState({product: product});
+            }));
     }
 
     render () {
