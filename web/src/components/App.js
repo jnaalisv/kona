@@ -1,7 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import LocationHeader from './LocationHeader'
-import ErrorBox from './ErrorBox'
 import ProductsView from './products/ProductsView'
 
 const Home = () => (
@@ -62,7 +61,6 @@ class App extends React.Component {
                 <div>
 
                     <header>
-                        <ErrorBox />
                         <LocationHeader />
                     </header>
 
