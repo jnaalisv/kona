@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,7 +37,6 @@ public class ProductController {
         return new ProductDTO(productService.load(productCode));
     }
 
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public List<ProductDTO> search(@RequestParam(required = false) String name) {
         return productService
@@ -47,13 +47,20 @@ public class ProductController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<ProductDTO> postNewProduct(@RequestBody ProductDTO aNewProduct) {
+    public ResponseEntity<ProductDTO> postNewProduct(@RequestBody ProductDTO productDTO) {
 
-        Product product = new Product(aNewProduct.name, new ProductCode(aNewProduct.productCode));
+        Product product = new Product(productDTO.name, new ProductCode(productDTO.productCode));
         productService.save(product);
 
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Location", "products/" + product.getProductCode());
         return new ResponseEntity<>(new ProductDTO(product), responseHeaders, HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = "/{productCode}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ProductDTO update(@PathVariable String productCode, @RequestBody ProductDTO productDTO) {
+        Product product = new Product(productDTO.version, productDTO.name, new ProductCode(productCode));
+        productService.update(product);
+        return new ProductDTO(product);
     }
 }

@@ -38,4 +38,9 @@ public class ProductService {
                 .get(productCode)
                 .orElseThrow(() -> new NotFoundException(Product.class, "productCode="+productCode));
     }
+
+    @Transactional
+    public void update(Product product) {
+        productRepository.update(product);
+    }
 }

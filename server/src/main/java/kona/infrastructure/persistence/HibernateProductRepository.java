@@ -51,4 +51,9 @@ public class HibernateProductRepository implements ProductRepository {
                 .bySimpleNaturalId(Product.class)
                 .loadOptional(new ProductCode(productCode));
     }
+
+    @Override
+    public void update(Product product) {
+        getCurrentSession().saveOrUpdate(product);
+    }
 }

@@ -12,4 +12,6 @@ public interface ProductRepository {
     void add(Product product);
 
     Optional<Product> get(String productCode);
+
+    void update(Product product);
 }
