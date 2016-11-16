@@ -25,7 +25,8 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public Product(long version, String name, ProductCode productCode) {
+    public Product(long id, long version, String name, ProductCode productCode) {
+        this.id = id;
         this.version = version;
         this.name = name;
         this.productCode = productCode;
@@ -49,4 +50,8 @@ public class Product {
     private long id;
 
     public Product() {}
+
+    public long getId() {
+        return id;
+    }
 }

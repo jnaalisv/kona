@@ -47,7 +47,7 @@ public class ProductController {
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<ProductDTO> postNewProduct(@RequestBody ProductDTO productDTO) {
+    public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
 
         Product product = new Product(productDTO.name, new ProductCode(productDTO.productCode));
         productService.save(product);
@@ -59,8 +59,11 @@ public class ProductController {
 
     @PutMapping(path = "/{productCode}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ProductDTO update(@PathVariable String productCode, @RequestBody ProductDTO productDTO) {
-        Product product = new Product(productDTO.version, productDTO.name, new ProductCode(productCode));
+
+        Product product = new Product(productDTO.id, productDTO.version, productDTO.name, new ProductCode(productCode));
+
         productService.update(product);
+
         return new ProductDTO(product);
     }
 }
