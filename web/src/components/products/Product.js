@@ -41,10 +41,13 @@ class Product extends React.Component {
     }
 
     render () {
+        const product = this.state.product;
+
         return (
             <div>
-                <div>name: {this.state.product.name}</div>
-                <div>productCode: {this.state.product.productCode}</div>
+                <div>name: {product.name}</div>
+                <div>productCode: {product.productCode}</div>
+                <div>version: {product.version}</div>
                 <button onClick={(e) => this.saveProduct(e)}>Save</button>
                 <ErrorBox errors={this.state.errors}/>
             </div>

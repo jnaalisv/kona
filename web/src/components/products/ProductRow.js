@@ -13,6 +13,7 @@ class ProductRow extends React.Component {
                     <Link to={`/products/${productCode}`}>{productCode}</Link>
                 </td>
                 <td>{product.name}</td>
+                <td>{product.version}</td>
             </tr>
         )
     }

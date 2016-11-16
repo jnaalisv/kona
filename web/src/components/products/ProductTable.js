@@ -34,6 +34,7 @@ class ProductTable extends React.Component {
                     <tr>
                         <th>code</th>
                         <th>name</th>
+                        <th>version</th>
                     </tr>
                     </thead>
                     <tbody>
