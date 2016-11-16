@@ -2,38 +2,52 @@ import React from 'react'
 
 import ProductRow from './ProductRow'
 import productService from './ProductService'
+import ErrorBox from '../ErrorBox'
 
 class ProductTable extends React.Component {
     constructor() {
         super();
-        this.state = {
-            products: []
-        }
+        this.state = {products: [], errors:[]};
+
+        this.showError = this.showError.bind(this);
     };
+
+    showError(error) {
+        const errors = [...this.state.errors];
+        errors.push(error.message);
+        this.setState({errors});
+    }
 
     componentDidMount() {
         productService.getProducts()
-            .then((products => this.setState({products})));
+            .then(
+                products => this.setState({products}),
+                this.showError
+            );
     }
 
     render() {
         return (
-            <table>
-                <thead>
-                <tr>
-                    <th>code</th>
-                    <th>name</th>
-                </tr>
-                </thead>
-                <tbody>
-                {Object
-                    .keys(this.state.products)
-                    .map(index => {
-                        return <ProductRow key={index} product={this.state.products[index]}/>
-                    })
-                }
-                </tbody>
-            </table>
+            <div>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>code</th>
+                        <th>name</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {Object
+                        .keys(this.state.products)
+                        .map(index => {
+                            return <ProductRow key={index} product={this.state.products[index]}/>
+                        })
+                    }
+                    </tbody>
+                </table>
+                <ErrorBox errors={this.state.errors} />
+            </div>
+
         )
     }
 }

@@ -29,8 +29,7 @@ class Product extends React.Component {
     componentDidMount() {
         productService
             .getProduct(this.props.params.productId)
-            .then(product => this.setState({product: product}))
-            .catch(this.addError);
+            .then(product => this.setState({product: product}), this.addError);
     }
 
     saveProduct(e) {
@@ -38,8 +37,7 @@ class Product extends React.Component {
 
         productService
             .save(this.state.product)
-            .then((product => this.setState({product: product})))
-            .catch(this.addError);
+            .then(product => this.setState({product: product}), this.addError);
     }
 
     render () {

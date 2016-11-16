@@ -2,6 +2,7 @@
 class HttpError {
     constructor(response) {
         this.response = response;
+        this.message = `${response.status} ${response.message}`
     }
 
     getStatusText() {
