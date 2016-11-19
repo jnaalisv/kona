@@ -1,12 +1,12 @@
 import React from 'react'
 import productService from './ProductService'
-import ErrorBox from '../ErrorBox'
+import Notifications from '../Notifications'
 import HttpError from '../HttpError'
 
 class Product extends React.Component {
     constructor() {
         super();
-        this.state = {product: {}, errors:[]};
+        this.state = {product: {}, notifications: []};
 
         this.addError = this.addError.bind(this);
     }
@@ -21,9 +21,9 @@ class Product extends React.Component {
             errorMessage = `${response.status} ${response.statusText}`;
         }
 
-        const errors = [...this.state.errors];
-        errors.push(errorMessage);
-        this.setState({ errors: errors });
+        const notifications = [...this.state.notifications];
+        notifications.push({type:'error', message: errorMessage});
+        this.setState({ notifications });
     }
 
     componentDidMount() {
@@ -33,11 +33,16 @@ class Product extends React.Component {
     }
 
     saveProduct(e) {
-        this.setState({ errors: [] });
+        this.setState({ notifications: [] });
 
         productService
             .save(this.state.product)
-            .then(product => this.setState({product: product}), this.addError);
+            .then(product => {
+                this.setState({product: product});
+                const notifications = [...this.state.notifications];
+                notifications.push({type:'info', message:'Product saved'});
+                this.setState({ notifications });
+            }, this.addError);
     }
 
     render () {
@@ -49,7 +54,7 @@ class Product extends React.Component {
                 <div>productCode: {product.productCode}</div>
                 <div>version: {product.version}</div>
                 <button onClick={(e) => this.saveProduct(e)}>Save</button>
-                <ErrorBox errors={this.state.errors}/>
+                <Notifications notifications={this.state.notifications} />
             </div>
         )
     }

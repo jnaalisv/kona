@@ -35,6 +35,20 @@ div#content {
     width: 80vw;
 }
 
+div.notification-container {
+
+}
+
+div.info-notification {
+    color: white;
+    background-color: green;
+}
+
+div.error-notification {
+    color: white;
+    background-color: red;
+}
+
 div#errorbox {
     color: white;
     background-color: red;
