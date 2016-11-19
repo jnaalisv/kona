@@ -6,9 +6,10 @@ import HttpError from '../HttpError'
 class Product extends React.Component {
     constructor() {
         super();
-        this.state = {product: {}, notifications: []};
+        this.state = {product: {},notifications: []};
 
         this.addError = this.addError.bind(this);
+        this.onChange = this.onChange.bind(this);
     }
 
     addError(error) {
@@ -29,7 +30,7 @@ class Product extends React.Component {
     componentDidMount() {
         productService
             .getProduct(this.props.params.productId)
-            .then(product => this.setState({product: product}), this.addError);
+            .then(product => this.setState({product}), this.addError);
     }
 
     saveProduct(e) {
@@ -45,12 +46,23 @@ class Product extends React.Component {
             }, this.addError);
     }
 
+    onChange(event) {
+        event.preventDefault();
+        const product = {...this.state.product};
+        product[event.target.name] = event.target.value;
+        this.setState({product});
+    }
+
     render () {
         const product = this.state.product;
 
+        if (!product.name) {
+            return <p>Loading</p>
+        }
+
         return (
             <div>
-                <div>name: {product.name}</div>
+                name: <input name="name" value={product.name} onChange={this.onChange}/>
                 <div>productCode: {product.productCode}</div>
                 <div>version: {product.version}</div>
                 <button onClick={(e) => this.saveProduct(e)}>Save</button>
