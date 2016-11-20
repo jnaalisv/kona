@@ -16,8 +16,15 @@ function save(product) {
     }
 }
 
-function getProducts() {
-    return http.GET(productsUrl);
+function getProducts(name) {
+
+    const queryParams = {};
+
+    if (name) {
+        queryParams.name = name;
+    }
+
+    return http.GET(productsUrl, {queryParams});
 }
 
 function getProduct(productId) {

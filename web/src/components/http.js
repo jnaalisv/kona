@@ -7,7 +7,7 @@ const api = {
     DELETE: httpDelete,
 };
 
-const getConfig = {
+const GEToptions = {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -15,7 +15,7 @@ const getConfig = {
     }
 };
 
-const postConfig = {
+const POSToptions = {
     method: 'POST',
     mode: 'cors',
     headers: {
@@ -24,7 +24,7 @@ const postConfig = {
     },
 };
 
-const putConfig = {
+const PUToptions = {
     method: 'PUT',
     mode: 'cors',
     headers: {
@@ -33,7 +33,7 @@ const putConfig = {
     },
 };
 
-const deleteConfig = {
+const DELETEoptions = {
     method: 'DELETE',
     mode: 'cors',
 };
@@ -48,26 +48,46 @@ function checkStatus(response) {
     }
 }
 
-function httpGet(url) {
-    return fetch(url, getConfig)
+function _fetch(url, options) {
+    if(options.queryParams) {
+        url += (url.indexOf('?') === -1 ? '?' : '&') + joinQueryParams(options.queryParams);
+        delete options.queryParams;
+    }
+
+    return fetch(url, options);
+}
+
+function joinQueryParams(params) {
+    return Object.keys(params)
+        .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
+        .join('&');
+}
+
+function httpGet(url, options={}) {
+    options = {
+        ...options,
+        ...GEToptions
+    };
+
+    return _fetch(url, options)
         .then(checkStatus)
         .then(parseJSON);
 }
 
 function httpPost(url, body) {
-    return fetch(url, Object.assign({}, postConfig, { body: JSON.stringify(body)}))
+    return fetch(url, Object.assign({}, POSToptions, { body: JSON.stringify(body)}))
         .then(checkStatus)
         .then(parseJSON);
 }
 
 function httpPut(url, body) {
-    return fetch(url, Object.assign({}, putConfig, { body: JSON.stringify(body)}))
+    return fetch(url, Object.assign({}, PUToptions, { body: JSON.stringify(body)}))
         .then(checkStatus)
         .then(parseJSON);
 }
 
 function httpDelete(url) {
-    return fetch(url, deleteConfig)
+    return fetch(url, DELETEoptions)
         .then(checkStatus)
         .then(response => response.status);
 }

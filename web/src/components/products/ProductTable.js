@@ -10,6 +10,7 @@ class ProductTable extends React.Component {
         this.state = {products: [], errors:[]};
 
         this.showError = this.showError.bind(this);
+        this.search = this.search.bind(this);
     };
 
     showError(error) {
@@ -20,6 +21,15 @@ class ProductTable extends React.Component {
 
     componentDidMount() {
         productService.getProducts()
+            .then(
+                products => this.setState({products}),
+                this.showError
+            );
+    }
+
+    search(event) {
+        productService
+            .getProducts(event.target.value)
             .then(
                 products => this.setState({products}),
                 this.showError
@@ -38,12 +48,19 @@ class ProductTable extends React.Component {
                     </tr>
                     </thead>
                     <tbody>
-                    {Object
-                        .keys(this.state.products)
-                        .map(index => {
-                            return <ProductRow key={index} product={this.state.products[index]}/>
-                        })
-                    }
+                        <tr>
+                            <td>
+                            </td>
+                            <td><input onChange={this.search}/></td>
+                            <td></td>
+                        </tr>
+
+                        {Object
+                            .keys(this.state.products)
+                            .map(index => {
+                                return <ProductRow key={index} product={this.state.products[index]}/>
+                            })
+                        }
                     </tbody>
                 </table>
                 <ErrorBox errors={this.state.errors} />
