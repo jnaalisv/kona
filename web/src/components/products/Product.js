@@ -6,7 +6,7 @@ import HttpError from '../HttpError'
 class Product extends React.Component {
     constructor() {
         super();
-        this.state = {product: {},notifications: []};
+        this.state = {product: {name:'', productCode:''},notifications: []};
 
         this.addError = this.addError.bind(this);
         this.onChange = this.onChange.bind(this);
@@ -14,7 +14,7 @@ class Product extends React.Component {
 
     addError(error) {
         let errorMessage;
-
+        
         if (error instanceof TypeError) {
             errorMessage = error.message;
         } else if (error instanceof HttpError) {
@@ -28,9 +28,11 @@ class Product extends React.Component {
     }
 
     componentDidMount() {
-        productService
-            .getProduct(this.props.params.productId)
-            .then(product => this.setState({product}), this.addError);
+        if (this.props.params.productId !== 'new') {
+            productService
+                .getProduct(this.props.params.productId)
+                .then(product => this.setState({product}), this.addError);
+        }
     }
 
     saveProduct(e) {
@@ -56,14 +58,10 @@ class Product extends React.Component {
     render () {
         const product = this.state.product;
 
-        if (!product.name) {
-            return <p>Loading</p>
-        }
-
         return (
             <div>
-                name: <input name="name" value={product.name} onChange={this.onChange}/>
-                <div>productCode: {product.productCode}</div>
+                <div>name: <input name="name" value={product.name} onChange={this.onChange}/></div>
+                <div>productCode: <input name="productCode" value={product.productCode} onChange={this.onChange}/></div>
                 <div>version: {product.version}</div>
                 <button onClick={(e) => this.saveProduct(e)}>Save</button>
                 <Notifications notifications={this.state.notifications} />
