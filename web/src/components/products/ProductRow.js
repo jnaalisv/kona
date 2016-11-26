@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {PropTypes} from 'react'
 import { Link } from 'react-router'
 
 class ProductRow extends React.Component {
@@ -14,13 +14,17 @@ class ProductRow extends React.Component {
                 </td>
                 <td>{product.name}</td>
                 <td>{product.version}</td>
+                <td>
+                    <button onClick={this.props.deleteProduct}>delete</button>
+                </td>
             </tr>
         )
     }
 }
 
 ProductRow.propTypes = {
-    product: React.PropTypes.object.isRequired
+    product: PropTypes.object.isRequired,
+    deleteProduct: PropTypes.func.isRequired
 };
 
 export default ProductRow;

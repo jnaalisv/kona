@@ -4,6 +4,7 @@ const api = {
     getProducts: getProducts,
     getProduct: getProduct,
     save: save,
+    deleteProduct: deleteProduct
 };
 
 const productsUrl = 'http://localhost:9999/kona/products';
@@ -25,6 +26,10 @@ function getProducts(name) {
     }
 
     return http.GET(productsUrl, {queryParams});
+}
+
+function deleteProduct(productId) {
+    return http.DELETE(`${productsUrl}/${productId}`, productId)
 }
 
 function getProduct(productId) {

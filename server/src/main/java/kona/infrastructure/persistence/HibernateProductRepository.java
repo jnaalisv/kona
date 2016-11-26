@@ -54,4 +54,12 @@ public class HibernateProductRepository implements ProductRepository {
     public void update(Product product) {
         getCurrentSession().saveOrUpdate(product);
     }
+
+    @Override
+    public int delete(long productId) {
+        return getCurrentSession()
+                .createNativeQuery("DELETE FROM Product WHERE id = :id")
+                .setParameter("id", productId)
+                .executeUpdate();
+    }
 }

@@ -43,4 +43,12 @@ public class ProductService {
     public void update(Product product) {
         productRepository.update(product);
     }
+
+    @Transactional
+    public void delete(long productId) {
+        int deletedRows = productRepository.delete(productId);
+        if (deletedRows == 0) {
+            throw new NotFoundException(Product.class, "id="+productId);
+        }
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,5 +66,10 @@ public class ProductController {
         productService.update(product);
 
         return new ProductDTO(product);
+    }
+
+    @DeleteMapping(path = "/{productId}")
+    public void delete(@PathVariable long productId) {
+        productService.delete(productId);
     }
 }
