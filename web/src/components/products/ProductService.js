@@ -9,8 +9,8 @@ const api = {
 const productsUrl = 'http://localhost:9999/kona/products';
 
 function save(product) {
-    if (product.version >= 0) {
-        return http.PUT(`${productsUrl}/${product.productCode}`, product);
+    if (product.id > 0) {
+        return http.PUT(`${productsUrl}/${product.id}`, product);
     } else {
         return http.POST(productsUrl, product);
     }

@@ -46,10 +46,8 @@ public class HibernateProductRepository implements ProductRepository {
     }
 
     @Override
-    public Optional<Product> get(String productCode) {
-        return getCurrentSession()
-                .bySimpleNaturalId(Product.class)
-                .loadOptional(new ProductCode(productCode));
+    public Optional<Product> findBy(long id) {
+        return getCurrentSession().byId(Product.class).loadOptional(id);
     }
 
     @Override

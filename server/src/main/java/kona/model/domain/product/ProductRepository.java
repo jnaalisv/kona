@@ -11,7 +11,7 @@ public interface ProductRepository {
 
     void add(Product product);
 
-    Optional<Product> get(String productCode);
+    Optional<Product> findBy(long id);
 
     void update(Product product);
 }

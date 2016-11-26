@@ -32,9 +32,9 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping(path = "/{productCode}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ProductDTO get(@PathVariable String productCode) {
-        return new ProductDTO(productService.load(productCode));
+    @GetMapping(path = "/{productId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ProductDTO get(@PathVariable long productId) {
+        return new ProductDTO(productService.findBy(productId));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -57,10 +57,10 @@ public class ProductController {
         return new ResponseEntity<>(new ProductDTO(product), responseHeaders, HttpStatus.CREATED);
     }
 
-    @PutMapping(path = "/{productCode}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ProductDTO update(@PathVariable String productCode, @RequestBody ProductDTO productDTO) {
+    @PutMapping(path = "/{productId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ProductDTO update(@PathVariable long productId, @RequestBody ProductDTO productDTO) {
 
-        Product product = new Product(productDTO.id, productDTO.version, productDTO.name, new ProductCode(productCode));
+        Product product = new Product(productId, productDTO.version, productDTO.name, new ProductCode(productDTO.productCode));
 
         productService.update(product);
 

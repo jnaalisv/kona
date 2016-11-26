@@ -33,10 +33,10 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Product load(String productCode) {
+    public Product findBy(long id) {
         return productRepository
-                .get(productCode)
-                .orElseThrow(() -> new NotFoundException(Product.class, "productCode="+productCode));
+                .findBy(id)
+                .orElseThrow(() -> new NotFoundException(Product.class, "id="+id));
     }
 
     @Transactional

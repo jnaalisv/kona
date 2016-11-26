@@ -5,12 +5,12 @@ class ProductRow extends React.Component {
 
     render() {
         const product = this.props.product;
-        const productCode = product.productCode;
+        const productId = product.id;
 
         return (
             <tr>
                 <td>
-                    <Link to={`/products/${productCode}`}>{productCode}</Link>
+                    <Link to={`/products/${productId}`}>{product.productCode}</Link>
                 </td>
                 <td>{product.name}</td>
                 <td>{product.version}</td>
