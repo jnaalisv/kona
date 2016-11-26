@@ -53,3 +53,18 @@ div#errorbox {
     color: white;
     background-color: red;
 }
+.productTable {
+
+}
+
+.productTable #code {
+    width: 60px;
+}
+
+.productTable #name {
+    width: 300px;
+}
+
+.productTable #version {
+    width: 20px;
+}

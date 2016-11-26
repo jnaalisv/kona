@@ -39,11 +39,11 @@ class ProductTable extends React.Component {
     render() {
         return (
             <div>
-                <table>
+                <table className="productTable">
                     <thead>
                     <tr>
-                        <th>code</th>
-                        <th>name</th>
+                        <th id="code">code</th>
+                        <th id="name">name</th>
                         <th>version</th>
                     </tr>
                     </thead>
