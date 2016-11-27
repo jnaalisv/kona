@@ -55,6 +55,8 @@ dependencies {
         "javax.servlet:javax.servlet-api:$servletApiVersion",
 
         "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+        "com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion",
+        "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion",
         "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
 
         "org.springframework:spring-webmvc:$springVersion",
