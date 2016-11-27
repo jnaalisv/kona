@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import LocationHeader from './LocationHeader'
 import ProductsView from './products/ProductsView'
+import OrdersView from './orders/OrdersView'
 
 const Home = () => (
     <div>
@@ -30,6 +31,7 @@ class App extends React.Component {
                     <nav>
                         <ul>
                             <li><Link to="/">Home</Link></li>
+                            <li><Link to="/orders">Orders</Link></li>
                             <li><Link to="/products">Products</Link></li>
                         </ul>
                     </nav>
@@ -37,6 +39,7 @@ class App extends React.Component {
                     <div id="content">
                         <Match exactly pattern="/" component={Home} />
                         <Match pattern="/products" component={ProductsView} />
+                        <Match pattern="/orders" component={OrdersView}/>
                         <Miss component={NoMatch}/>
                     </div>
                     <footer></footer>
