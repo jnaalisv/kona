@@ -9,7 +9,7 @@ CREATE TABLE Users (
 
 CREATE TABLE Product (
   id int8 NOT NULL,
-  version int8 NOT NULL DEFAULT 1,
+  version int8 NOT NULL,
   createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
   name TEXT,
   productCode VARCHAR(255),
