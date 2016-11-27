@@ -53,7 +53,10 @@ dependencies {
         "org.springframework:spring-tx:$springVersion",
         "org.springframework:spring-orm:$springVersion",
         "javax.servlet:javax.servlet-api:$servletApiVersion",
+
         "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
+        "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
+
         "org.springframework:spring-webmvc:$springVersion",
         "org.springframework.security:spring-security-web:$springSecurityVersion",
         "org.springframework.security:spring-security-core:$springSecurityVersion",

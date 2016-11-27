@@ -60,6 +60,7 @@ class Product extends React.Component {
 
         return (
             <div>
+                <div>createTime: {product.createTime}</div>
                 <div>name: <input name="name" value={product.name} onChange={this.onChange}/></div>
                 <div>productCode: <input name="productCode" value={product.productCode} onChange={this.onChange}/></div>
                 <div>version: {product.version}</div>

@@ -1,18 +1,25 @@
 package kona.model.domain.product;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NaturalId;
 
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
+import java.time.LocalDateTime;
 
 @Entity
+@DynamicUpdate
 public class Product {
 
     @Version
     private long version = 0l;
+
+    @Column(insertable = false, updatable = false)
+    private LocalDateTime createTime;
 
     @NaturalId
     @Embedded
@@ -53,5 +60,9 @@ public class Product {
 
     public long getId() {
         return id;
+    }
+
+    public LocalDateTime getCreateTime() {
+        return createTime;
     }
 }
