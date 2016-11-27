@@ -32,9 +32,10 @@ public class Product {
         this.productCode = productCode;
     }
 
-    public Product(long id, long version, String name, ProductCode productCode) {
+    public Product(long id, long version, LocalDateTime createTime, String name, ProductCode productCode) {
         this.id = id;
         this.version = version;
+        this.createTime = createTime;
         this.name = name;
         this.productCode = productCode;
     }
