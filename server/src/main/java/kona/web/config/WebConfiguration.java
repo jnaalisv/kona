@@ -1,5 +1,8 @@
 package kona.web.config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -28,11 +31,16 @@ import java.util.List;
 @ComponentScan({"kona.web.interfaces"})
 public class WebConfiguration extends WebMvcConfigurerAdapter {
 
+    private ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, true);
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+        return objectMapper;
+    }
+
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        Jackson2ObjectMapperBuilder jackson2ObjectMapperBuilder = new Jackson2ObjectMapperBuilder();
-        jackson2ObjectMapperBuilder.indentOutput(true);
-        converters.add(new MappingJackson2HttpMessageConverter(jackson2ObjectMapperBuilder.build()));
+        converters.add(new MappingJackson2HttpMessageConverter(objectMapper()));
         converters.add(new StringHttpMessageConverter());
     }
 
