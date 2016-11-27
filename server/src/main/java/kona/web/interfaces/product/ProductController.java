@@ -61,7 +61,7 @@ public class ProductController {
     @PutMapping(path = "/{productId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ProductDTO update(@PathVariable long productId, @RequestBody ProductDTO productDTO) {
 
-        Product product = new Product(productId, productDTO.version, productDTO.createTime, productDTO.name, new ProductCode(productDTO.productCode));
+        Product product = new Product(productId, productDTO.version, productDTO.createTime, productDTO.name, new ProductCode(productDTO.productCode), productDTO.price);
 
         productService.update(product);
 

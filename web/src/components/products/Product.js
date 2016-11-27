@@ -10,11 +10,12 @@ class Product extends React.Component {
 
         this.addError = this.addError.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onPriceChange = this.onPriceChange.bind(this);
     }
 
     addError(error) {
         let errorMessage;
-        
+
         if (error instanceof TypeError) {
             errorMessage = error.message;
         } else if (error instanceof HttpError) {
@@ -55,6 +56,13 @@ class Product extends React.Component {
         this.setState({product});
     }
 
+    onPriceChange(event) {
+        event.preventDefault();
+        const product = {...this.state.product};
+        product.price.amount = event.target.value;
+        this.setState({product});
+    }
+
     render () {
         const product = this.state.product;
 
@@ -63,6 +71,10 @@ class Product extends React.Component {
                 <div>createTime: {product.createTime}</div>
                 <div>name: <input name="name" value={product.name} onChange={this.onChange}/></div>
                 <div>productCode: <input name="productCode" value={product.productCode} onChange={this.onChange}/></div>
+                <div>
+                    price: {product.price && <input type="number" name="price" value={product.price.amount} onChange={this.onPriceChange}/>}
+                    {product.price && product.price.currency}
+                </div>
                 <div>version: {product.version}</div>
                 <button onClick={(e) => this.saveProduct(e)}>Save</button>
                 <Notifications notifications={this.state.notifications} />

@@ -13,6 +13,8 @@ CREATE TABLE Product (
   createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
   name TEXT,
   productCode VARCHAR(255),
+  priceAmount int4 DEFAULT 0,
+  priceCurrency int4 DEFAULT 0,
   PRIMARY KEY (id),
   UNIQUE (productCode)
 );

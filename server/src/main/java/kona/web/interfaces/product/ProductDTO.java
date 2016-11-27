@@ -1,5 +1,6 @@
 package kona.web.interfaces.product;
 
+import kona.model.domain.CurrencyAmount;
 import kona.model.domain.product.Product;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ public class ProductDTO {
     public String name;
     public String productCode;
     public LocalDateTime createTime;
+    public CurrencyAmount price;
 
     public ProductDTO() { /*jackson*/}
 
@@ -20,5 +22,6 @@ public class ProductDTO {
         this.name = product.getName();
         this.productCode = product.getProductCode().toString();
         this.createTime = product.getCreateTime();
+        this.price = product.getPrice();
     }
 }
