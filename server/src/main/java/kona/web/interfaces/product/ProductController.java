@@ -2,7 +2,6 @@ package kona.web.interfaces.product;
 
 import kona.model.application.ProductService;
 import kona.model.domain.product.Product;
-import kona.model.domain.product.ProductCode;
 import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -35,7 +34,7 @@ public class ProductController {
 
     @GetMapping(path = "/{productId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ProductDTO get(@PathVariable long productId) {
-        return new ProductDTO(productService.findBy(productId));
+        return ProductAssembler.assembleTo(productService.findBy(productId));
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -43,29 +42,29 @@ public class ProductController {
         return productService
                 .findBy(name)
                 .stream()
-                .map(ProductDTO::new)
+                .map(ProductAssembler::assembleTo)
                 .collect(Collectors.toList());
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<ProductDTO> save(@RequestBody ProductDTO productDTO) {
 
-        Product product = new Product(productDTO.name, new ProductCode(productDTO.productCode));
+        Product product = ProductAssembler.assembleFrom(productDTO);
         productService.save(product);
 
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Location", "products/" + product.getProductCode());
-        return new ResponseEntity<>(new ProductDTO(product), responseHeaders, HttpStatus.CREATED);
+        return new ResponseEntity<>(ProductAssembler.assembleTo(product), responseHeaders, HttpStatus.CREATED);
     }
 
     @PutMapping(path = "/{productId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ProductDTO update(@PathVariable long productId, @RequestBody ProductDTO productDTO) {
 
-        Product product = new Product(productId, productDTO.version, productDTO.createTime, productDTO.name, new ProductCode(productDTO.productCode), productDTO.price);
+        Product product = ProductAssembler.assembleFrom(productDTO);
 
         productService.update(product);
 
-        return new ProductDTO(product);
+        return ProductAssembler.assembleTo(product);
     }
 
     @DeleteMapping(path = "/{productId}")

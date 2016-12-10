@@ -4,14 +4,7 @@ import kona.model.domain.CurrencyAmount;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NaturalId;
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -19,7 +12,7 @@ import java.time.LocalDateTime;
 public class Product {
 
     @Version
-    private long version = 0l;
+    private long version = 0L;
 
     @Column(insertable = false, updatable = false)
     private LocalDateTime createTime;
@@ -29,6 +22,9 @@ public class Product {
     private ProductCode productCode;
 
     private String name;
+
+    @Enumerated(EnumType.STRING)
+    private ProductType productType;
 
     @AttributeOverrides({
         @AttributeOverride(name="amount",column=@Column(name="priceAmount")),
@@ -80,5 +76,13 @@ public class Product {
 
     public CurrencyAmount getPrice() {
         return price;
+    }
+
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
     }
 }
