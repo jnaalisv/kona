@@ -1,5 +1,6 @@
 import React from 'react'
 import productService from './ProductService'
+import productTypeService from './ProductTypeService'
 import Notifications from '../Notifications'
 import HttpError from '../HttpError'
 
@@ -76,6 +77,8 @@ class Product extends React.Component {
                     {product.price && product.price.currency}
                 </div>
                 <div>version: {product.version}</div>
+
+                <div>product type: {product.productType}</div>
                 <button onClick={(e) => this.saveProduct(e)}>Save</button>
                 <Notifications notifications={this.state.notifications} />
             </div>

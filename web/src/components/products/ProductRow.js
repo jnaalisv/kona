@@ -14,6 +14,7 @@ class ProductRow extends React.Component {
                 </td>
                 <td>{product.name}</td>
                 <td>{product.version}</td>
+                <td>{product.productType}</td>
                 <td>
                     <button onClick={this.props.deleteProduct}>delete</button>
                 </td>
