@@ -32,7 +32,8 @@ public abstract class AbstractSpringRestMvcTest extends AbstractIntegrationTest 
 
     protected String someUserAuthToken;
 
-    protected final ObjectMapper objectMapper = new ObjectMapper();
+    @Inject
+    protected ObjectMapper objectMapper;
 
     protected MockMvc mockMvc;
 
