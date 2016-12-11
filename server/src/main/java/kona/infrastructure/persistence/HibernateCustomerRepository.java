@@ -57,4 +57,17 @@ public class HibernateCustomerRepository implements CustomerRepository {
                 .setParameter("name", "%"+name + "%")
                 .list();
     }
+
+    @Override
+    public void update(Customer customer) {
+        getCurrentSession().update(customer);
+    }
+
+    @Override
+    public int delete(long customerId) {
+        return getCurrentSession()
+                .createNativeQuery("DELETE FROM Customer WHERE id = :id")
+                .setParameter("id", customerId)
+                .executeUpdate();
+    }
 }

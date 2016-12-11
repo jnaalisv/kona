@@ -12,4 +12,8 @@ public interface CustomerRepository {
     List<Customer> getAll();
 
     List<Customer> findByName(String name);
+
+    void update(Customer customer);
+
+    int delete(long customerId);
 }

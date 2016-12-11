@@ -2,10 +2,14 @@ package kona.web.interfaces.customer;
 
 import kona.model.domain.customer.Customer;
 
+import java.time.LocalDateTime;
+
 public class CustomerDTO {
 
-    public Long id;
+    public long id;
     public String name;
+    public LocalDateTime createTime;
+    public long version;
 
     public CustomerDTO() {}
 

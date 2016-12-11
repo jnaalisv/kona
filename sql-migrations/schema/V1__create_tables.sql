@@ -31,6 +31,8 @@ CREATE TABLE Address (
 CREATE TABLE Customer (
     id int8 NOT NULL,
     name VARCHAR(255),
+    version int8 NOT NULL,
+    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
     PRIMARY KEY (id)
 );
 
