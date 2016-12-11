@@ -20,19 +20,24 @@ span#location {
 
 nav {
     float: left;
-    min-width: 16vw;
+
+    width: 10vw;
     height: 80vh;
+
     border-right: solid black 1px;
     background-color: coral;
 }
 
 div#content {
-    height: 76vh;
-    margin-left: 17vw;
+
+    margin-left: 10vw;
+    width: 90vw;
+
+    height: 80vh;
+
     background-color: deepskyblue;
-    padding: 1em;
+    padding-left: 1em;
     position: absolute;
-    width: 80vw;
 }
 
 div.notification-container {
