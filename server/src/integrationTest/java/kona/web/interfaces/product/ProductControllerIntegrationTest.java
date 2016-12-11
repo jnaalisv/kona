@@ -69,7 +69,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
 
         assertThat(postedProduct.productCode).isEqualTo(arabicaBeans.productCode);
 
-        httpGet("/products/" + postedProduct.productCode)
+        httpGet("/products/" + postedProduct.id)
                 .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
                 .acceptApplicationJson()
                 .expect200();
