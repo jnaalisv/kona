@@ -40,6 +40,12 @@ div#content {
     position: absolute;
 }
 
+footer {
+    height: 10vh;
+    margin-top: 78vh;
+    border-top: dashed black 2px;
+}
+
 div.notification-container {
 
 }
