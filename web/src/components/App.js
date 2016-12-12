@@ -45,7 +45,9 @@ class App extends React.Component {
                         <Match pattern="/orders" component={OrdersView}/>
                         <Miss component={NoMatch}/>
                     </div>
-                    <footer></footer>
+
+                    <footer>footer</footer>
+
                 </div>
             </BrowserRouter>
         )

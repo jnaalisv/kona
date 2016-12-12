@@ -8,8 +8,8 @@ div.main {
 
 header {
     height: 10vh;
-    background-color: blanchedalmond;
     position: relative;
+    border-bottom: dashed black 2px;
 }
 
 span#location {
@@ -24,19 +24,17 @@ nav {
     width: 10vw;
     height: 80vh;
 
-    border-right: solid black 1px;
-    background-color: coral;
+    border-right: dashed black 2px;
 }
 
 div#content {
 
     margin-left: 10vw;
-    width: 90vw;
+    width: 89vw;
 
     height: 80vh;
 
-    background-color: deepskyblue;
-    padding-left: 1em;
+    padding-left: 1vw;
     position: absolute;
 }
 
