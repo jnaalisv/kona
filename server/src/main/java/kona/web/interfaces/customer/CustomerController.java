@@ -43,7 +43,7 @@ public class CustomerController {
 
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public CustomerDTO get(@PathVariable long id) {
-        return new CustomerDTO(customerService.load(id));
+        return CustomerAssembler.assembleTo(customerService.load(id));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
