@@ -1,15 +1,15 @@
 CREATE SEQUENCE hibernate_sequence;
 
 CREATE TABLE Users (
-  id int8 NOT NULL,
+  id INT8 NOT NULL,
   password VARCHAR(255),
   username VARCHAR(255),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE Product (
-  id int8 NOT NULL,
-  version int8 NOT NULL,
+  id INT8 NOT NULL,
+  version INT8 NOT NULL,
   createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
   name TEXT,
   productCode VARCHAR(255),
@@ -20,32 +20,31 @@ CREATE TABLE Product (
   UNIQUE (productCode)
 );
 
+CREATE TABLE Customer (
+  id INT8 NOT NULL,
+  name VARCHAR(255),
+  version INT8 NOT NULL,
+  createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
+  PRIMARY KEY (id)
+);
 CREATE TABLE Address (
-    id int8 NOT NULL,
+    id INT8 NOT NULL,
     municipality VARCHAR(255),
     postalCode VARCHAR(255),
     street VARCHAR(255),
     PRIMARY KEY (id)
 );
 
-CREATE TABLE Customer (
-    id int8 NOT NULL,
-    name VARCHAR(255),
-    version int8 NOT NULL,
-    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE DeliveryOrder (
-    id int8 NOT NULL,
-    payerID int8 NOT NULL,
+    id INT8 NOT NULL,
+    payerID INT8 NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE OrderLine (
-    id int8 NOT NULL,
+    id INT8 NOT NULL,
     amount NUMERIC(19, 2),
     productCode VARCHAR(255) NOT NULL,
-    deliveryOrder_id int8,
+    deliveryOrder_id INT8,
     PRIMARY KEY (id)
 );
