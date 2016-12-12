@@ -53,16 +53,19 @@ div.notification-container {
 div.info-notification {
     color: white;
     background-color: green;
+    width: 20vw;
 }
 
 div.error-notification {
     color: white;
     background-color: red;
+    width: 20vw;
 }
 
 div#errorbox {
     color: white;
     background-color: red;
+    width: 20vw;
 }
 .productTable {
 
