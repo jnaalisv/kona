@@ -4,7 +4,7 @@ import {Match, Miss, Link} from 'react-router'
 import CustomerTable from './CustomerTable'
 import EditCustomer from './EditCustomer'
 
-const CustomersView = (props) => (
+const CustomersRoute = (props) => (
     <div>
         <Link to={`${props.pathname}/new`}><button>create a new customer</button></Link>
 
@@ -19,4 +19,4 @@ const CustomersView = (props) => (
     </div>
 );
 
-export default CustomersView;
+export default CustomersRoute;

@@ -1,5 +1,5 @@
 import React from 'react'
-import {getCustomer, saveCustomer} from './CustomerService'
+import {getCustomer, saveCustomer} from './customers'
 import Notifications from '../Notifications'
 import HttpError from '../HttpError'
 
@@ -59,10 +59,11 @@ class EditCustomer extends React.Component {
 
         return (
             <div>
-                <div>createTime: {customer.createTime}</div>
                 <div>id: {customer.id}</div>
-                <div>name: <input name="name" value={customer.name} onChange={this.onChange}/></div>
                 <div>version: {customer.version}</div>
+                <div>created: {customer.createTime}</div>
+
+                <div>name: <input name="name" value={customer.name} onChange={this.onChange}/></div>
                 <button onClick={(e) => this.saveCustomer(e)}>Save</button>
                 <Notifications notifications={this.state.notifications} />
             </div>

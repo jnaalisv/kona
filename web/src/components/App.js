@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import LocationHeader from './LocationHeader'
-import CustomersView from './customers/CustomersView'
+import CustomersRoute from './customers/CustomersRoute'
 import ProductsView from './products/ProductsView'
 import OrdersView from './orders/OrdersView'
 
@@ -40,7 +40,7 @@ class App extends React.Component {
 
                     <div id="content">
                         <Match exactly pattern="/" component={Home} />
-                        <Match pattern="/customers" component={CustomersView} />
+                        <Match pattern="/customers" component={CustomersRoute} />
                         <Match pattern="/products" component={ProductsView} />
                         <Match pattern="/orders" component={OrdersView}/>
                         <Miss component={NoMatch}/>
