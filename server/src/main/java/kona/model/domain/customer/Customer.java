@@ -1,11 +1,14 @@
 package kona.model.domain.customer;
 
 import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Version;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -23,6 +26,9 @@ public class Customer {
 
     @Version
     private long version;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<CustomerAddress> addresses;
 
     public Customer() {}
 
@@ -53,5 +59,13 @@ public class Customer {
 
     public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
+    }
+
+    public List<CustomerAddress> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<CustomerAddress> addresses) {
+        this.addresses = addresses;
     }
 }

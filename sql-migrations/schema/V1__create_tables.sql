@@ -27,6 +27,20 @@ CREATE TABLE Customer (
   createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
   PRIMARY KEY (id)
 );
+
+create table Customer_addresses (
+  customer_id int8 not null,
+  countryCode varchar(255),
+  municipality varchar(255),
+  postalCode varchar(255),
+  street varchar(255)
+);
+
+alter table Customer_addresses
+  add constraint FK_CUSTOMER_ADDRESSES
+  foreign key (customer_id)
+  references Customer;
+
 CREATE TABLE Address (
     id INT8 NOT NULL,
     municipality VARCHAR(255),

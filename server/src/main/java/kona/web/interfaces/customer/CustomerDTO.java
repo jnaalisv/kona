@@ -3,6 +3,7 @@ package kona.web.interfaces.customer;
 import kona.model.domain.customer.Customer;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class CustomerDTO {
 
@@ -10,6 +11,8 @@ public class CustomerDTO {
     public String name;
     public LocalDateTime createTime;
     public long version;
+
+    public List<CustomerAddressDTO> addresses;
 
     public CustomerDTO() {}
 

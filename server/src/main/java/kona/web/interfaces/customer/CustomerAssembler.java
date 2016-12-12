@@ -1,6 +1,9 @@
 package kona.web.interfaces.customer;
 
 import kona.model.domain.customer.Customer;
+import kona.model.domain.customer.CustomerAddress;
+
+import java.util.stream.Collectors;
 
 public class CustomerAssembler {
 
@@ -8,6 +11,13 @@ public class CustomerAssembler {
         Customer customer = new Customer(customerDTO.id, customerDTO.name);
         customer.setVersion(customerDTO.version);
         customer.setCreateTime(customerDTO.createTime);
+
+        customer.setAddresses(customerDTO
+                .addresses
+                .stream()
+                .map(dto -> new CustomerAddress(dto.street, dto.postalCode, dto.municipality, dto.countryCode))
+                .collect(Collectors.toList()));
+
         return customer;
     }
 
@@ -17,6 +27,11 @@ public class CustomerAssembler {
         customerDTO.name = customer.getName();
         customerDTO.createTime = customer.getCreateTime();
         customerDTO.version = customer.getVersion();
+        customerDTO.addresses = customer
+                .getAddresses()
+                .stream()
+                .map(CustomerAddressDTO::new)
+                .collect(Collectors.toList());
         return customerDTO;
     }
 }
