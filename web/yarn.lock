@@ -4382,9 +4382,9 @@ react-addons-test-utils@15.4.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.4.1.tgz#1e4caab151bf27cce26df5f9cb714f4fd8359ae1"
 
-react-broadcast@^0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/react-broadcast/-/react-broadcast-0.1.1.tgz#d8da92dcfada6e666e95e153220f9e5bbb1b42f2"
+react-broadcast@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/react-broadcast/-/react-broadcast-0.1.2.tgz#950de63578a2af399a396067a617af7402182330"
   dependencies:
     invariant "^2.2.1"
 
@@ -4408,20 +4408,14 @@ react-dom@15.4.1:
     loose-envify "^1.1.0"
     object-assign "^4.1.0"
 
-react-history@^0.14.0:
-  version "0.14.1"
-  resolved "https://registry.yarnpkg.com/react-history/-/react-history-0.14.1.tgz#0b97763c1bc96aee6bb59ed9702b86f731869369"
+react-router@4.0.0-alpha.6:
+  version "4.0.0-alpha.6"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.0.0-alpha.6.tgz#239fcf9a6ba7997021022c9b51d72d370f7b6bf4"
   dependencies:
     history "^4.3.0"
-
-react-router@^4.0.0-alpha.4:
-  version "4.0.0-alpha.4"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-4.0.0-alpha.4.tgz#5f19e97b8df497e6f77f68bb1bd9441f56103335"
-  dependencies:
     path-to-regexp "^1.5.3"
     query-string "4.2.3"
-    react-broadcast "^0.1.1"
-    react-history "^0.14.0"
+    react-broadcast "^0.1.2"
 
 react-scripts@0.8.4:
   version "0.8.4"
