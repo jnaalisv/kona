@@ -12,6 +12,8 @@ import kona.model.domain.customer.Customer;
 import kona.model.domain.orderhandling.DeliveryOrder;
 import kona.model.domain.orderhandling.DeliveryOrderRepository;
 
+import java.util.List;
+
 @Repository
 public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository {
 
@@ -37,5 +39,12 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
                 .createQuery("select o from DeliveryOrder o left join fetch o.orderLines where o.id = :id", DeliveryOrder.class)
                 .setParameter("id", id)
                 .uniqueResult();
+    }
+
+    @Override
+    public List<DeliveryOrder> getAll() {
+        return getCurrentSession()
+                .createNativeQuery("select * from DeliveryOrder", DeliveryOrder.class)
+                .getResultList();
     }
 }

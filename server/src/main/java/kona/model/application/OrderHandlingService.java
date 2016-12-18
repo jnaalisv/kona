@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 @Service
 public class OrderHandlingService {
@@ -25,5 +26,10 @@ public class OrderHandlingService {
     @Transactional
     public DeliveryOrder loadBy(long id) {
         return deliveryOrderRepository.get(id);
+    }
+
+    @Transactional
+    public List<DeliveryOrder> getAll() {
+        return deliveryOrderRepository.getAll();
     }
 }

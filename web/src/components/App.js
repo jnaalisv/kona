@@ -3,7 +3,7 @@ import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import LocationHeader from './LocationHeader'
 import CustomersRoute from './customers/CustomersRoute'
 import ProductsView from './products/ProductsView'
-import OrdersView from './orders/OrdersView'
+import OrdersRoute from './orders/OrdersRoute'
 
 const Home = () => (
     <div>
@@ -42,7 +42,7 @@ class App extends React.Component {
                         <Match exactly pattern="/" component={Home} />
                         <Match pattern="/customers" component={CustomersRoute} />
                         <Match pattern="/products" component={ProductsView} />
-                        <Match pattern="/orders" component={OrdersView}/>
+                        <Match pattern="/orders" component={OrdersRoute}/>
                         <Miss component={NoMatch}/>
                     </div>
 
