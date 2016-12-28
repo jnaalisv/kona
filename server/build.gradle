@@ -29,7 +29,7 @@ ext {
     springVersion = "4.3.5.RELEASE"
     springSecurityVersion = "4.2.1.RELEASE"
     jacksonVersion = "2.8.5"
-    hibernateVersion = "5.2.5.Final"
+    hibernateVersion = "5.2.6.Final"
     hikariCPVersion = "2.5.1"
     h2Version = "1.4.191"
     junitVersion = "4.12"
