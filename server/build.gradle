@@ -26,7 +26,7 @@ ext {
     slf4jVersion = "1.7.21"
     logbackVersion = "1.1.7"
     servletApiVersion = "3.1.0"
-    springVersion = "4.3.4.RELEASE"
+    springVersion = "4.3.5.RELEASE"
     springSecurityVersion = "4.2.0.RELEASE"
     jacksonVersion = "2.8.5"
     hibernateVersion = "5.2.5.Final"
