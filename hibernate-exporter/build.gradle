@@ -1,5 +1,5 @@
 plugins {
-    id "application"
+    id "java"
 }
 
 repositories {
@@ -10,5 +10,7 @@ dependencies {
     compile project(':server')
 }
 
-mainClassName = "kona.hibernate.exporter.HibernateDDLExporter"
-
+task exportDDL(type:JavaExec) {
+    main = "kona.hibernate.exporter.HibernateDDLExporter"
+    classpath = sourceSets.main.runtimeClasspath
+}
