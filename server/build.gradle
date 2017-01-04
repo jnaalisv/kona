@@ -43,39 +43,36 @@ configurations {
 }
 
 dependencies {
-
     compile (
-        "org.slf4j:slf4j-api:$slf4jVersion",
-        "com.zaxxer:HikariCP:$hikariCPVersion",
-        "org.hibernate:hibernate-core:$hibernateVersion",
-        "javax.inject:javax.inject:1",
-        "org.springframework:spring-context:$springVersion",
-        "org.springframework:spring-tx:$springVersion",
-        "org.springframework:spring-orm:$springVersion",
-        "javax.servlet:javax.servlet-api:$servletApiVersion",
+            "org.slf4j:slf4j-api:$slf4jVersion",
+            "com.zaxxer:HikariCP:$hikariCPVersion",
+            "org.hibernate:hibernate-core:$hibernateVersion",
+            "javax.inject:javax.inject:1",
 
-        "com.fasterxml.jackson.core:jackson-databind:$jacksonVersion",
-        "com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion",
-        "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion",
-        "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
+            "org.springframework:spring-orm:$springVersion",
+            "org.springframework:spring-webmvc:$springVersion",
 
-        "org.springframework:spring-webmvc:$springVersion",
-        "org.springframework.security:spring-security-web:$springSecurityVersion",
-        "org.springframework.security:spring-security-core:$springSecurityVersion",
-        "org.springframework.security:spring-security-config:$springSecurityVersion"
+            "javax.servlet:javax.servlet-api:$servletApiVersion",
+
+            "com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jdk8:$jacksonVersion",
+            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
+
+            "org.springframework.security:spring-security-web:$springSecurityVersion",
+            "org.springframework.security:spring-security-config:$springSecurityVersion"
     )
 
     runtime (
-        "org.slf4j:jcl-over-slf4j:$slf4jVersion",
-        "org.codehaus.groovy:groovy:$groovyVersion",
-        "ch.qos.logback:logback-classic:$logbackVersion",
-        "org.postgresql:postgresql:$postgreSqlVersion"
+            "org.slf4j:jcl-over-slf4j:$slf4jVersion",
+            "org.codehaus.groovy:groovy:$groovyVersion",
+            "ch.qos.logback:logback-classic:$logbackVersion",
+            "org.postgresql:postgresql:$postgreSqlVersion"
     )
 
     testCompile (
-        "junit:junit:$junitVersion",
-        "org.assertj:assertj-core:$assertJVersion",
-        "org.spockframework:spock-core:1.0-groovy-2.4"
+            "junit:junit:$junitVersion",
+            "org.assertj:assertj-core:$assertJVersion",
+            "org.spockframework:spock-core:1.0-groovy-2.4"
     )
 
     integrationTestCompile (
