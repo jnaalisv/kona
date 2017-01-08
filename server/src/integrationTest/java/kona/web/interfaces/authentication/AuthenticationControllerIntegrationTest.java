@@ -6,7 +6,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Sql({"classpath:init-database.sql", "classpath:users.sql"})
+@Sql({"classpath:init-database.sql"})
 public class AuthenticationControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
     @Test

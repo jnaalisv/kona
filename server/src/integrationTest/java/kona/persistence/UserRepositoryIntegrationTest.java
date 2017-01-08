@@ -14,7 +14,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@Sql({"classpath:init-database.sql", "classpath:users.sql"})
+@Sql({"classpath:init-database.sql"})
 @ContextConfiguration(classes = {HibernateConfiguration.class, IntegrationTestConfig.class})
 public class UserRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
