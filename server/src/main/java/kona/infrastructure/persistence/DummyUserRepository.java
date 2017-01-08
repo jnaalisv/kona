@@ -1,26 +1,14 @@
 package kona.infrastructure.persistence;
 
 import kona.model.domain.user.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Inject;
-
 @Repository
-public class DummyUserRepository implements UserDetailsService {
+public class DummyUserRepository {
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    public DummyUserRepository() {}
 
-    @Inject
-    public DummyUserRepository(final BCryptPasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new User(username, passwordEncoder.encode(username));
+    public User loadUserByUsername(String username) {
+        return new User(username, null);
     }
 }
