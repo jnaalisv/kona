@@ -1,8 +1,8 @@
-package kona.infrastructure;
+package kona.persistence;
 
 import kona.IntegrationTestConfig;
-import kona.infrastructure.config.PersistenceConfiguration;
-import kona.infrastructure.persistence.HibernateUserRepository;
+import kona.persistence.config.PersistenceConfiguration;
+import kona.persistence.impl.HibernateUserRepository;
 import kona.model.domain.user.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

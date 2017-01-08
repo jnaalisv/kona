@@ -1,6 +1,6 @@
 package kona.model.application;
 
-import kona.infrastructure.persistence.HibernateUserRepository;
+import kona.persistence.impl.HibernateUserRepository;
 import kona.model.domain.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

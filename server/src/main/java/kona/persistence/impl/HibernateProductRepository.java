@@ -1,4 +1,4 @@
-package kona.infrastructure.persistence;
+package kona.persistence.impl;
 
 import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductRepository;

@@ -1,7 +1,7 @@
-package kona.infrastructure;
+package kona.persistence;
 
 import kona.IntegrationTestConfig;
-import kona.infrastructure.config.PersistenceConfiguration;
+import kona.persistence.config.PersistenceConfiguration;
 import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductCode;
 import kona.model.domain.product.ProductRepository;

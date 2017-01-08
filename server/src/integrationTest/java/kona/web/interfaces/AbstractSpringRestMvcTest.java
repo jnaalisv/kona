@@ -2,7 +2,7 @@ package kona.web.interfaces;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kona.IntegrationTestConfig;
-import kona.infrastructure.config.PersistenceConfiguration;
+import kona.persistence.config.PersistenceConfiguration;
 import kona.model.config.DomainConfiguration;
 import kona.web.config.WebConfiguration;
 import kona.web.config.authentication.SpringSecurityConfiguration;

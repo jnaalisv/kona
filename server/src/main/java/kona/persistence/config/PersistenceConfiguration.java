@@ -1,4 +1,4 @@
-package kona.infrastructure.config;
+package kona.persistence.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
@@ -14,7 +14,7 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"kona.infrastructure.persistence"})
+@ComponentScan(basePackages = {"kona.persistence.impl"})
 public class PersistenceConfiguration {
 
     @Bean(destroyMethod = "close")

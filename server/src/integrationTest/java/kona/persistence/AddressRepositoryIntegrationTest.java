@@ -1,7 +1,7 @@
-package kona.infrastructure;
+package kona.persistence;
 
 import kona.IntegrationTestConfig;
-import kona.infrastructure.config.PersistenceConfiguration;
+import kona.persistence.config.PersistenceConfiguration;
 import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
 import org.hibernate.SessionFactory;

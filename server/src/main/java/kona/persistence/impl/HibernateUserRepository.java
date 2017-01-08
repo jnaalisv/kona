@@ -1,4 +1,4 @@
-package kona.infrastructure.persistence;
+package kona.persistence.impl;
 
 import kona.model.domain.user.User;
 import org.hibernate.Session;

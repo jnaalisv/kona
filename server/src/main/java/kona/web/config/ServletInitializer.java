@@ -1,6 +1,6 @@
 package kona.web.config;
 
-import kona.infrastructure.config.PersistenceConfiguration;
+import kona.persistence.config.PersistenceConfiguration;
 import kona.model.config.DomainConfiguration;
 import kona.web.config.authentication.SpringSecurityConfiguration;
 import kona.web.config.authentication.WebSecurityConfig;
