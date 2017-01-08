@@ -4,11 +4,13 @@ import kona.web.interfaces.AbstractSpringRestMvcTest;
 import kona.web.interfaces.address.AddressDTO;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
+import org.springframework.test.context.jdbc.Sql;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
+    @Sql({"classpath:init-database.sql"})
     @Test
     public void shouldSuccesfullyCreateNewAddress() {
         AddressDTO aNewAddress = new AddressDTO();
@@ -21,7 +23,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
                 .content(aNewAddress)
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect201()
-                .expectHeader("Location", "addresses/1")
+                .expectHeader("Location", "addresses/3")
                 .responseBodyAs(AddressDTO.class);
 
         assertThat(savedAddress.ID).isGreaterThan(0l);
