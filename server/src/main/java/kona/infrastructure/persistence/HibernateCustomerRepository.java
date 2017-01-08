@@ -1,20 +1,14 @@
 package kona.infrastructure.persistence;
 
-import java.util.List;
-import java.util.Optional;
-
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-
-import kona.model.domain.address.Address;
+import kona.model.domain.customer.Customer;
+import kona.model.domain.customer.CustomerRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerRepository;
+import javax.inject.Inject;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class HibernateCustomerRepository implements CustomerRepository {

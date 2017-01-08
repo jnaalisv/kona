@@ -1,7 +1,6 @@
 package kona.infrastructure.persistence;
 
 import kona.model.domain.product.Product;
-import kona.model.domain.product.ProductCode;
 import kona.model.domain.product.ProductRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

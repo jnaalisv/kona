@@ -1,17 +1,12 @@
 package kona.infrastructure.persistence;
 
-import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import kona.model.domain.orderhandling.DeliveryOrder;
+import kona.model.domain.orderhandling.DeliveryOrderRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.orderhandling.DeliveryOrder;
-import kona.model.domain.orderhandling.DeliveryOrderRepository;
-
+import javax.inject.Inject;
 import java.util.List;
 
 @Repository
