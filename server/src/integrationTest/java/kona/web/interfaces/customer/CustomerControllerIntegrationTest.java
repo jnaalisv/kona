@@ -21,7 +21,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         CustomerDTO aPostedCustomer = httpPost("/customers")
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect201()
                 .responseBodyAs(CustomerDTO.class);
 
@@ -37,7 +37,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         httpPost(KonaWebResources.CUSTOMERS)
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect201();
 
         aNewCustomer.name = "Mr. Smith";
@@ -45,13 +45,13 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
         httpPost(KonaWebResources.CUSTOMERS)
                 .contentTypeApplicationJson()
                 .content(aNewCustomer)
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect201()
                 .responseBodyAs(CustomerDTO.class);
 
         List<CustomerDTO> postedCustomers = httpGet(KonaWebResources.CUSTOMERS)
                 .acceptApplicationJson()
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect200()
                 .responseBodyAsListOf(CustomerDTO.class);
 
@@ -62,7 +62,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
 
         CustomerDTO postedCustomer = httpGet(KonaWebResources.CUSTOMERS + "/{id}", postedCustomers.get(0).id)
                 .acceptApplicationJson()
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect200()
                 .responseBodyAs(CustomerDTO.class);
 
@@ -73,7 +73,7 @@ public class CustomerControllerIntegrationTest extends AbstractSpringRestMvcTest
                 httpGet(KonaWebResources.CUSTOMERS)
                         .param("name", "Smith")
                         .acceptApplicationJson()
-                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                        .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                         .expect200()
                         .responseBodyAsListOf(CustomerDTO.class);
 

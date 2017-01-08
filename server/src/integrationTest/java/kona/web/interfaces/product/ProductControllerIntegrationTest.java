@@ -21,7 +21,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
         List<ProductDTO> products;
 
         products = httpGet("/products")
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .param("name", "Titanium")
                 .expect200()
                 .responseBodyAsListOf(ProductDTO.class);
@@ -29,7 +29,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
         assertThat(products.size()).isEqualTo(2);
 
         products = httpGet("/products")
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .param("name", "unobtanium")
                 .expect200()
                 .responseBodyAsListOf(ProductDTO.class);
@@ -45,7 +45,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
     public void shouldListAllProducts() {
 
         List<ProductDTO> products = httpGet("/products")
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect200()
                 .responseBodyAsListOf(ProductDTO.class);
 
@@ -61,7 +61,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
         arabicaBeans.productCode = "ABC";
 
         ProductDTO postedProduct = httpPost("/products")
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .contentTypeApplicationJson()
                 .content(arabicaBeans)
                 .expect201()
@@ -70,7 +70,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
         assertThat(postedProduct.productCode).isEqualTo(arabicaBeans.productCode);
 
         httpGet("/products/" + postedProduct.id)
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .acceptApplicationJson()
                 .expect200();
     }
@@ -79,7 +79,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
     @Test
     public void getNonExistingProductReturns404() {
         httpGet("/products/999")
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .acceptApplicationJson()
                 .expect404();
     }

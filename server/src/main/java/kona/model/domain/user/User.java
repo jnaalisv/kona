@@ -8,17 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import java.util.Collection;
 import java.util.Collections;
 
 @Entity
 @Table(name ="Users")
 public class User implements UserDetails{
-
-    @Id
-    @GeneratedValue
-    @Column(name = "id")
-    private long ID;
 
     private String username;
 
@@ -28,6 +24,16 @@ public class User implements UserDetails{
         this.username = username;
         this.password = password;
     }
+
+    public User() { /* for hibernate */}
+
+    @Version
+    private long version = 0L;
+
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private long id;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

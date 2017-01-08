@@ -1,8 +1,10 @@
 println "Configuring logback for integration tests"
 
+def logPattern = "%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{40}: %msg%n%ex{full, org, sun, java.lang, java.util, javax, com.fasterxml, CGLIB}"
+
 appender("STDOUT", ConsoleAppender) {
     encoder(PatternLayoutEncoder) {
-        pattern = "%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{40}: %msg%n"
+        pattern = logPattern
     }
 }
 

@@ -25,7 +25,7 @@ public class AuthenticationIntegrationTest extends AbstractSpringRestMvcTest {
     public void httpGetWithValidAuthTokenShouldReturnHttpOK(){
         httpGet("/customers")
                 .acceptApplicationJson()
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect200();
     }
 }

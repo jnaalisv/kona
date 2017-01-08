@@ -19,7 +19,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         AddressDTO savedAddress = httpPost("/addresses")
                 .contentTypeApplicationJson()
                 .content(aNewAddress)
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .expect201()
                 .expectHeader("Location", "addresses/1")
                 .responseBodyAs(AddressDTO.class);
@@ -32,7 +32,7 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         AddressDTO requestedAddress =
                 httpGet("/addresses/{id}", savedAddress.ID)
                         .acceptApplicationJson()
-                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                        .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                         .expect200()
                         .responseBodyAs(AddressDTO.class);
 

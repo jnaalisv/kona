@@ -23,7 +23,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
         List<CustomerDTO> customers =
                 httpGet(KonaWebResources.CUSTOMERS)
                         .acceptApplicationJson()
-                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                        .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                         .expect200()
                         .responseBodyAsListOf(CustomerDTO.class);
 
@@ -32,7 +32,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
 
         List<ProductDTO> products =
                 httpGet(KonaWebResources.PRODUCTS)
-                        .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                        .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                         .acceptApplicationJson()
                         .expect200()
                         .responseBodyAsListOf(ProductDTO.class);
@@ -40,7 +40,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
         deliveryOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).productCode, new BigDecimal("10")));
 
         DeliveryOrderDTO postedDeliveryOrder = httpPost("/delivery-orders")
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .contentTypeApplicationJson()
                 .content(deliveryOrderDTO)
                 .expect201()
@@ -50,7 +50,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
         assertThat(postedDeliveryOrder.orderLines).hasSize(1);
 
         postedDeliveryOrder = httpGet("/delivery-orders/" + postedDeliveryOrder.id)
-                .header(HttpHeaders.AUTHORIZATION, someUserAuthToken)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .acceptApplicationJson()
                 .expect200()
                 .responseBodyAs(DeliveryOrderDTO.class);

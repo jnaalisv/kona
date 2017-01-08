@@ -2,6 +2,7 @@ CREATE SEQUENCE hibernate_sequence;
 
 CREATE TABLE Users (
   id INT8 NOT NULL,
+  version INT8 NOT NULL,
   password VARCHAR(255),
   username VARCHAR(255),
   PRIMARY KEY (id)
