@@ -1,6 +1,5 @@
 package kona.infrastructure.persistence;
 
-import kona.model.domain.address.Address;
 import kona.model.domain.user.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
