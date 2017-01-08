@@ -18,36 +18,6 @@ apply from: "$rootDir/gradle/javac-options.gradle"
 sourceCompatibility = JavaVersion.VERSION_1_8
 targetCompatibility = JavaVersion.VERSION_1_8
 
-repositories {
-    mavenCentral()
-}
-
-ext {
-
-    // Logging dependency versions
-    slf4jVersion = "1.7.22"
-    logbackVersion = "1.1.8"
-    groovyVersion = "2.4.7"
-
-    // javax dependency versions
-    servletApiVersion = "3.1.0"
-
-    // Spring Framework dependency versions
-    springVersion = "4.3.5.RELEASE"
-    springSecurityVersion = "4.2.1.RELEASE"
-    jacksonVersion = "2.8.5"
-
-    // Data access dependency versions
-    hibernateVersion = "5.2.6.Final"
-    hikariCPVersion = "2.5.1"
-    postgreSqlVersion = "9.4.1212.jre7"
-
-    // Test dependency versions
-    h2Version = "1.4.191"
-    junitVersion = "4.12"
-    assertJVersion = "3.5.2"
-}
-
 configurations {
     compile.exclude group: "commons-logging"
 }
