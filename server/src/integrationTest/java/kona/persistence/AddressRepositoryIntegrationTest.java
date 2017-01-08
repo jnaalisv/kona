@@ -1,7 +1,7 @@
 package kona.persistence;
 
 import kona.IntegrationTestConfig;
-import kona.persistence.config.PersistenceConfiguration;
+import kona.persistence.config.HibernateConfiguration;
 import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
 import org.hibernate.SessionFactory;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql({"classpath:init-database.sql"})
-@ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
+@ContextConfiguration(classes = {HibernateConfiguration.class, IntegrationTestConfig.class})
 public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired

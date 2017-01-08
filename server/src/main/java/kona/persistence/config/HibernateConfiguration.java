@@ -1,11 +1,10 @@
 package kona.persistence.config;
 
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
@@ -14,19 +13,9 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
+@Import(DatasourceConfiguration.class)
 @ComponentScan(basePackages = {"kona.persistence.impl"})
-public class PersistenceConfiguration {
-
-    @Bean(destroyMethod = "close")
-    public DataSource dataSource() {
-        Properties props = new Properties();
-        props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource");
-        props.setProperty("dataSource.user", "kona");
-        props.setProperty("dataSource.password", "kona");
-        props.setProperty("dataSource.databaseName", "kona");
-        HikariConfig dataSourceConfig = new HikariConfig(props);
-        return new HikariDataSource(dataSourceConfig);
-    }
+public class HibernateConfiguration {
 
     private static final Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();

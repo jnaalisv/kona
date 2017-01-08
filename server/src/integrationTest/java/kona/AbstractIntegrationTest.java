@@ -1,6 +1,6 @@
 package kona;
 
-import kona.persistence.config.PersistenceConfiguration;
+import kona.persistence.config.HibernateConfiguration;
 import kona.model.config.DomainConfiguration;
 import kona.web.config.authentication.SpringSecurityConfiguration;
 import org.junit.runner.RunWith;
@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration(classes = {
         SpringSecurityConfiguration.class,
         DomainConfiguration.class,
-        PersistenceConfiguration.class,
+        HibernateConfiguration.class,
         IntegrationTestConfig.class
 })
 public abstract class AbstractIntegrationTest {

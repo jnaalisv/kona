@@ -1,7 +1,7 @@
 package kona.persistence;
 
 import kona.IntegrationTestConfig;
-import kona.persistence.config.PersistenceConfiguration;
+import kona.persistence.config.HibernateConfiguration;
 import kona.model.domain.customer.Customer;
 import kona.model.domain.customer.CustomerRepository;
 import org.hibernate.SessionFactory;
@@ -14,7 +14,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql({"classpath:init-database.sql"})
-@ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
+@ContextConfiguration(classes = {HibernateConfiguration.class, IntegrationTestConfig.class})
 public class CustomerRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired

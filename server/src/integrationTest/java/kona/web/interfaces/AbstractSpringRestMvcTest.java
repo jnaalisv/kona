@@ -2,7 +2,7 @@ package kona.web.interfaces;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import kona.IntegrationTestConfig;
-import kona.persistence.config.PersistenceConfiguration;
+import kona.persistence.config.HibernateConfiguration;
 import kona.model.config.DomainConfiguration;
 import kona.web.config.WebConfiguration;
 import kona.web.config.authentication.SpringSecurityConfiguration;
@@ -29,7 +29,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @Sql({"classpath:init-database.sql"})
 @ContextConfiguration(classes = {
         DomainConfiguration.class,
-        PersistenceConfiguration.class,
+        HibernateConfiguration.class,
         SpringSecurityConfiguration.class,
         WebConfiguration.class,
         WebSecurityConfig.class,
