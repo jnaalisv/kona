@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
-
 @RestController
 public class AuthenticationController {
 
@@ -22,7 +20,6 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final KeyBasedPersistenceTokenService keyBasedPersistenceTokenService;
 
-    @Inject
     public AuthenticationController(
             final AuthenticationManager authenticationManager,
             final KeyBasedPersistenceTokenService keyBasedPersistenceTokenService) {

@@ -10,8 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.preauth.PreAuthenticatedAuthenticationToken;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
-
 @Component
 public class PreAuthUserDetailsService implements AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> {
 
@@ -19,7 +17,6 @@ public class PreAuthUserDetailsService implements AuthenticationUserDetailsServi
     private final UserDetailsService userDetailsService;
     private final KeyBasedPersistenceTokenService keyBasedPersistenceTokenService;
 
-    @Inject
     public PreAuthUserDetailsService(
             final UserDetailsService userDetailsService,
             final KeyBasedPersistenceTokenService keyBasedPersistenceTokenService) {

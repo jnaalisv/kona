@@ -11,11 +11,11 @@ import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductRepository;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
-import javax.inject.Inject;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -25,16 +25,16 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
 public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @Inject
+    @Autowired
     private SessionFactory sessionFactory;
 
-    @Inject
+    @Autowired
     private DeliveryOrderRepository deliveryOrderRepository;
 
-    @Inject
+    @Autowired
     private CustomerRepository customerRepository;
 
-    @Inject
+    @Autowired
     private ProductRepository productRepository;
 
     @Test

@@ -6,11 +6,10 @@ import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-
-import javax.inject.Inject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,10 +17,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
 public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @Inject
+    @Autowired
     private SessionFactory sessionFactory;
 
-    @Inject
+    @Autowired
     private AddressRepository addressRepository;
 
     @Test

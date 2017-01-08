@@ -5,7 +5,6 @@ import kona.model.domain.product.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Service
@@ -13,7 +12,6 @@ public class ProductService {
 
     private final ProductRepository productRepository;
 
-    @Inject
     public ProductService(final ProductRepository productRepository) {
         this.productRepository = productRepository;
     }

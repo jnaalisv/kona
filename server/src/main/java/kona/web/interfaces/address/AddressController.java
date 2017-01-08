@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,7 +22,6 @@ public class AddressController {
 
     private AddressService addressService;
 
-    @Inject
     public AddressController(AddressService addressService) {
         this.addressService = addressService;
     }

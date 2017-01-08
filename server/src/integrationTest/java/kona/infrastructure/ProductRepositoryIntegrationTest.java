@@ -7,11 +7,10 @@ import kona.model.domain.product.ProductCode;
 import kona.model.domain.product.ProductRepository;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-
-import javax.inject.Inject;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,10 +18,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
 public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @Inject
+    @Autowired
     private SessionFactory sessionFactory;
 
-    @Inject
+    @Autowired
     private ProductRepository productRepository;
 
     @Test

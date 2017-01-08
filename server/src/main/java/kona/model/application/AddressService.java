@@ -5,7 +5,6 @@ import kona.model.domain.address.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Service
@@ -13,7 +12,6 @@ public class AddressService {
 
     private final AddressRepository addressRepository;
 
-    @Inject
     public AddressService(final AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }

@@ -6,7 +6,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
-import javax.inject.Inject;
 import java.util.List;
 
 @Repository
@@ -14,7 +13,6 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
 
     private final SessionFactory sessionFactory;
 
-    @Inject
     public HibernateDeliveryOrderRepository(final SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }

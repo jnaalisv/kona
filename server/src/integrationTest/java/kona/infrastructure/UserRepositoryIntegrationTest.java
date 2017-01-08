@@ -5,11 +5,11 @@ import kona.infrastructure.config.PersistenceConfiguration;
 import kona.infrastructure.persistence.HibernateUserRepository;
 import kona.model.domain.user.User;
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
-import javax.inject.Inject;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -18,7 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @ContextConfiguration(classes = {PersistenceConfiguration.class, IntegrationTestConfig.class})
 public class UserRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
-    @Inject
+    @Autowired
     private HibernateUserRepository hibernateUserRepository;
 
     @Test

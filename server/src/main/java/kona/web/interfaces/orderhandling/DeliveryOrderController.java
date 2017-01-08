@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.inject.Inject;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +23,6 @@ public class DeliveryOrderController {
 
     private final OrderHandlingService orderHandlingService;
 
-    @Inject
     public DeliveryOrderController(final OrderHandlingService orderHandlingService) {
         this.orderHandlingService = orderHandlingService;
     }
