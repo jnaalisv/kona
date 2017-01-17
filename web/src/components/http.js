@@ -65,8 +65,8 @@ function joinQueryParams(params) {
 
 function httpGet(url, options={}) {
     options = {
-        ...options,
-        ...GEToptions
+        ...GEToptions,
+        ...options
     };
 
     return _fetch(url, options)
