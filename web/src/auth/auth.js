@@ -1,3 +1,6 @@
+import HttpError from '../components/HttpError'
+import { storeToken } from './tokenStore'
+
 const authenticationUrl = 'http://localhost:9999/kona/authenticate';
 
 const authRequestOptions = {
@@ -18,9 +21,19 @@ function authenticate(username, password) {
 
     fetch(authenticationUrl, options)
         .then(response => {
-            console.log('response ', response);
-        }).catch(error => {
-            console.log('error ', error);
+            if (response.status === 200) {
+                return response.text();
+            }
+            throw new HttpError(response);
+        })
+        .then(authToken => {
+
+            storeToken(authToken);
+
+            return authToken;
+        })
+        .catch(error => {
+            console.error('error ', error);
         });
 }
 
