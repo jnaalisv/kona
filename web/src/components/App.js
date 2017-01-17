@@ -4,6 +4,7 @@ import LocationHeader from './LocationHeader'
 import CustomersRoute from './customers/CustomersRoute'
 import ProductsView from './products/ProductsView'
 import OrdersRoute from './orders/OrdersRoute'
+import Login from './login/Login'
 
 const Home = () => (
     <div>
@@ -35,6 +36,7 @@ class App extends React.Component {
                             <li><Link to="/orders">Orders</Link></li>
                             <li><Link to="/customers">Customers</Link></li>
                             <li><Link to="/products">Products</Link></li>
+                            <li><Link to="/login">Login</Link></li>
                         </ul>
                     </nav>
 
@@ -43,6 +45,7 @@ class App extends React.Component {
                         <Match pattern="/customers" component={CustomersRoute} />
                         <Match pattern="/products" component={ProductsView} />
                         <Match pattern="/orders" component={OrdersRoute}/>
+                        <Match pattern="/login" component={Login}/>
                         <Miss component={NoMatch}/>
                     </div>
 
