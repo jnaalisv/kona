@@ -11,39 +11,72 @@
 ## Database
 - Expects a running postgre instance at localhost:5432 with databases kona,kona_test and users kona, kona_test respectively.
 
-## Use cases
-### Check that server CORS is configured correctly
+## Test cases
+### 1. ```/authenticate``` allows CORS preflight requests
 ```bash
-$ curl -I -X OPTIONS http://localhost:9999/kona/authenticate -H "Origin: http://localhost:1234" -H "Access-Control-Request-Method: POST"
+curl -I -X OPTIONS http://localhost:9999/kona/authenticate -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST"
 ```
-The response should be something like
+=>
 ```bash
 HTTP/1.1 200 OK
-Access-Control-Allow-Origin: http://localhost:1234
-Vary: Origin
-Access-Control-Allow-Methods: DELETE,GET,POST,PUT,HEAD
-Access-Control-Allow-Credentials: true
-Access-Control-Max-Age: 1800
-Allow: GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS, PATCH
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: POST
 ```
 
-### Authentication
+### 2. ```/products``` allows CORS preflight requests
 ```bash
-httpstat http://localhost:9999/kona/authenticate -X POST -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
+curl -I -X OPTIONS http://localhost:9999/kona/products -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: GET" -H "Access-Control-Request-Headers: authorization"
+
 ```
-### Create a new Customer
+=>
+```bash
+HTTP/1.1 200 OK
+X-Content-Type-Options: nosniff
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET
+Access-Control-Allow-Headers: authorization
+```
+
+### 3. ```/products``` is secured
+```bash
+curl -I -X GET http://localhost:9999/kona/products
+```
+=>
+```bash
+HTTP/1.1 401 Unauthorized: Authentication token was either missing or invalid.
+WWW-Authenticate: Authorization
+```
+
+### 4. ```/authenticate``` returns a token
+```bash
+curl -X POST http://localhost:9999/kona/authenticate  -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
+```
+=>
+```bash
+MTQ4NDcyODI0MDkwMzpmNzQ0MzhjOTExYmNmMTgxNmE0Y2Q0ZTRhODA3YWVjYjQxYjQzMDlkYWE5MDdlMWFjZmY0NjkxOTJkYjIxODMxOmFkbWluOmUwMTVjYjhhYWZiNmFlNDM2NDAzNWM3OGQxODIzMWQ5N2E4YTA3MDc4NzM1MjM0NzFlYmZiMWFmNWMwMmQ1NzAxZWJlYjE5MjQzZDg2MjQyNzk3YTc0YWZlY2Q1YzVkMmRmYTEwYzU5NDIwNDU2OGI0NDc0MTk4NTc1ZjdlMWRl
+```
+
+### 5. returned token allows access to ```/products```
+```bash
+curl -I -X GET http://localhost:9999/kona/products \
+    -H "Authorization: MTQ4NDcyODI0MDkwMzpmNzQ0MzhjOTExYmNmMTgxNmE0Y2Q0ZTRhODA3YWVjYjQxYjQzMDlkYWE5MDdlMWFjZmY0NjkxOTJkYjIxODMxOmFkbWluOmUwMTVjYjhhYWZiNmFlNDM2NDAzNWM3OGQxODIzMWQ5N2E4YTA3MDc4NzM1MjM0NzFlYmZiMWFmNWMwMmQ1NzAxZWJlYjE5MjQzZDg2MjQyNzk3YTc0YWZlY2Q1YzVkMmRmYTEwYzU5NDIwNDU2OGI0NDc0MTk4NTc1ZjdlMWRl" 
+```
+=>
+```bash
+HTTP/1.1 200 OK
+Content-Type: application/json;charset=UTF-8
+```
+### 6. Create a new Customer
 ```bash
 httpstat http://localhost:9999/kona/customers -X POST -H "Content-Type: application/json" \
     -H "Authorization: AUTH_TOKEN" \
     -d '{"name": "Uusi asiakas"}'
 ```
-
-### Look up customers by name
+### 7. Look up customers by name
 ```bash
 httpstat http://localhost:9999/kona/customers?name=jeppe -X GET \
     -H "Authorization: MTQ3ODA3NjI4MzEwMDplNzAyMmYxZTc2MjA3MGI5NjI2YzNhZmEzMTA3NDc3ZjEwMTk1NDYwN2ZiOWM5MDg4ZWNlMzE5NjhiYzkxYzZkOmFkbWluOjJhYjY4ZTMxMDU1YTY4MzU0NTFlZDAyMTM5NjExMjBhNzZjNzZkODA3MGE2MjM0ZTE3OWQzYzY4NWMyNTQzNGNkZDlhYjQ4Y2I4ZGI2ZTY0Njk2MjFlZWEyYjMzYzE0ZjM0MzQzZGU5NTNkNWExY2MzZTBkYzIzYWM3MDFjN2M1" 
 ```
-
 
 ### Database creation commands 
 ```sql
