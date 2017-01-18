@@ -39,7 +39,7 @@ Access-Control-Allow-Headers: authorization
 
 ### 3. ```/products``` is secured
 ```bash
-curl -I -X GET http://localhost:9999/kona/products
+curl -I http://localhost:9999/kona/products
 ```
 =>
 ```bash
@@ -49,7 +49,7 @@ WWW-Authenticate: Authorization
 
 ### 4. ```/authenticate``` returns a token
 ```bash
-curl -X POST http://localhost:9999/kona/authenticate  -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
+curl http://localhost:9999/kona/authenticate  -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
 ```
 =>
 ```bash
@@ -58,7 +58,7 @@ MTQ4NDcyODI0MDkwMzpmNzQ0MzhjOTExYmNmMTgxNmE0Y2Q0ZTRhODA3YWVjYjQxYjQzMDlkYWE5MDdl
 
 ### 5. returned token allows access to ```/products```
 ```bash
-curl -I -X GET http://localhost:9999/kona/products \
+curl -I http://localhost:9999/kona/products \
     -H "Authorization: MTQ4NDcyODI0MDkwMzpmNzQ0MzhjOTExYmNmMTgxNmE0Y2Q0ZTRhODA3YWVjYjQxYjQzMDlkYWE5MDdlMWFjZmY0NjkxOTJkYjIxODMxOmFkbWluOmUwMTVjYjhhYWZiNmFlNDM2NDAzNWM3OGQxODIzMWQ5N2E4YTA3MDc4NzM1MjM0NzFlYmZiMWFmNWMwMmQ1NzAxZWJlYjE5MjQzZDg2MjQyNzk3YTc0YWZlY2Q1YzVkMmRmYTEwYzU5NDIwNDU2OGI0NDc0MTk4NTc1ZjdlMWRl" 
 ```
 =>
@@ -68,7 +68,7 @@ Content-Type: application/json;charset=UTF-8
 ```
 ### 6. Create a new Customer
 ```bash
-httpstat http://localhost:9999/kona/customers -X POST -H "Content-Type: application/json" \
+httpstat http://localhost:9999/kona/customers -H "Content-Type: application/json" \
     -H "Authorization: AUTH_TOKEN" \
     -d '{"name": "Uusi asiakas"}'
 ```

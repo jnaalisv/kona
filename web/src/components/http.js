@@ -1,4 +1,5 @@
 import HttpError from './HttpError'
+import {getToken} from '../auth/tokenStore'
 
 const api = {
     GET: httpGet,
@@ -64,10 +65,9 @@ function joinQueryParams(params) {
 }
 
 function httpGet(url, options={}) {
-    options = {
-        ...GEToptions,
-        ...options
-    };
+
+    options = {...GEToptions, ...options};
+    options.headers.Authorization = getToken();
 
     return _fetch(url, options)
         .then(checkStatus)
@@ -75,19 +75,38 @@ function httpGet(url, options={}) {
 }
 
 function httpPost(url, body) {
-    return fetch(url, Object.assign({}, POSToptions, { body: JSON.stringify(body)}))
+
+    const options = {...POSToptions};
+
+    options.headers.Authorization = getToken();
+    options.body = JSON.stringify(body);
+
+    return fetch(url, options)
         .then(checkStatus)
         .then(parseJSON);
 }
 
 function httpPut(url, body) {
-    return fetch(url, Object.assign({}, PUToptions, { body: JSON.stringify(body)}))
+
+    const options = {...PUToptions};
+
+    options.headers.Authorization = getToken();
+    options.body = JSON.stringify(body);
+
+    return fetch(url, options)
         .then(checkStatus)
         .then(parseJSON);
 }
 
 function httpDelete(url) {
-    return fetch(url, DELETEoptions)
+    const options = {
+        ...DELETEoptions,
+        headers: {
+            Authorization: getToken()
+        }
+    };
+
+    return fetch(url, options)
         .then(checkStatus)
         .then(response => response.status);
 }
