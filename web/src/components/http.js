@@ -39,14 +39,17 @@ const DELETEoptions = {
     mode: 'cors',
 };
 
-const parseJSON = response => response.json();
+function handleResponse(response) {
+    if (response.status < 300) {
 
-function checkStatus(response) {
-    if (response.status >= 200 && response.status < 300) {
-        return response;
-    } else {
-        throw new HttpError(response);
+        const contentTypeHeader = response.headers.get('content-type');
+
+        if (contentTypeHeader && contentTypeHeader.toLowerCase().startsWith('application/json')) {
+            return response.json();
+        }
+        return response.text();
     }
+    throw new HttpError(response);
 }
 
 function _fetch(url, options) {
@@ -69,9 +72,7 @@ function httpGet(url, options={}) {
     options = {...GEToptions, ...options};
     options.headers.Authorization = getToken();
 
-    return _fetch(url, options)
-        .then(checkStatus)
-        .then(parseJSON);
+    return _fetch(url, options).then(handleResponse);
 }
 
 function httpPost(url, body) {
@@ -81,9 +82,7 @@ function httpPost(url, body) {
     options.headers.Authorization = getToken();
     options.body = JSON.stringify(body);
 
-    return fetch(url, options)
-        .then(checkStatus)
-        .then(parseJSON);
+    return fetch(url, options).then(handleResponse);
 }
 
 function httpPut(url, body) {
@@ -93,9 +92,7 @@ function httpPut(url, body) {
     options.headers.Authorization = getToken();
     options.body = JSON.stringify(body);
 
-    return fetch(url, options)
-        .then(checkStatus)
-        .then(parseJSON);
+    return fetch(url, options).then(handleResponse);
 }
 
 function httpDelete(url) {
@@ -107,7 +104,7 @@ function httpDelete(url) {
     };
 
     return fetch(url, options)
-        .then(checkStatus)
+        .then(handleResponse)
         .then(response => response.status);
 }
 
