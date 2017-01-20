@@ -18,11 +18,11 @@ export function getCustomers(name) {
         queryParams.name = name;
     }
 
-    return http.GET(customersUrl, {queryParams});
+    return http.GET(customersUrl, queryParams);
 }
 
 export function deleteCustomer(customerId) {
-    return http.DELETE(`${customersUrl}/${customerId}`, customerId)
+    return http.DELETE(`${customersUrl}/${customerId}`)
 }
 
 export function getCustomer(customerId) {

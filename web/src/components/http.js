@@ -37,6 +37,7 @@ const PUToptions = {
 const DELETEoptions = {
     method: 'DELETE',
     mode: 'cors',
+    headers: {}
 };
 
 function handleResponse(response) {
@@ -52,33 +53,27 @@ function handleResponse(response) {
     throw new HttpError(response);
 }
 
-function _fetch(url, options) {
-    if(options.queryParams) {
-        url += (url.indexOf('?') === -1 ? '?' : '&') + joinQueryParams(options.queryParams);
-        delete options.queryParams;
-    }
-
-    return fetch(url, options);
-}
-
 function joinQueryParams(params) {
     return Object.keys(params)
         .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(params[key]))
         .join('&');
 }
 
-function httpGet(url, options={}) {
+function httpGet(url, queryParams) {
 
-    options = {...GEToptions, ...options};
+    if(queryParams) {
+        url += (url.indexOf('?') === -1 ? '?' : '&') + joinQueryParams(queryParams);
+    }
+
+    const options = {...GEToptions};
     options.headers.Authorization = getToken();
 
-    return _fetch(url, options).then(handleResponse);
+    return fetch(url, options, queryParams).then(handleResponse);
 }
 
 function httpPost(url, body) {
 
     const options = {...POSToptions};
-
     options.headers.Authorization = getToken();
     options.body = JSON.stringify(body);
 
@@ -88,7 +83,6 @@ function httpPost(url, body) {
 function httpPut(url, body) {
 
     const options = {...PUToptions};
-
     options.headers.Authorization = getToken();
     options.body = JSON.stringify(body);
 
@@ -96,12 +90,9 @@ function httpPut(url, body) {
 }
 
 function httpDelete(url) {
-    const options = {
-        ...DELETEoptions,
-        headers: {
-            Authorization: getToken()
-        }
-    };
+
+    const options = {...DELETEoptions};
+    options.headers.Authorization = getToken();
 
     return fetch(url, options)
         .then(handleResponse)

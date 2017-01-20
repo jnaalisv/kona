@@ -25,11 +25,11 @@ function getProducts(name) {
         queryParams.name = name;
     }
 
-    return http.GET(productsUrl, {queryParams});
+    return http.GET(productsUrl, queryParams);
 }
 
 function deleteProduct(productId) {
-    return http.DELETE(`${productsUrl}/${productId}`, productId)
+    return http.DELETE(`${productsUrl}/${productId}`)
 }
 
 function getProduct(productId) {

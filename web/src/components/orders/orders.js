@@ -18,11 +18,11 @@ export function getOrders(name) {
         queryParams.name = name;
     }
 
-    return http.GET(ordersUrl, {queryParams});
+    return http.GET(ordersUrl, queryParams);
 }
 
 export function deleteOrder(orderId) {
-    return http.DELETE(`${ordersUrl}/${orderId}`, orderId)
+    return http.DELETE(`${ordersUrl}/${orderId}`)
 }
 
 export function getOrder(orderId) {
