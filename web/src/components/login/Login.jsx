@@ -12,8 +12,6 @@ class Login extends React.Component {
     }
 
     login = (username, password) => {
-        console.log(`login attempt: ${username}/${password}`);
-
         authenticate(username, password)
             .then(() => {
                 this.setState({ redirectToReferrer: true });

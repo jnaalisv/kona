@@ -7,8 +7,6 @@ const authenticationStore = {
 };
 
 const authenticate = (username, password) => {
-    console.debug(`authenticate ${username}/${password}`);
-
     return http
         .POST(authenticationUrl, {username, password}, false)
         .then(response => {
