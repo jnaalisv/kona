@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
-import LocationHeader from './LocationHeader'
+import Header from './Header'
 import CustomersRoute from './customers/CustomersRoute'
 import ProductsView from './products/ProductsView'
 import OrdersRoute from './orders/OrdersRoute'
@@ -27,9 +27,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <div>
 
-                    <header>
-                        <LocationHeader />
-                    </header>
+                    <Header />
 
                     <nav>
                         <ul>

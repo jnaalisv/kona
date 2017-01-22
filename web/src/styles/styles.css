@@ -14,8 +14,14 @@ header {
     border-bottom: dashed black 2px;
 }
 
-span#location {
+div#location {
     margin-left: 3vw;
+    position: absolute;
+    bottom: 2px;
+}
+
+div#greeting {
+    margin-left: 60vw;
     position: absolute;
     bottom: 2px;
 }
