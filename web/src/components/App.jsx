@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Match, Miss, Link } from 'react-router'
 import Header from './Header'
+import Footer from './Footer'
 import CustomersRoute from './customers/CustomersRoute'
 import ProductsView from './products/ProductsView'
 import OrdersRoute from './orders/OrdersRoute'
@@ -48,7 +49,7 @@ class App extends React.Component {
                         <Miss component={NoMatch}/>
                     </div>
 
-                    <footer>footer</footer>
+                    <Footer/>
 
                 </div>
             </BrowserRouter>
