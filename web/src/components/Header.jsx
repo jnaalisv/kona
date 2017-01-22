@@ -1,7 +1,13 @@
 import React from 'react'
-import { isAuthenticated, getAuthentication } from '../authentication'
+import { isAuthenticated, getAuthentication, clearAuthentication } from '../authentication'
 
 class Header extends React.Component {
+
+    onLogOut = () => {
+        clearAuthentication();
+        this.props.router.transitionTo('/');
+    };
+
     render() {
         let username = isAuthenticated() ? getAuthentication().username : undefined;
 
@@ -10,12 +16,20 @@ class Header extends React.Component {
                 <div id="location"> {location.pathname} </div>
 
                 <div id="greeting">hello,
-                    {username && <span> {username}</span>}
+                    {username && (
+                        <span>
+                            <span>{username}</span>
+                            <button onClick={this.onLogOut}>log out</button>
+                        </span>
+                        )
+                    }
                     {!username && <span> anonymous</span>}
                 </div>
             </header>
         )
     }
 }
+
+// TODO propTypes
 
 export default Header;

@@ -26,9 +26,10 @@ class App extends React.Component {
     render() {
         return (
             <BrowserRouter>
-                <div>
+                {({ router }) =>
 
-                    <Header />
+                <div>
+                    <Header router={router}/>
 
                     <nav>
                         <ul>
@@ -52,6 +53,8 @@ class App extends React.Component {
                     <Footer/>
 
                 </div>
+
+                }
             </BrowserRouter>
         )
     }
