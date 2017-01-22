@@ -7,6 +7,7 @@ import ProductsView from './products/ProductsView'
 import OrdersRoute from './orders/OrdersRoute'
 import Login from './login/Login'
 import MatchWhenAuthenticated from './MatchWhenAuthenticated'
+import {isAuthenticated} from '../authentication'
 
 const Home = () => (
     <div>
@@ -37,7 +38,7 @@ class App extends React.Component {
                             <li><Link to="/orders">Orders</Link></li>
                             <li><Link to="/customers">Customers</Link></li>
                             <li><Link to="/products">Products</Link></li>
-                            <li><Link to="/login">Login</Link></li>
+                            {!isAuthenticated() && <li><Link to="/login">Login</Link></li>}
                         </ul>
                     </nav>
 
