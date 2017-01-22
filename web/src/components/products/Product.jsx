@@ -1,8 +1,8 @@
 import React from 'react'
-import productService from './ProductService'
-import productTypeService from './ProductTypeService'
+import productService from '../../ProductService'
+import productTypeService from '../../ProductTypeService'
 import Notifications from '../Notifications'
-import HttpError from '../HttpError'
+import HttpError from '../../HttpError'
 
 class Product extends React.Component {
     constructor() {

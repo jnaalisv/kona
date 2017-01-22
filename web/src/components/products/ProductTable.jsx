@@ -1,9 +1,9 @@
 import React from 'react'
 
 import ProductRow from './ProductRow'
-import productService from './ProductService'
+import productService from '../../ProductService'
 import Notifications from '../Notifications'
-import HttpError from '../HttpError'
+import HttpError from '../../HttpError'
 
 class ProductTable extends React.Component {
     constructor() {

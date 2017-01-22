@@ -1,4 +1,4 @@
-import http from '../http'
+import http from './http'
 
 const customersUrl = 'http://localhost:9999/kona/customers';
 

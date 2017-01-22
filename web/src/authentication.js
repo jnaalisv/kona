@@ -1,4 +1,4 @@
-import http from '../components/http'
+import http from './http'
 
 const authenticationUrl = 'http://localhost:9999/kona/authenticate';
 

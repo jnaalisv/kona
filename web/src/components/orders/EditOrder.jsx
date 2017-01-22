@@ -1,7 +1,7 @@
 import React from 'react'
-import {getOrder, saveOrder} from './orders'
+import {getOrder, saveOrder} from '../../orders'
 import Notifications from '../Notifications'
-import HttpError from '../HttpError'
+import HttpError from '../../HttpError'
 
 class EditOrder extends React.Component {
     constructor() {

@@ -1,5 +1,5 @@
 import HttpError from './HttpError'
-import { getAuthentication } from '../auth/authentication'
+import { getAuthentication } from './authentication'
 
 const defaultOptions = {
     mode: 'cors',

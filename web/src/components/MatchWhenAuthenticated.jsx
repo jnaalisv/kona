@@ -1,6 +1,6 @@
 import React from 'react';
 import { Match, Redirect } from 'react-router'
-import { isAuthenticated } from '../auth/authentication'
+import { isAuthenticated } from '../authentication'
 
 const MatchWhenAuthenticated = ({ component: Component, ...rest }) => (
     <Match {...rest} render={props => (

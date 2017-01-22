@@ -1,9 +1,9 @@
 import React from 'react'
 
 import OrderRow from './OrderRow'
-import {getOrders, deleteOrder} from './orders'
+import {getOrders, deleteOrder} from '../../orders'
 import Notifications from '../Notifications'
-import HttpError from '../HttpError'
+import HttpError from '../../HttpError'
 
 class OrderTable extends React.Component {
     constructor(props) {

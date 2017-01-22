@@ -1,7 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router'
 import LoginForm from './LoginForm'
-import { authenticate } from '../../auth/authentication'
+import { authenticate } from '../../authentication'
 
 class Login extends React.Component {
     constructor() {
