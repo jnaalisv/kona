@@ -5,7 +5,7 @@ import java.util.List;
 
 public class DeliveryOrderDTO {
     public long id;
-    public long payerID;
+    public long ordererID;
     public List<OrderLineDTO> orderLines = new ArrayList<>();
 
     public DeliveryOrderDTO() {}

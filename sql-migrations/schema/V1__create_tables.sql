@@ -52,7 +52,7 @@ CREATE TABLE Address (
 
 CREATE TABLE DeliveryOrder (
     id INT8 NOT NULL,
-    payerID INT8 NOT NULL,
+    ordererID INT8 NOT NULL,
     PRIMARY KEY (id)
 );
 

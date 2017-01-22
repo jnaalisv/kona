@@ -21,14 +21,14 @@ public class DeliveryOrderAssembler {
                 ))
                 .collect(Collectors.toList());
 
-        return new DeliveryOrder(deliveryOrderDTO.id, deliveryOrderDTO.payerID, orderLines);
+        return new DeliveryOrder(deliveryOrderDTO.id, deliveryOrderDTO.ordererID, orderLines);
     }
 
     public static DeliveryOrderDTO assembleTo(DeliveryOrder deliveryOrder) {
 
         DeliveryOrderDTO deliveryOrderDTO = new DeliveryOrderDTO();
         deliveryOrderDTO.id = deliveryOrder.getId();
-        deliveryOrderDTO.payerID = deliveryOrder.getPayerID();
+        deliveryOrderDTO.ordererID = deliveryOrder.getOrdererID();
         deliveryOrderDTO.orderLines = deliveryOrder
                 .getOrderLines()
                 .stream()

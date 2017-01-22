@@ -18,16 +18,16 @@ public class DeliveryOrder {
     @Column(name = "id")
     private long id;
 
-    private long payerID;
+    private long ordererID;
 
     @OneToMany(mappedBy = "deliveryOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderLine> orderLines = new ArrayList<>();
 
     public DeliveryOrder() { /* hibernate*/}
 
-    public DeliveryOrder(final long id, final long payerID, final List<OrderLine> orderLines) {
+    public DeliveryOrder(final long id, final long ordererID, final List<OrderLine> orderLines) {
         this.id = id;
-        this.payerID = payerID;
+        this.ordererID = ordererID;
         this.orderLines = orderLines;
         this.orderLines.forEach(orderLine -> orderLine.setDeliveryOrder(this));
     }
@@ -40,8 +40,8 @@ public class DeliveryOrder {
         return id;
     }
 
-    public long getPayerID() {
-        return payerID;
+    public long getOrdererID() {
+        return ordererID;
     }
 
     public List<OrderLine> getOrderLines() {

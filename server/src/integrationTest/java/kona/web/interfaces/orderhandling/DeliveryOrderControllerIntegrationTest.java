@@ -28,7 +28,7 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                         .responseBodyAsListOf(CustomerDTO.class);
 
         DeliveryOrderDTO deliveryOrderDTO = new DeliveryOrderDTO();
-        deliveryOrderDTO.payerID = customers.get(0).id;
+        deliveryOrderDTO.ordererID = customers.get(0).id;
 
         List<ProductDTO> products =
                 httpGet(KonaWebResources.PRODUCTS)
