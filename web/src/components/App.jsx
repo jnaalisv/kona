@@ -5,6 +5,7 @@ import CustomersRoute from './customers/CustomersRoute'
 import ProductsView from './products/ProductsView'
 import OrdersRoute from './orders/OrdersRoute'
 import Login from './login/Login'
+import MatchWhenAuthenticated from './MatchWhenAuthenticated'
 
 const Home = () => (
     <div>
@@ -42,9 +43,9 @@ class App extends React.Component {
 
                     <div id="content">
                         <Match exactly pattern="/" component={Home} />
-                        <Match pattern="/customers" component={CustomersRoute} />
-                        <Match pattern="/products" component={ProductsView} />
-                        <Match pattern="/orders" component={OrdersRoute}/>
+                        <MatchWhenAuthenticated pattern="/customers" component={CustomersRoute} />
+                        <MatchWhenAuthenticated pattern="/products" component={ProductsView} />
+                        <MatchWhenAuthenticated pattern="/orders" component={OrdersRoute}/>
                         <Match pattern="/login" component={Login}/>
                         <Miss component={NoMatch}/>
                     </div>

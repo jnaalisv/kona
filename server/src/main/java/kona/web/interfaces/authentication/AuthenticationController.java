@@ -37,13 +37,13 @@ public class AuthenticationController {
      *         authentication
      * @throws org.springframework.security.core.AuthenticationException
      */
-    @PostMapping(path = "authenticate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.TEXT_PLAIN_VALUE)
-    public String authenticate(@RequestBody CredentialsDTO credentials) throws Exception {
+    @PostMapping(path = "authenticate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public TokenDTO authenticate(@RequestBody CredentialsDTO credentials) throws Exception {
         UsernamePasswordAuthenticationToken authenticationRequest = new UsernamePasswordAuthenticationToken(credentials.username, credentials.password);
 
         authenticationManager.authenticate(authenticationRequest);
 
         Token token = keyBasedPersistenceTokenService.allocateToken(credentials.username);
-        return token.getKey();
+        return TokenDTO.from(token.getKey());
     }
 }

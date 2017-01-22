@@ -2,11 +2,11 @@
 class HttpError {
     constructor(response) {
         this.response = response;
-        this.message = `${response.status} ${response.message}`
+        this.statusText = `${response.status} ${response.statusText}`
     }
 
     getStatusText() {
-        return this.response.status;
+        return this.response.statusText;
     }
 
     getMessage() {
@@ -16,7 +16,6 @@ class HttpError {
     getDetailedMessage() {
         return this.response.json();
     }
-
 }
 
 export default HttpError;

@@ -1,5 +1,5 @@
 import HttpError from './HttpError'
-import { getToken } from '../auth/tokenStore'
+import { getAuthentication } from '../auth/authentication'
 
 const defaultOptions = {
     mode: 'cors',
@@ -35,11 +35,14 @@ function joinQueryParams(params) {
         .join('&');
 }
 
-function doHttp(method, url, body) {
+function doHttp(method, url, body, authRequired = true) {
 
     const options = {...defaultOptions};
     options.method = method;
-    options.headers.Authorization = getToken();
+
+    if (authRequired) {
+        options.headers.Authorization = getAuthentication().token;
+    }
 
     if (body) {
         options.body = JSON.stringify(body);
@@ -50,7 +53,7 @@ function doHttp(method, url, body) {
 
 const api = {
     GET: (url, queryParams) => doHttp('GET', joinQueryParamsToUrl(url, queryParams)),
-    POST: (url, body) => doHttp('POST', url, body),
+    POST: (url, body, authRequired) => doHttp('POST', url, body, authRequired),
     PUT: (url, body) => doHttp('PUT', url, body),
     DELETE: (url) => doHttp('DELETE', url),
 };

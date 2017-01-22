@@ -16,14 +16,14 @@ public class AuthenticationControllerIntegrationTest extends AbstractSpringRestM
         credentials.username = "admin";
         credentials.password = "admin";
 
-        String response = httpPost("/authenticate")
+        TokenDTO response = httpPost("/authenticate")
                 .contentTypeApplicationJson()
-                .acceptTextPlain()
+                .acceptApplicationJson()
                 .content(credentials)
                 .expect200()
-                .responseBody();
+                .responseBodyAs(TokenDTO.class);
 
-        assertThat(response).isNotNull();
+        assertThat(response.token).isNotNull();
     }
 
     @Test
@@ -35,7 +35,7 @@ public class AuthenticationControllerIntegrationTest extends AbstractSpringRestM
 
         httpPost("/authenticate")
                 .contentTypeApplicationJson()
-                .acceptTextPlain()
+                .acceptApplicationJson()
                 .content(credentials)
                 .expect401()
                 .responseBody()
