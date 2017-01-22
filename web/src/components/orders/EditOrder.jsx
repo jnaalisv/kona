@@ -6,7 +6,7 @@ import HttpError from '../../HttpError'
 class EditOrder extends React.Component {
     constructor() {
         super();
-        this.state = {order: {orderer:'', orderLines:[]},notifications: []};
+        this.state = {order: {ordererID:undefined, orderLines:[]},notifications: []};
 
         this.addError = this.addError.bind(this);
         this.onChange = this.onChange.bind(this);
