@@ -8,12 +8,7 @@ import OrdersRoute from './orders/OrdersRoute'
 import Login from './login/Login'
 import MatchWhenAuthenticated from './MatchWhenAuthenticated'
 import {isAuthenticated} from '../authentication'
-
-const Home = () => (
-    <div>
-        <h2>Home</h2>
-    </div>
-);
+import Home from './Home'
 
 const NoMatch = () => (
     <div>
