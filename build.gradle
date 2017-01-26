@@ -29,7 +29,7 @@ ext {
 
     // Data access dependency versions
     hibernateVersion = "5.2.7.Final"
-    hikariCPVersion = "2.5.1"
+    hikariCPVersion = "2.6.0"
     postgreSqlVersion = "9.4.1212.jre7"
 
     // Test dependency versions
