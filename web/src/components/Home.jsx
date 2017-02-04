@@ -1,4 +1,5 @@
 import React from 'react';
+import CustomersAutoComplete from './orders/CustomersAutoComplete'
 
 class Home extends React.Component {
 
@@ -6,6 +7,8 @@ class Home extends React.Component {
         return (
             <div>
                 <h2>Home</h2>
+
+                <CustomersAutoComplete />
             </div>
         );
     }

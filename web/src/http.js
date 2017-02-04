@@ -1,5 +1,5 @@
 import HttpError from './HttpError'
-import { getAuthentication } from './authentication'
+import { getAuthentication, isAuthenticated } from './authentication'
 
 const defaultOptions = {
     mode: 'cors',
@@ -41,7 +41,12 @@ function doHttp(method, url, body, authRequired = true) {
     options.method = method;
 
     if (authRequired) {
-        options.headers.Authorization = getAuthentication().token;
+        if (isAuthenticated()) {
+            options.headers.Authorization = getAuthentication().token;
+        } else {
+            // TODO: global errror handling
+            throw new Error(`authentication required to access ${url}`);
+        }
     }
 
     if (body) {
