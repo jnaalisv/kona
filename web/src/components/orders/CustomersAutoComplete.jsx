@@ -25,13 +25,11 @@ class CustomersAutoComplete extends React.Component {
             <span>
                 <input value={this.state.query} onChange={this.onChange}/>
 
-                <ul class="autocomplete">
-                    {
-                        Object
-                            .keys(this.state.results)
-                            .map(index => <li key={index}>{this.state.results[index].id}: {this.state.results[index].name}</li>)
-                    }
-                </ul>
+                {
+                    Object
+                        .keys(this.state.results)
+                        .map(index => <div className={index == 0 ? 'autocomplete selected' : 'autocomplete'} key={index}>{this.state.results[index].id}: {this.state.results[index].name}</div>)
+                }
             </span>
         )
     }

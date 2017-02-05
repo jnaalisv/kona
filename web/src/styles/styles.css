@@ -88,3 +88,9 @@ div#errorbox {
 .productTable #version {
     width: 20px;
 }
+
+div.autocomplete {
+    color: blue;
+    background-color: deepskyblue;
+    width: 8em;
+}
