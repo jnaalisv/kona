@@ -30,6 +30,9 @@ public class HibernateConfiguration {
         hibernateProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
         
         hibernateProperties.put("hibernate.format_sql", "true");
+
+        hibernateProperties.put("hibernate.generate_statistics", "true");
+
         return hibernateProperties;
     }
 
