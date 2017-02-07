@@ -17,7 +17,7 @@ import java.util.Properties;
 @ComponentScan(basePackages = {"kona.persistence.impl"})
 public class HibernateConfiguration {
 
-    private static final Properties hibernateProperties() {
+    private static Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
 
         hibernateProperties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
@@ -37,7 +37,7 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) throws PropertyVetoException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan(new String[] { "kona.model.domain" });
+        sessionFactory.setPackagesToScan("kona.model.domain");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
