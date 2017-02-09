@@ -25,7 +25,7 @@ ext {
     // Spring Framework dependency versions
     springVersion = "4.3.6.RELEASE"
     springSecurityVersion = "4.2.1.RELEASE"
-    jacksonVersion = "2.8.5"
+    jacksonVersion = "2.8.6"
 
     // Data access dependency versions
     hibernateVersion = "5.2.7.Final"
