@@ -16,7 +16,7 @@ ext {
 
     // Logging dependency versions
     slf4jVersion = "1.7.22"
-    logbackVersion = "1.1.8"
+    logbackVersion = "1.2.1"
     groovyVersion = "2.4.7"
 
     // javax dependency versions
