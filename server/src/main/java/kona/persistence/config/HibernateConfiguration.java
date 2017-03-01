@@ -30,8 +30,8 @@ public class HibernateConfiguration {
         hibernateProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
         
         hibernateProperties.put("hibernate.format_sql", "true");
-
         hibernateProperties.put("hibernate.generate_statistics", "true");
+        hibernateProperties.put("hibernate.jdbc.batch_size", 30);
 
         return hibernateProperties;
     }
