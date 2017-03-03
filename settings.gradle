@@ -1,1 +1,1 @@
-include 'server', 'hibernate-exporter'
+include 'server'

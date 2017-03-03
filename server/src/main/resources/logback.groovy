@@ -1,3 +1,5 @@
+import ch.qos.logback.classic.encoder.PatternLayoutEncoder
+
 println "Configuring logback"
 
 def logPattern = "%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %logger{40}: %msg%n%ex{full, org, sun, java.lang, java.util, javax, com.fasterxml, CGLIB}"
