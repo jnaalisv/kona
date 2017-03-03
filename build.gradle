@@ -15,9 +15,9 @@ subprojects {
 ext {
 
     // Logging dependency versions
-    slf4jVersion = "1.7.22"
+    slf4jVersion = "1.7.24"
     logbackVersion = "1.2.1"
-    groovyVersion = "2.4.7"
+    groovyVersion = "2.4.9"
 
     // javax dependency versions
     servletApiVersion = "3.1.0"
