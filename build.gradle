@@ -28,7 +28,7 @@ ext {
     jacksonVersion = "2.8.6"
 
     // Data access dependency versions
-    hibernateVersion = "5.2.8.Final"
+    hibernateVersion = "5.2.9.Final"
     hikariCPVersion = "2.6.1"
     postgreSqlVersion = "42.0.0"
 
