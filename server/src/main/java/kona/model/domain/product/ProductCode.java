@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 @Embeddable
 public class ProductCode implements Serializable{
+    private static final long serialVersionUID = 8760056029912167890L;
 
     @Column(name="productCode")
     private String value;

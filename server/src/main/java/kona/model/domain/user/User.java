@@ -15,6 +15,7 @@ import java.util.Collections;
 @Entity
 @Table(name ="Users")
 public class User implements UserDetails{
+    private static final long serialVersionUID = -5067850663882951372L;
 
     private String username;
 

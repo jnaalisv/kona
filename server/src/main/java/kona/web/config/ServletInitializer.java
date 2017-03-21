@@ -10,7 +10,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
 
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[] {
+        return new Class<?>[] {
                 DomainConfiguration.class,
                 HibernateConfiguration.class,
                 SpringSecurityConfiguration.class,
@@ -20,7 +20,7 @@ public class ServletInitializer extends AbstractAnnotationConfigDispatcherServle
 
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[] { WebConfiguration.class};
+        return new Class<?>[] { WebConfiguration.class};
     }
 
     @Override

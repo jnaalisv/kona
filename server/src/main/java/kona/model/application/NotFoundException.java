@@ -2,6 +2,8 @@ package kona.model.application;
 
 public class NotFoundException extends RuntimeException {
 
+    private static final long serialVersionUID = 8481975297152064490L;
+
     public NotFoundException(Class<?> notFoundType, String criteria) {
         super(notFoundType.getSimpleName() + " not found by " + criteria);
     }
