@@ -4,13 +4,13 @@
   "private": true,
   "devDependencies": {
     "enzyme": "^2.4.1",
-    "react-addons-test-utils": "15.4.1",
+    "react-addons-test-utils": "15.5.0",
     "react-scripts": "0.9.5",
-    "react-test-renderer": "15.4.1"
+    "react-test-renderer": "15.5.0"
   },
   "dependencies": {
-    "react": "15.4.1",
-    "react-dom": "15.4.1",
+    "react": "15.5.0",
+    "react-dom": "15.5.0",
     "react-router": "4.0.0-alpha.6"
   },
   "scripts": {
