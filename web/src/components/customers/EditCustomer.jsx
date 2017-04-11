@@ -31,8 +31,10 @@ class EditCustomer extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.params.customerId !== 'new') {
-            getCustomer(this.props.params.customerId)
+        const customerId = this.props.match.params.customerId;
+
+        if (customerId !== 'new') {
+            getCustomer(customerId)
                 .then(customer => this.setState({customer}), this.addError);
         }
     }

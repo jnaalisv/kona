@@ -18,11 +18,11 @@ class CustomerTable extends React.Component {
     addError(error) {
         let errorMessage;
 
-        if (error instanceof TypeError) {
-            errorMessage = error.message;
-        } else if (error instanceof HttpError) {
+        if (error instanceof HttpError) {
             const response = error.response;
             errorMessage = `${response.status} ${response.statusText}`;
+        } else if (error instanceof Error ) {
+            errorMessage = error.message;
         }
 
         const notifications = [...this.state.notifications];

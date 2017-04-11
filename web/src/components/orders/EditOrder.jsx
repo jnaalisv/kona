@@ -30,8 +30,9 @@ class EditOrder extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.params.orderId !== 'new') {
-            getOrder(this.props.params.orderId)
+        const orderId = this.props.match.params.orderId;
+        if (orderId !== 'new') {
+            getOrder(orderId)
                 .then(order => this.setState({order}), this.addError);
         }
     }

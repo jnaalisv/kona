@@ -19,7 +19,7 @@ function handleResponse(response) {
         }
         return response.text();
     }
-    throw new HttpError(response);
+    return Promise.reject(new HttpError(response));
 }
 
 function joinQueryParamsToUrl(url, queryParams) {
@@ -45,7 +45,7 @@ function doHttp(method, url, body, authRequired = true) {
             options.headers.Authorization = getAuthentication().token;
         } else {
             // TODO: global errror handling
-            throw new Error(`authentication required to access ${url}`);
+            return Promise.reject(new Error(`authentication required to access ${url}`));
         }
     }
 

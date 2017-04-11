@@ -5,7 +5,9 @@ class Header extends React.Component {
 
     onLogOut = () => {
         clearAuthentication();
-        this.props.router.transitionTo('/');
+
+        // TODO
+        //this.props.router.transitionTo('/');
     };
 
     render() {

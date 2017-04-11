@@ -1,12 +1,18 @@
 import React from 'react';
-import { BrowserRouter, Match, Miss, Link } from 'react-router'
+import {
+    BrowserRouter as Router,
+    Link,
+    Route,
+    Switch
+} from 'react-router-dom'
+
 import Header from './Header'
 import Footer from './Footer'
 import CustomersRoute from './customers/CustomersRoute'
-import ProductsView from './products/ProductsView'
+import ProductsRoute from './products/ProductsRoute'
 import OrdersRoute from './orders/OrdersRoute'
 import Login from './login/Login'
-import MatchWhenAuthenticated from './MatchWhenAuthenticated'
+import AuthenticatedRoute from './AuthenticatedRoute'
 import {isAuthenticated} from '../authentication'
 import Home from './Home'
 
@@ -21,11 +27,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
-                {({ router }) =>
-
+            <Router>
                 <div>
-                    <Header router={router}/>
+                    <Header />
 
                     <nav>
                         <ul>
@@ -38,20 +42,20 @@ class App extends React.Component {
                     </nav>
 
                     <div id="content">
-                        <Match exactly pattern="/" component={Home} />
-                        <MatchWhenAuthenticated pattern="/customers" component={CustomersRoute} />
-                        <MatchWhenAuthenticated pattern="/products" component={ProductsView} />
-                        <MatchWhenAuthenticated pattern="/orders" component={OrdersRoute}/>
-                        <Match pattern="/login" component={Login}/>
-                        <Miss component={NoMatch}/>
+                        <Switch>
+                            <Route exact path="/" component={Home} />
+                            <Route path="/login" component={Login}/>
+                            <AuthenticatedRoute path="/customers" component={CustomersRoute} />
+                            <AuthenticatedRoute path="/products" component={ProductsRoute} />
+                            <AuthenticatedRoute path="/orders" component={OrdersRoute}/>
+                            <Route component={NoMatch}/>
+                        </Switch>
                     </div>
 
                     <Footer/>
 
                 </div>
-
-                }
-            </BrowserRouter>
+            </Router>
         )
     }
 }

@@ -1,13 +1,13 @@
 import React from 'react';
-import { Match, Redirect } from 'react-router'
+import { Route, Redirect } from 'react-router-dom'
 import { isAuthenticated } from '../authentication'
 
-const MatchWhenAuthenticated = ({ component: Component, ...rest }) => (
-    <Match {...rest} render={props => (
+const AuthenticatedRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
         isAuthenticated()
             ? <Component {...props}/>
             : <Redirect to={{pathname: '/login',state: { from: props.location }}}/>
     )}/>
 );
 
-export default MatchWhenAuthenticated;
+export default AuthenticatedRoute;

@@ -1,21 +1,23 @@
 import React from 'react'
-import {Match, Miss, Link} from 'react-router'
+import {
+    Link,
+    Route,
+    Switch
+} from 'react-router-dom'
 
 import CustomerTable from './CustomerTable'
 import EditCustomer from './EditCustomer'
 
-const CustomersRoute = (props) => (
+const CustomersRoute = ({match}) => (
     <div>
-        <Link to={`${props.pathname}/new`}><button>create a new customer</button></Link>
+        <Link to={`${match.url}/new`}>
+            <button>create a new customer</button>
+        </Link>
 
-        <Match pattern={`${props.pathname}/:customerId`} render={(matchProps) => (
-            <div>
-                <Match exactly pattern={`${props.pathname}/new`} render={() => <EditCustomer {...matchProps}/>}/>
-                <Miss render={() => <EditCustomer {...matchProps}/> }/>
-            </div>
-        )}/>
-
-        <Match exactly pattern={props.pathname} component={CustomerTable}/>
+        <Switch>
+            <Route path={`${match.url}/:customerId`} component={EditCustomer}/>
+            <Route path={match.url} component={CustomerTable}/>
+        </Switch>
     </div>
 );
 

@@ -1,20 +1,20 @@
 import React from 'react'
-import {Match, Miss, Link} from 'react-router'
+import {
+    Route,
+    Link,
+    Switch
+} from 'react-router-dom'
 import OrderTable from './OrderTable'
 import EditOrder from './EditOrder'
 
-const OrdersRoute = (props) => (
+const OrdersRoute = ({match}) => (
     <div>
-        <Link to={`${props.pathname}/new`}><button>create a new order</button></Link>
+        <Link to={`${match.url}/new`}><button>create a new order</button></Link>
 
-        <Match pattern={`${props.pathname}/:orderId`} render={(matchProps) => (
-            <div>
-                <Match exactly pattern={`${props.pathname}/new`} render={() => <EditOrder {...matchProps}/>}/>
-                <Miss render={() => <EditOrder {...matchProps}/> }/>
-            </div>
-        )}/>
-
-        <Match exactly pattern={props.pathname} component={OrderTable}/>
+        <Switch>
+            <Route path={`${match.url}/:orderId`} component={EditOrder}/>
+            <Route exact path={match.url} component={OrderTable}/>
+        </Switch>
     </div>
 );
 

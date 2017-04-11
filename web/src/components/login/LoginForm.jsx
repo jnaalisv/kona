@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types'
 
 class LoginForm extends Component {
     constructor() {
@@ -53,7 +54,7 @@ class LoginForm extends Component {
 }
 
 LoginForm.propTypes = {
-    login: React.PropTypes.func.isRequired
+    login: PropTypes.func.isRequired
 };
 
 export default LoginForm;

@@ -36,9 +36,11 @@ class Product extends React.Component {
                 this.setState({productTypes}, this.addError);
             });
 
-        if (this.props.params.productId !== 'new') {
+        const productId = this.props.match.params.productId;
+
+        if (productId !== 'new') {
             productService
-                .getProduct(this.props.params.productId)
+                .getProduct(productId)
                 .then(product => this.setState({product}), this.addError);
         }
     }
