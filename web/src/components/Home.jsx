@@ -1,6 +1,6 @@
 import React from 'react';
-import AutoComplete from './AutoComplete'
-import {getCustomers} from '../customers'
+import ProductAutoComplete from './ProductAutoComplete'
+import CustomerAutoComplete from './CustomerAutoComplete'
 
 class Home extends React.Component {
 
@@ -8,19 +8,17 @@ class Home extends React.Component {
         console.log('customer selected ', customer);
     }
 
-    renderCustomerResult(customer) {
-        return (
-            <span>
-                {customer.id}: {customer.name}
-            </span>
-        )
+    selectProduct(product) {
+        console.log('select product ', product);
     }
 
     render() {
         return (
             <div>
                 <h2>Home</h2>
-                <AutoComplete searchCallback={getCustomers} selectCallback={this.selectCustomer} renderResult={this.renderCustomerResult}/>
+                <CustomerAutoComplete selectCallback={this.selectCustomer}/>
+                <br />
+                <ProductAutoComplete selectCallback={this.selectProduct}/>
             </div>
         );
     }
