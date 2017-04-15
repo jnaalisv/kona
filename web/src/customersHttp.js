@@ -1,12 +1,17 @@
-import http from './http'
+import {
+    httpGET,
+    httpDELETE,
+    httpPUT,
+    httpPOST
+} from './http'
 
 const customersUrl = 'http://localhost:9999/kona/customers';
 
 export function saveCustomer(customer) {
     if (customer.id > 0) {
-        return http.PUT(`${customersUrl}/${customer.id}`, customer);
+        return httpPUT(`${customersUrl}/${customer.id}`, customer);
     } else {
-        return http.POST(customersUrl, customer);
+        return httpPOST(customersUrl, customer);
     }
 }
 
@@ -18,14 +23,14 @@ export function getCustomers(name) {
         queryParams.name = name;
     }
 
-    return http.GET(customersUrl, queryParams);
+    return httpGET(customersUrl, queryParams);
 }
 
 export function deleteCustomer(customerId) {
-    return http.DELETE(`${customersUrl}/${customerId}`)
+    return httpDELETE(`${customersUrl}/${customerId}`)
 }
 
 export function getCustomer(customerId) {
-    return http.GET(`${customersUrl}/${customerId}`);
+    return httpGET(`${customersUrl}/${customerId}`);
 }
 

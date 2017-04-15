@@ -1,23 +1,21 @@
-import http from './http'
-
-const api = {
-    getProducts: getProducts,
-    getProduct: getProduct,
-    save: save,
-    deleteProduct: deleteProduct
-};
+import {
+    httpGET,
+    httpDELETE,
+    httpPUT,
+    httpPOST
+} from './http'
 
 const productsUrl = 'http://localhost:9999/kona/products';
 
-function save(product) {
+export function saveOrUpdateProduct(product) {
     if (product.id > 0) {
-        return http.PUT(`${productsUrl}/${product.id}`, product);
+        return httpPUT(`${productsUrl}/${product.id}`, product);
     } else {
-        return http.POST(productsUrl, product);
+        return httpPOST(productsUrl, product);
     }
 }
 
-function getProducts(name) {
+export function getProducts(name) {
 
     const queryParams = {};
 
@@ -25,15 +23,14 @@ function getProducts(name) {
         queryParams.name = name;
     }
 
-    return http.GET(productsUrl, queryParams);
+    return httpGET(productsUrl, queryParams);
 }
 
-function deleteProduct(productId) {
-    return http.DELETE(`${productsUrl}/${productId}`)
+export function deleteProduct(productId) {
+    return httpDELETE(`${productsUrl}/${productId}`)
 }
 
-function getProduct(productId) {
-    return http.GET(`${productsUrl}/${productId}`);
+export function getProduct(productId) {
+    return httpGET(`${productsUrl}/${productId}`);
 }
 
-export default api;

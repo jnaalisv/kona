@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getCustomers } from '../customers'
+import { getCustomers } from '../customersHttp'
 import AutoComplete from './AutoComplete'
 
 class CustomerAutoComplete extends React.Component {

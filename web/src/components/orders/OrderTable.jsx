@@ -1,7 +1,7 @@
 import React from 'react'
 
 import OrderRow from './OrderRow'
-import {getOrders, deleteOrder} from '../../orders'
+import {getOrders, deleteOrder} from '../../ordersHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 

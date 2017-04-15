@@ -56,11 +56,7 @@ function doHttp(method, url, body, authRequired = true) {
     return fetch(url, options).then(handleResponse)
 }
 
-const api = {
-    GET: (url, queryParams) => doHttp('GET', joinQueryParamsToUrl(url, queryParams)),
-    POST: (url, body, authRequired) => doHttp('POST', url, body, authRequired),
-    PUT: (url, body) => doHttp('PUT', url, body),
-    DELETE: (url) => doHttp('DELETE', url),
-};
-
-export default api;
+export const httpGET = (url, queryParams) => doHttp('GET', joinQueryParamsToUrl(url, queryParams));
+export const httpPOST = (url, body, authRequired) => doHttp('POST', url, body, authRequired);
+export const httpPUT = (url, body) => doHttp('PUT', url, body);
+export const httpDELETE = (url) => doHttp('DELETE', url);

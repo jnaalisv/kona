@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import productsHttp from '../productsHttp'
+import { getProducts } from '../productsHttp'
 import AutoComplete from './AutoComplete'
 
 class ProductAutoComplete extends React.Component {
@@ -13,7 +13,7 @@ class ProductAutoComplete extends React.Component {
 
     render() {
         return (
-            <AutoComplete  renderResult={this.renderProductChoice} searchCallback={productsHttp.getProducts} selectCallback={this.props.selectCallback}/>
+            <AutoComplete  renderResult={this.renderProductChoice} searchCallback={getProducts} selectCallback={this.props.selectCallback}/>
         )
     }
 }

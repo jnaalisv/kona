@@ -1,5 +1,5 @@
 import React from 'react'
-import {getOrder, saveOrder} from '../../orders'
+import {getOrder, saveOrder} from '../../ordersHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 

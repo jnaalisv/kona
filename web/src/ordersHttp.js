@@ -1,12 +1,12 @@
-import http from './http'
+import { httpGET, httpDELETE, httpPOST, httpPUT } from './http'
 
 const ordersUrl = 'http://localhost:9999/kona/delivery-orders';
 
 export function saveOrder(order) {
     if (order.id > 0) {
-        return http.PUT(`${ordersUrl}/${order.id}`, order);
+        return httpPUT(`${ordersUrl}/${order.id}`, order);
     } else {
-        return http.POST(ordersUrl, order);
+        return httpPOST(ordersUrl, order);
     }
 }
 
@@ -18,13 +18,13 @@ export function getOrders(name) {
         queryParams.name = name;
     }
 
-    return http.GET(ordersUrl, queryParams);
+    return httpGET(ordersUrl, queryParams);
 }
 
 export function deleteOrder(orderId) {
-    return http.DELETE(`${ordersUrl}/${orderId}`)
+    return httpDELETE(`${ordersUrl}/${orderId}`)
 }
 
 export function getOrder(orderId) {
-    return http.GET(`${ordersUrl}/${orderId}`);
+    return httpGET(`${ordersUrl}/${orderId}`);
 }

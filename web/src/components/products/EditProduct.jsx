@@ -1,6 +1,6 @@
 import React from 'react'
-import productsHttp from '../../productsHttp'
-import productTypesHttp from '../../productTypesHttp'
+import { getProduct, saveOrUpdateProduct } from '../../productsHttp'
+import { getProductTypes } from '../../productTypesHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 
@@ -30,8 +30,7 @@ class Product extends React.Component {
     }
 
     componentDidMount() {
-        productTypesHttp
-            .getProductTypes()
+        getProductTypes()
             .then(productTypes => {
                 this.setState({productTypes}, this.addError);
             });
@@ -39,8 +38,7 @@ class Product extends React.Component {
         const productId = this.props.match.params.productId;
 
         if (productId !== 'new') {
-            productsHttp
-                .getProduct(productId)
+            getProduct(productId)
                 .then(product => this.setState({product}), this.addError);
         }
     }
@@ -48,8 +46,7 @@ class Product extends React.Component {
     saveProduct(e) {
         this.setState({ notifications: [] });
 
-        productsHttp
-            .save(this.state.product)
+        saveOrUpdateProduct(this.state.product)
             .then(product => {
                 this.setState({product: product});
                 const notifications = [...this.state.notifications];

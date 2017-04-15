@@ -1,5 +1,5 @@
 import React from 'react'
-import {getCustomer, saveCustomer} from '../../customers'
+import {getCustomer, saveCustomer} from '../../customersHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 import CustomerAddressesTable from './CustomerAddressesTable'

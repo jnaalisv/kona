@@ -1,7 +1,7 @@
 import React from 'react'
 
 import CustomerRow from './CustomerRow'
-import {getCustomers, deleteCustomer} from '../../customers'
+import {getCustomers, deleteCustomer} from '../../customersHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 
