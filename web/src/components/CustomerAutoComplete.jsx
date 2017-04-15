@@ -13,13 +13,14 @@ class CustomerAutoComplete extends React.Component {
 
     render() {
         return (
-            <AutoComplete  renderResult={this.renderCustomerChoice} searchCallback={getCustomers} selectCallback={this.props.selectCallback}/>
+            <AutoComplete renderResult={this.renderCustomerChoice} searchCallback={getCustomers} selectCallback={this.props.selectCallback} selectedValue={this.props.selectedValue}/>
         )
     }
 }
 
 CustomerAutoComplete.propTypes = {
     selectCallback: PropTypes.func.isRequired,
+    selectedValue: PropTypes.string
 };
 
 export default CustomerAutoComplete;
