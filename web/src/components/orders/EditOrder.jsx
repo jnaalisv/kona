@@ -4,6 +4,7 @@ import { getOrder, saveOrder } from '../../ordersHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 import CustomerAutoComplete from '../CustomerAutoComplete'
+import LineItemsTable from './LineItemsTable'
 
 class EditOrder extends React.Component {
     constructor() {
@@ -86,6 +87,8 @@ class EditOrder extends React.Component {
                     <div>ordererID: {order.ordererID + ', '}
                         <CustomerAutoComplete selectCallback={this.ordererSelected} selectedId={order.ordererID}/>
                     </div>
+
+                    <LineItemsTable lineItems={order.lineItems} />
 
                     <button onClick={(e) => this.addLineItem(e)}>Add Line Item</button>
                     <button onClick={(e) => this.saveOrder(e)}>Save</button>
