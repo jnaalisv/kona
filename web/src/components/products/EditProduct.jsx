@@ -1,6 +1,6 @@
 import React from 'react'
-import productService from '../../ProductService'
-import productTypeService from '../../ProductTypeService'
+import productsHttp from '../../productsHttp'
+import productTypesHttp from '../../productTypesHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 
@@ -30,7 +30,7 @@ class Product extends React.Component {
     }
 
     componentDidMount() {
-        productTypeService
+        productTypesHttp
             .getProductTypes()
             .then(productTypes => {
                 this.setState({productTypes}, this.addError);
@@ -39,7 +39,7 @@ class Product extends React.Component {
         const productId = this.props.match.params.productId;
 
         if (productId !== 'new') {
-            productService
+            productsHttp
                 .getProduct(productId)
                 .then(product => this.setState({product}), this.addError);
         }
@@ -48,7 +48,7 @@ class Product extends React.Component {
     saveProduct(e) {
         this.setState({ notifications: [] });
 
-        productService
+        productsHttp
             .save(this.state.product)
             .then(product => {
                 this.setState({product: product});

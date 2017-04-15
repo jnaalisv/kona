@@ -1,7 +1,7 @@
 import React from 'react'
 
 import ProductRow from './ProductRow'
-import productService from '../../ProductService'
+import productsHttp from '../../productsHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 
@@ -37,7 +37,7 @@ class ProductTable extends React.Component {
     }
 
     componentDidMount() {
-        productService.getProducts()
+        productsHttp.getProducts()
             .then(
                 products => this.setState({products}),
                 this.addError
@@ -45,7 +45,7 @@ class ProductTable extends React.Component {
     }
 
     search(event) {
-        productService
+        productsHttp
             .getProducts(event.target.value)
             .then(
                 products => this.setState({products}),
@@ -54,7 +54,7 @@ class ProductTable extends React.Component {
     }
 
     deleteProduct(index) {
-        productService
+        productsHttp
             .deleteProduct(this.state.products[index].id)
             .then(
                 () => {
