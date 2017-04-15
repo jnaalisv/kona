@@ -22,25 +22,25 @@ CREATE TABLE Product (
 );
 
 CREATE TABLE Customer (
-  id INT8 NOT NULL,
-  name VARCHAR(255),
-  version INT8 NOT NULL,
-  createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
-  PRIMARY KEY (id)
+    id INT8 NOT NULL,
+    name VARCHAR(255),
+    version INT8 NOT NULL,
+    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
+    PRIMARY KEY (id)
 );
 
 create table Customer_addresses (
-  customer_id int8 not null,
-  countryCode varchar(255),
-  municipality varchar(255),
-  postalCode varchar(255),
-  street varchar(255)
+    customer_id int8 not null,
+    countryCode varchar(255),
+    municipality varchar(255),
+    postalCode varchar(255),
+    street varchar(255)
 );
 
 alter table Customer_addresses
-  add constraint FK_CUSTOMER_ADDRESSES
-  foreign key (customer_id)
-  references Customer;
+    add constraint FK_CUSTOMER_ADDRESSES
+    foreign key (customer_id)
+    references Customer;
 
 CREATE TABLE Address (
     id INT8 NOT NULL,
@@ -53,6 +53,8 @@ CREATE TABLE Address (
 CREATE TABLE DeliveryOrder (
     id INT8 NOT NULL,
     ordererID INT8 NOT NULL,
+    version INT8 NOT NULL,
+    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
     PRIMARY KEY (id)
 );
 

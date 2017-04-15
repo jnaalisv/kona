@@ -21,7 +21,12 @@ public class DeliveryOrderAssembler {
                 ))
                 .collect(Collectors.toList());
 
-        return new DeliveryOrder(deliveryOrderDTO.id, deliveryOrderDTO.ordererID, orderLines);
+        DeliveryOrder deliveryOrder = new DeliveryOrder(deliveryOrderDTO.id, deliveryOrderDTO.ordererID, orderLines);
+
+        deliveryOrder.setVersion(deliveryOrderDTO.version);
+        deliveryOrder.setCreateTime(deliveryOrderDTO.createTime);
+
+        return deliveryOrder;
     }
 
     public static DeliveryOrderDTO assembleTo(DeliveryOrder deliveryOrder) {
@@ -29,6 +34,8 @@ public class DeliveryOrderAssembler {
         DeliveryOrderDTO deliveryOrderDTO = new DeliveryOrderDTO();
         deliveryOrderDTO.id = deliveryOrder.getId();
         deliveryOrderDTO.ordererID = deliveryOrder.getOrdererID();
+        deliveryOrderDTO.version = deliveryOrder.getVersion();
+        deliveryOrderDTO.createTime = deliveryOrder.getCreateTime();
         deliveryOrderDTO.orderLines = deliveryOrder
                 .getOrderLines()
                 .stream()
