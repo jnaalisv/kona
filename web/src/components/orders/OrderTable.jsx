@@ -87,7 +87,7 @@ class OrderTable extends React.Component {
                         {Object
                             .keys(this.state.orders)
                             .map(index => {
-                                return <OrderRow key={index} customer={this.state.orders[index]} deleteOrder={() => this.deleteOrder(index)}/>
+                                return <OrderRow key={index} order={this.state.orders[index]} deleteOrder={() => this.deleteOrder(index)}/>
                             })
                         }
                     </tbody>

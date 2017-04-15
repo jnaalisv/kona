@@ -37,7 +37,7 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
     @Override
     public List<DeliveryOrder> getAll() {
         return getCurrentSession()
-                .createNativeQuery("select * from DeliveryOrder", DeliveryOrder.class)
+                .createQuery("select o from DeliveryOrder o left join fetch o.orderLines", DeliveryOrder.class)
                 .getResultList();
     }
 }

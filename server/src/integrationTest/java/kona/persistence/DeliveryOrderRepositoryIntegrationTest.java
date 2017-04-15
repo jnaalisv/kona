@@ -54,4 +54,10 @@ public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactiona
         assertThat(fetchedDeliveryOrder.getId()).isEqualTo(deliveryOrder.getId());
         assertThat(fetchedDeliveryOrder.getOrderLines()).hasSize(1);
     }
+
+    @Test
+    public void getAllShouldNotFail() {
+        List<DeliveryOrder> deliveryOrders = deliveryOrderRepository.getAll();
+    }
+
 }
