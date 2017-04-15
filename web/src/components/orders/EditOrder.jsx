@@ -1,17 +1,20 @@
 import React from 'react'
-import {getOrder, saveOrder} from '../../ordersHttp'
+import { getOrder, saveOrder } from '../../ordersHttp'
+
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
+import CustomerAutoComplete from '../CustomerAutoComplete'
 
 class EditOrder extends React.Component {
     constructor() {
         super();
-        this.state = {order: {ordererID:undefined, orderLines:[]},notifications: []};
+        this.state = {order: undefined,notifications: []};
 
         this.addError = this.addError.bind(this);
         this.onChange = this.onChange.bind(this);
         this.saveOrder = this.saveOrder.bind(this);
         this.addLineItem = this.addLineItem.bind(this);
+        this.ordererSelected = this.ordererSelected.bind(this);
     }
 
     addError(error) {
@@ -33,7 +36,11 @@ class EditOrder extends React.Component {
         const orderId = this.props.match.params.orderId;
         if (orderId !== 'new') {
             getOrder(orderId)
-                .then(order => this.setState({order}), this.addError);
+                .then(order => this.setState({order}),
+                    this.addError
+                );
+        } else {
+            this.setState({order: {orderLines:[]}});
         }
     }
 
@@ -62,19 +69,31 @@ class EditOrder extends React.Component {
         this.setState({order});
     }
 
+    ordererSelected(customer) {
+        const order = {...this.state.order};
+        order.ordererID = customer.id;
+        this.setState({order});
+    }
+
     render () {
         const order = this.state.order;
-        return (
-            <div>
-                <div>id: {order.id}</div>
-                <div>version: {order.version}</div>
-                <div>created: {order.createTime}</div>
+        if (order) {
+            return (
+                <div>
+                    <div>id: {order.id}</div>
+                    <div>version: {order.version}</div>
+                    <div>created: {order.createTime}</div>
+                    <div>ordererID: {order.ordererID}
+                        <CustomerAutoComplete selectCallback={this.ordererSelected} selectedId={order.ordererID}/>
+                    </div>
 
-                <button onClick={(e) => this.addLineItem(e)}>Add Line Item</button>
-                <button onClick={(e) => this.saveOrder(e)}>Save</button>
-                <Notifications notifications={this.state.notifications} />
-            </div>
-        )
+                    <button onClick={(e) => this.addLineItem(e)}>Add Line Item</button>
+                    <button onClick={(e) => this.saveOrder(e)}>Save</button>
+                    <Notifications notifications={this.state.notifications} />
+                </div>
+            )
+        }
+        return (<div>loading...</div>)
     }
 }
 
