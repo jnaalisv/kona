@@ -40,4 +40,9 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
                 .createQuery("select o from DeliveryOrder o left join fetch o.orderLines", DeliveryOrder.class)
                 .getResultList();
     }
+
+    @Override
+    public void update(DeliveryOrder deliveryOrder) {
+        getCurrentSession().saveOrUpdate(deliveryOrder);
+    }
 }

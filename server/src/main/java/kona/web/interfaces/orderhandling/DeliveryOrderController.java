@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,6 +47,15 @@ public class DeliveryOrderController {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Location", "/delivery-orders/" + deliveryOrder.getId());
         return new ResponseEntity<>(DeliveryOrderAssembler.assembleTo(deliveryOrder), responseHeaders, HttpStatus.CREATED);
+    }
+
+    @PutMapping(path = "/{deliveryOrderId}", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public DeliveryOrderDTO updateOrder(@PathVariable long deliveryOrderId, @RequestBody DeliveryOrderDTO deliveryOrderDTO) {
+        DeliveryOrder deliveryOrder = DeliveryOrderAssembler.assembleFrom(deliveryOrderDTO);
+
+        orderHandlingService.update(deliveryOrder);
+
+        return DeliveryOrderAssembler.assembleTo(deliveryOrder);
     }
 
     @GetMapping(path = "{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

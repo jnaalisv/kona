@@ -9,4 +9,6 @@ public interface DeliveryOrderRepository {
     DeliveryOrder get(long id);
 
     List<DeliveryOrder> getAll();
+
+    void update(DeliveryOrder deliveryOrder);
 }

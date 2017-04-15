@@ -21,13 +21,17 @@ public class OrderHandlingService {
         this.deliveryOrderRepository.add(deliveryOrder);
     }
 
-    @Transactional
-    public DeliveryOrder loadBy(long id) {
+    @Transactional(readOnly = true)    public DeliveryOrder loadBy(long id) {
         return deliveryOrderRepository.get(id);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public List<DeliveryOrder> getAll() {
         return deliveryOrderRepository.getAll();
+    }
+
+    @Transactional
+    public void update(DeliveryOrder deliveryOrder) {
+        deliveryOrderRepository.update(deliveryOrder);
     }
 }
