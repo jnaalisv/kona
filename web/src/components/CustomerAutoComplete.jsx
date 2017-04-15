@@ -23,11 +23,14 @@ class CustomerAutoComplete extends React.Component {
     render() {
         if (this.state.initialQuery) {
             return (
-                <AutoComplete
-                    renderResult={this.renderCustomerChoice}
-                    searchCallback={getCustomers}
-                    selectCallback={this.props.selectCallback}
-                    initialQuery={this.state.initialQuery}/>
+                <span>
+                    Orderer:
+                    <AutoComplete
+                        renderResult={this.renderCustomerChoice}
+                        searchCallback={getCustomers}
+                        selectCallback={this.props.selectCallback}
+                        initialQuery={this.state.initialQuery}/>
+                </span>
             )
         }
         return (<span>loading</span>)
