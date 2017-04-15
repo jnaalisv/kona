@@ -1,36 +1,32 @@
 import React from 'react'
-import {getCustomers} from '../../customers'
+import PropTypes from 'prop-types'
 
-class CustomersAutoComplete extends React.Component {
+class AutoComplete extends React.Component {
     constructor() {
         super();
-
-        this.state = {query: '', results:[], selected: undefined};
-
+        this.state = {query: '', results:[]};
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(event) {
         event.preventDefault();
         const newQuery = event.target.value;
-
         this.setState({query: newQuery, results: []});
-
         if (newQuery && newQuery.length > 1) {
-            getCustomers(newQuery).then(response => this.setState({results: response}));
+            this.props.searchCallback(newQuery).then(response => this.setState({results: response}));
         }
     }
 
     select(index) {
         const newSelection = {...this.state.results[index]};
-        this.setState({query: newSelection.name, results: [], selected: newSelection});
+        this.setState({query: newSelection.name, results: []});
+        this.props.selectCallback(newSelection);
     }
 
     render() {
         return (
             <span>
                 <input value={this.state.query} onChange={this.onChange}/>
-
                 {
                     Object
                         .keys(this.state.results)
@@ -39,7 +35,7 @@ class CustomersAutoComplete extends React.Component {
                                 className={index === 0 ? 'autocomplete selected' : 'autocomplete'}
                                 key={index}
                                 onClick={() => this.select(index)}>
-                                {this.state.results[index].id}: {this.state.results[index].name}
+                                {this.props.renderResult(this.state.results[index])}
                             </div>
                         )
                 }
@@ -48,4 +44,10 @@ class CustomersAutoComplete extends React.Component {
     }
 }
 
-export default CustomersAutoComplete;
+AutoComplete.propTypes = {
+    searchCallback: PropTypes.func.isRequired,
+    selectCallback: PropTypes.func.isRequired,
+    renderResult: PropTypes.func.isRequired
+};
+
+export default AutoComplete;
