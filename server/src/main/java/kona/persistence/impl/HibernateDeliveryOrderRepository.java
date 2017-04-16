@@ -29,7 +29,7 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
     @Override
     public DeliveryOrder get(long id) {
         return getCurrentSession()
-                .createQuery("select o from DeliveryOrder o left join fetch o.orderLines where o.id = :id", DeliveryOrder.class)
+                .createQuery("select o from kona.model.domain.orderhandling.DeliveryOrder o left join fetch o.orderLines where o.id = :id", DeliveryOrder.class)
                 .setParameter("id", id)
                 .uniqueResult();
     }
@@ -37,7 +37,7 @@ public class HibernateDeliveryOrderRepository implements DeliveryOrderRepository
     @Override
     public List<DeliveryOrder> getAll() {
         return getCurrentSession()
-                .createQuery("select o from DeliveryOrder o left join fetch o.orderLines", DeliveryOrder.class)
+                .createQuery("select distinct o from kona.model.domain.orderhandling.DeliveryOrder o left join fetch o.orderLines", DeliveryOrder.class)
                 .getResultList();
     }
 
