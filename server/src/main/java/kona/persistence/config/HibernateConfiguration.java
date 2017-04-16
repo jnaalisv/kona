@@ -13,7 +13,7 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
-@Import(DatasourceConfiguration.class)
+@Import(FlexyPoolConfiguration.class)
 @ComponentScan(basePackages = {"kona.persistence.impl"})
 public class HibernateConfiguration {
 
@@ -28,7 +28,7 @@ public class HibernateConfiguration {
         //Configures the naming strategy that is used when Hibernate creates
         //new database objects and schema elements
         hibernateProperties.put("hibernate.ejb.naming_strategy", "org.hibernate.cfg.ImprovedNamingStrategy");
-        
+
         hibernateProperties.put("hibernate.format_sql", "true");
         hibernateProperties.put("hibernate.generate_statistics", "true");
 
