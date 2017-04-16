@@ -4,7 +4,7 @@ import { getOrder, saveOrder } from '../../ordersHttp'
 import Notifications from '../Notifications'
 import HttpError from '../../HttpError'
 import CustomerAutoComplete from '../CustomerAutoComplete'
-import LineItemsTable from './LineItemsTable'
+import OrderLinesTable from './OrderLinesTable'
 
 class EditOrder extends React.Component {
     constructor() {
@@ -14,7 +14,7 @@ class EditOrder extends React.Component {
         this.addError = this.addError.bind(this);
         this.onChange = this.onChange.bind(this);
         this.saveOrder = this.saveOrder.bind(this);
-        this.addLineItem = this.addLineItem.bind(this);
+        this.addOrderLine = this.addOrderLine.bind(this);
         this.ordererSelected = this.ordererSelected.bind(this);
     }
 
@@ -57,7 +57,8 @@ class EditOrder extends React.Component {
             }, this.addError);
     }
 
-    addLineItem(e) {
+    addOrderLine(e) {
+        console.log('addOrderLine', e);
         const order = {...this.state.order};
         order.orderLines.push({});
         this.setState({order});
@@ -88,9 +89,9 @@ class EditOrder extends React.Component {
                         <CustomerAutoComplete selectCallback={this.ordererSelected} selectedId={order.ordererID}/>
                     </div>
 
-                    <LineItemsTable lineItems={order.lineItems} />
+                    <OrderLinesTable orderLines={order.orderLines} />
 
-                    <button onClick={(e) => this.addLineItem(e)}>Add Line Item</button>
+                    <button onClick={(e) => this.addOrderLine(e)}>Add Order Line</button>
                     <button onClick={(e) => this.saveOrder(e)}>Save</button>
                     <Notifications notifications={this.state.notifications} />
                 </div>
