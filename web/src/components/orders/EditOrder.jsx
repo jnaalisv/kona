@@ -59,7 +59,6 @@ class EditOrder extends React.Component {
     }
 
     addOrderLine(e) {
-        console.log('addOrderLine', e);
         const order = {...this.state.order};
         order.orderLines.push({});
         this.setState({order});
