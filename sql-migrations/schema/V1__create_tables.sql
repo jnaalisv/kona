@@ -58,5 +58,6 @@ CREATE TABLE OrderLine (
     amount NUMERIC(19, 2),
     productCode VARCHAR(255) NOT NULL REFERENCES Product(productCode) ON DELETE RESTRICT,
     purchaseOrder_id INT8 REFERENCES PurchaseOrder ON DELETE CASCADE,
+    product_id INT8 REFERENCES Product ON DELETE RESTRICT,
     PRIMARY KEY (id)
 );

@@ -6,7 +6,7 @@ VALUES
 
 INSERT
 INTO
-    orderline(id, purchaseorder_id, productcode, amount)
+    orderline(id, purchaseorder_id, productcode, amount, product_id)
 VALUES
-    ((select nextval('hibernate_sequence')), (select id from purchaseorder), 'LCD', 10),
-    ((select nextval('hibernate_sequence')), (select id from purchaseorder), 'CCU', 1);
+    ((select nextval('hibernate_sequence')), (select id from purchaseorder), 'TW.I', 10, (select id from product where productCode ='TW.I')),
+    ((select nextval('hibernate_sequence')), (select id from purchaseorder), 'PTSD', 1, (select id from product where productCode ='PTSD'));

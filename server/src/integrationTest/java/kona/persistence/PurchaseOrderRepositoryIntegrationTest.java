@@ -43,7 +43,7 @@ public class PurchaseOrderRepositoryIntegrationTest extends AbstractTransactiona
         List<Customer> customers = customerRepository.getAll();
         List<Product> products = productRepository.getAll();
 
-        PurchaseOrder purchaseOrder = new PurchaseOrder(0l, customers.get(0).getId(), new OrderLine(0l, products.get(0).getProductCode(), new BigDecimal("4.0")));
+        PurchaseOrder purchaseOrder = new PurchaseOrder(0l, customers.get(0).getId(), new OrderLine(0l, products.get(0).getId(), products.get(0).getProductCode(), new BigDecimal("4.0")));
 
         purchaseOrderRepository.add(purchaseOrder);
 

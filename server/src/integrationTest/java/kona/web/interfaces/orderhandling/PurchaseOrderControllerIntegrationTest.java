@@ -37,7 +37,7 @@ public class PurchaseOrderControllerIntegrationTest extends AbstractSpringRestMv
                         .expect200()
                         .responseBodyAsListOf(ProductDTO.class);
 
-        purchaseOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).productCode, new BigDecimal("10")));
+        purchaseOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).id, new BigDecimal("10"),  products.get(0).productCode));
 
         PurchaseOrderDTO postedPurchaseOrder = httpPost("/purchase-orders")
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)

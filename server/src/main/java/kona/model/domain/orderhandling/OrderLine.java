@@ -19,6 +19,9 @@ public class OrderLine {
 
     private ProductCode productCode;
 
+    @Column(name = "product_id")
+    private long productId;
+
     private BigDecimal amount;
 
     @ManyToOne
@@ -26,8 +29,9 @@ public class OrderLine {
 
     public OrderLine() { /* hibernate */}
 
-    public OrderLine(long id, ProductCode productCode, BigDecimal amount) {
+    public OrderLine(long id, long productId, ProductCode productCode, BigDecimal amount) {
         this.id = id;
+        this.productId = productId;
         this.productCode = productCode;
         this.amount = amount;
     }
@@ -46,5 +50,13 @@ public class OrderLine {
 
     public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
         this.purchaseOrder = purchaseOrder;
+    }
+
+    public long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(long productId) {
+        this.productId = productId;
     }
 }

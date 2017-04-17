@@ -16,6 +16,7 @@ public class PurchaseOrderAssembler {
                 .stream()
                 .map(orderLineDTO -> new OrderLine(
                         orderLineDTO.id,
+                        orderLineDTO.productId,
                         new ProductCode(orderLineDTO.productCode),
                         orderLineDTO.amount
                 ))
@@ -39,7 +40,7 @@ public class PurchaseOrderAssembler {
         purchaseOrderDTO.orderLines = purchaseOrder
                 .getOrderLines()
                 .stream()
-                .map(orderLine -> new OrderLineDTO(orderLine.getId(), orderLine.getProductCode().toString(), orderLine.getAmount()))
+                .map(orderLine -> new OrderLineDTO(orderLine.getId(), orderLine.getProductId(), orderLine.getAmount(), orderLine.getProductCode().toString()))
                 .collect(Collectors.toList());
 
         return purchaseOrderDTO;
