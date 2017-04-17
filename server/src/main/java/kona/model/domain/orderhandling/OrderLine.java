@@ -22,7 +22,7 @@ public class OrderLine {
     private BigDecimal amount;
 
     @ManyToOne
-    private DeliveryOrder deliveryOrder;
+    private PurchaseOrder purchaseOrder;
 
     public OrderLine() { /* hibernate */}
 
@@ -44,7 +44,7 @@ public class OrderLine {
         return amount;
     }
 
-    public void setDeliveryOrder(DeliveryOrder deliveryOrder) {
-        this.deliveryOrder = deliveryOrder;
+    public void setPurchaseOrder(PurchaseOrder purchaseOrder) {
+        this.purchaseOrder = purchaseOrder;
     }
 }

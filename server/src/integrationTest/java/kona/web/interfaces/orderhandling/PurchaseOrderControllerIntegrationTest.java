@@ -14,11 +14,11 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
+public class PurchaseOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
     @Sql({"classpath:products.sql", "classpath:customers.sql"})
     @Test
-    public void shouldPostNewDeliveryOrder() {
+    public void shouldPostNewPurchaseOrder() {
 
         List<CustomerDTO> customers =
                 httpGet(KonaWebResources.CUSTOMERS)
@@ -27,8 +27,8 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                         .expect200()
                         .responseBodyAsListOf(CustomerDTO.class);
 
-        DeliveryOrderDTO deliveryOrderDTO = new DeliveryOrderDTO();
-        deliveryOrderDTO.ordererID = customers.get(0).id;
+        PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO();
+        purchaseOrderDTO.ordererID = customers.get(0).id;
 
         List<ProductDTO> products =
                 httpGet(KonaWebResources.PRODUCTS)
@@ -37,24 +37,24 @@ public class DeliveryOrderControllerIntegrationTest extends AbstractSpringRestMv
                         .expect200()
                         .responseBodyAsListOf(ProductDTO.class);
 
-        deliveryOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).productCode, new BigDecimal("10")));
+        purchaseOrderDTO.orderLines = Arrays.asList(new OrderLineDTO(0l, products.get(0).productCode, new BigDecimal("10")));
 
-        DeliveryOrderDTO postedDeliveryOrder = httpPost("/delivery-orders")
+        PurchaseOrderDTO postedPurchaseOrder = httpPost("/purchase-orders")
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .contentTypeApplicationJson()
-                .content(deliveryOrderDTO)
+                .content(purchaseOrderDTO)
                 .expect201()
-                .expectHeader("Location", "/delivery-orders/[0-9]{1,2}")
-                .responseBodyAs(DeliveryOrderDTO.class);
+                .expectHeader("Location", "/purchase-orders/[0-9]{1,2}")
+                .responseBodyAs(PurchaseOrderDTO.class);
 
-        assertThat(postedDeliveryOrder.orderLines).hasSize(1);
+        assertThat(postedPurchaseOrder.orderLines).hasSize(1);
 
-        postedDeliveryOrder = httpGet("/delivery-orders/" + postedDeliveryOrder.id)
+        postedPurchaseOrder = httpGet("/purchase-orders/" + postedPurchaseOrder.id)
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .acceptApplicationJson()
                 .expect200()
-                .responseBodyAs(DeliveryOrderDTO.class);
+                .responseBodyAs(PurchaseOrderDTO.class);
 
-        assertThat(postedDeliveryOrder.orderLines).hasSize(1);
+        assertThat(postedPurchaseOrder.orderLines).hasSize(1);
     }
 }

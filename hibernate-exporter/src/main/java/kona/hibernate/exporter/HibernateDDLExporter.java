@@ -2,7 +2,7 @@ package kona.hibernate.exporter;
 
 import kona.model.domain.address.Address;
 import kona.model.domain.customer.Customer;
-import kona.model.domain.orderhandling.DeliveryOrder;
+import kona.model.domain.orderhandling.PurchaseOrder;
 import kona.model.domain.orderhandling.OrderLine;
 import kona.model.domain.product.Product;
 import kona.model.domain.user.User;
@@ -82,7 +82,7 @@ public class HibernateDDLExporter {
         sources.addAnnotatedClass(User.class);
         sources.addAnnotatedClass(Customer.class);
         sources.addAnnotatedClass(OrderLine.class);
-        sources.addAnnotatedClass(DeliveryOrder.class);
+        sources.addAnnotatedClass(PurchaseOrder.class);
 
         return sources;
     }

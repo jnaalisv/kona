@@ -4,8 +4,8 @@ import kona.IntegrationTestConfig;
 import kona.persistence.config.HibernateConfiguration;
 import kona.model.domain.customer.Customer;
 import kona.model.domain.customer.CustomerRepository;
-import kona.model.domain.orderhandling.DeliveryOrder;
-import kona.model.domain.orderhandling.DeliveryOrderRepository;
+import kona.model.domain.orderhandling.PurchaseOrder;
+import kona.model.domain.orderhandling.PurchaseOrderRepository;
 import kona.model.domain.orderhandling.OrderLine;
 import kona.model.domain.product.Product;
 import kona.model.domain.product.ProductRepository;
@@ -23,13 +23,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql({"classpath:init-database.sql", "classpath:products.sql", "classpath:customers.sql"})
 @ContextConfiguration(classes = {HibernateConfiguration.class, IntegrationTestConfig.class})
-public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
+public class PurchaseOrderRepositoryIntegrationTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     @Autowired
-    private DeliveryOrderRepository deliveryOrderRepository;
+    private PurchaseOrderRepository purchaseOrderRepository;
 
     @Autowired
     private CustomerRepository customerRepository;
@@ -38,26 +38,26 @@ public class DeliveryOrderRepositoryIntegrationTest extends AbstractTransactiona
     private ProductRepository productRepository;
 
     @Test
-    public void shouldAddDeliveryOrder() {
+    public void shouldAddPurchaseOrder() {
 
         List<Customer> customers = customerRepository.getAll();
         List<Product> products = productRepository.getAll();
 
-        DeliveryOrder deliveryOrder = new DeliveryOrder(0l, customers.get(0).getId(), new OrderLine(0l, products.get(0).getProductCode(), new BigDecimal("4.0")));
+        PurchaseOrder purchaseOrder = new PurchaseOrder(0l, customers.get(0).getId(), new OrderLine(0l, products.get(0).getProductCode(), new BigDecimal("4.0")));
 
-        deliveryOrderRepository.add(deliveryOrder);
+        purchaseOrderRepository.add(purchaseOrder);
 
         sessionFactory.getCurrentSession().flush();
 
-        DeliveryOrder fetchedDeliveryOrder = deliveryOrderRepository.get(deliveryOrder.getId());
+        PurchaseOrder fetchedPurchaseOrder = purchaseOrderRepository.get(purchaseOrder.getId());
 
-        assertThat(fetchedDeliveryOrder.getId()).isEqualTo(deliveryOrder.getId());
-        assertThat(fetchedDeliveryOrder.getOrderLines()).hasSize(1);
+        assertThat(fetchedPurchaseOrder.getId()).isEqualTo(purchaseOrder.getId());
+        assertThat(fetchedPurchaseOrder.getOrderLines()).hasSize(1);
     }
 
     @Test
     public void getAllShouldNotFail() {
-        List<DeliveryOrder> deliveryOrders = deliveryOrderRepository.getAll();
+        List<PurchaseOrder> purchaseOrders = purchaseOrderRepository.getAll();
     }
 
 }

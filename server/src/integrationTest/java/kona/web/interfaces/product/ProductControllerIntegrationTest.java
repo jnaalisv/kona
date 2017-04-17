@@ -22,7 +22,7 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
 
         products = httpGet("/products")
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
-                .param("name", "Titanium")
+                .param("name", "Device")
                 .expect200()
                 .responseBodyAsListOf(ProductDTO.class);
 
@@ -49,25 +49,25 @@ public class ProductControllerIntegrationTest extends AbstractSpringRestMvcTest 
                 .expect200()
                 .responseBodyAsListOf(ProductDTO.class);
 
-        assertThat(products.size()).isEqualTo(4);
+        assertThat(products.size()).isEqualTo(5);
     }
 
     @Sql({"classpath:init-database.sql"})
     @Test
     public void shouldAddNewProduct() {
 
-        ProductDTO arabicaBeans = new ProductDTO();
-        arabicaBeans.name = "Arabica";
-        arabicaBeans.productCode = "ABC";
+        ProductDTO newProduct = new ProductDTO();
+        newProduct.name = "Portable Video Recording Device";
+        newProduct.productCode = "PVRD";
 
         ProductDTO postedProduct = httpPost("/products")
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
                 .contentTypeApplicationJson()
-                .content(arabicaBeans)
+                .content(newProduct)
                 .expect201()
                 .responseBodyAs(ProductDTO.class);
 
-        assertThat(postedProduct.productCode).isEqualTo(arabicaBeans.productCode);
+        assertThat(postedProduct.productCode).isEqualTo(newProduct.productCode);
 
         httpGet("/products/" + postedProduct.id)
                 .header(HttpHeaders.AUTHORIZATION, adminAuthToken)

@@ -28,15 +28,15 @@ public class ProductRepositoryIntegrationTest extends AbstractTransactionalJUnit
     public void shouldAddProduct() {
         assertThat(countRowsInTable("product")).isEqualTo(0);
 
-        Product aNewProduct = new Product("Arabica", new ProductCode("ABC"));
+        Product thoriumCapsules = new Product("Thorium Capsules", new ProductCode("TC"));
 
-        productRepository.add(aNewProduct);
+        productRepository.add(thoriumCapsules);
 
         sessionFactory.getCurrentSession().flush();
 
-        assertThat(productRepository.findBy(aNewProduct.getId()).isPresent()).isTrue();
+        assertThat(productRepository.findBy(thoriumCapsules.getId()).isPresent()).isTrue();
 
         assertThat(countRowsInTableWhere("product", "name='NotThere'")).isEqualTo(0);
-        assertThat(countRowsInTableWhere("product", "name='Arabica' and productCode='ABC' and id > 0")).isEqualTo(1);
+        assertThat(countRowsInTableWhere("product", "name='Thorium Capsules' and productCode='TC' and id > 0")).isEqualTo(1);
     }
 }

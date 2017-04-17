@@ -13,13 +13,14 @@ import java.util.Arrays;
 import java.util.List;
 
 @Entity
-public class DeliveryOrder {
+public class PurchaseOrder {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
 
+    @Column(name = "orderer_id")
     private long ordererID;
 
     @Column(insertable = false, updatable = false)
@@ -28,19 +29,19 @@ public class DeliveryOrder {
     @Version
     private long version;
 
-    @OneToMany(mappedBy = "deliveryOrder", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "purchaseOrder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderLine> orderLines = new ArrayList<>();
 
-    public DeliveryOrder() { /* hibernate*/}
+    public PurchaseOrder() { /* hibernate*/}
 
-    public DeliveryOrder(final long id, final long ordererID, final List<OrderLine> orderLines) {
+    public PurchaseOrder(final long id, final long ordererID, final List<OrderLine> orderLines) {
         this.id = id;
         this.ordererID = ordererID;
         this.orderLines = orderLines;
-        this.orderLines.forEach(orderLine -> orderLine.setDeliveryOrder(this));
+        this.orderLines.forEach(orderLine -> orderLine.setPurchaseOrder(this));
     }
 
-    public DeliveryOrder(final long id, final long payerID, final OrderLine...orderLines) {
+    public PurchaseOrder(final long id, final long payerID, final OrderLine...orderLines) {
         this(id, payerID, Arrays.asList(orderLines));
     }
 

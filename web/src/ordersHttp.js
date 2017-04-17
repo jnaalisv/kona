@@ -1,6 +1,6 @@
 import { httpGET, httpDELETE, httpPOST, httpPUT } from './http'
 
-const ordersUrl = 'http://localhost:9999/kona/delivery-orders';
+const ordersUrl = 'http://localhost:9999/kona/purchase-orders';
 
 export function saveOrder(order) {
     if (order.id > 0) {

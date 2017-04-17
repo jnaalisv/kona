@@ -1,12 +1,12 @@
 INSERT
 INTO
-    deliveryorder(id, ordererid, version)
+    purchaseorder(id, orderer_id, version)
 VALUES
-    ((select nextval('hibernate_sequence')), (select id from customer where name = 'Some Customer'), 0);
+    ((select nextval('hibernate_sequence')), (select id from customer where name = 'Acme Corporation'), 0);
 
 INSERT
 INTO
-    orderline(id, deliveryorder_id, productcode)
+    orderline(id, purchaseorder_id, productcode, amount)
 VALUES
-    ((select nextval('hibernate_sequence')), (select id from deliveryorder), 'B1'),
-    ((select nextval('hibernate_sequence')), (select id from deliveryorder), 'B2');
+    ((select nextval('hibernate_sequence')), (select id from purchaseorder), 'LCD', 10),
+    ((select nextval('hibernate_sequence')), (select id from purchaseorder), 'CCU', 1);

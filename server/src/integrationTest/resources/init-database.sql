@@ -1,10 +1,10 @@
 ALTER SEQUENCE hibernate_sequence RESTART WITH 1;
-DELETE FROM users;
+DELETE FROM Users;
+DELETE FROM PurchaseOrder;
+DELETE FROM OrderLine;
 DELETE FROM Product;
 DELETE FROM Customer;
-DELETE FROM OrderLine;
-DELETE FROM DeliveryOrder;
-DELETE FROM address;
+DELETE FROM Address;
 
 insert
 into Users(id, version, username, password)

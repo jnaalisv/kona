@@ -1,11 +1,43 @@
 CREATE SEQUENCE hibernate_sequence;
 
 CREATE TABLE Users (
-  id INT8 NOT NULL,
-  version INT8 NOT NULL,
-  password VARCHAR(255),
-  username VARCHAR(255),
-  PRIMARY KEY (id)
+    id INT8 NOT NULL,
+    version INT8 NOT NULL,
+    password VARCHAR(255),
+    username VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Customer (
+    id INT8 NOT NULL,
+    name VARCHAR(255),
+    version INT8 NOT NULL,
+    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE Customer_addresses (
+    customer_id int8 not null REFERENCES Customer ON DELETE CASCADE,
+    countryCode varchar(255),
+    municipality varchar(255),
+    postalCode varchar(255),
+    street varchar(255)
+);
+
+CREATE TABLE Address (
+    id INT8 NOT NULL,
+    municipality VARCHAR(255),
+    postalCode VARCHAR(255),
+    street VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE PurchaseOrder (
+    id INT8 NOT NULL,
+    orderer_id INT8 NOT NULL REFERENCES Customer ON DELETE RESTRICT,
+    version INT8 NOT NULL,
+    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE Product (
@@ -21,47 +53,10 @@ CREATE TABLE Product (
   UNIQUE (productCode)
 );
 
-CREATE TABLE Customer (
-    id INT8 NOT NULL,
-    name VARCHAR(255),
-    version INT8 NOT NULL,
-    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
-    PRIMARY KEY (id)
-);
-
-create table Customer_addresses (
-    customer_id int8 not null,
-    countryCode varchar(255),
-    municipality varchar(255),
-    postalCode varchar(255),
-    street varchar(255)
-);
-
-alter table Customer_addresses
-    add constraint FK_CUSTOMER_ADDRESSES
-    foreign key (customer_id)
-    references Customer;
-
-CREATE TABLE Address (
-    id INT8 NOT NULL,
-    municipality VARCHAR(255),
-    postalCode VARCHAR(255),
-    street VARCHAR(255),
-    PRIMARY KEY (id)
-);
-
-CREATE TABLE DeliveryOrder (
-    id INT8 NOT NULL,
-    ordererID INT8 NOT NULL,
-    version INT8 NOT NULL,
-    createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
-    PRIMARY KEY (id)
-);
-
 CREATE TABLE OrderLine (
     id INT8 NOT NULL,
     amount NUMERIC(19, 2),
-    productCode VARCHAR(255) NOT NULL,
-    deliveryOrder_id INT8,
+    productCode VARCHAR(255) NOT NULL REFERENCES Product(productCode) ON DELETE RESTRICT,
+    purchaseOrder_id INT8 REFERENCES PurchaseOrder ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
