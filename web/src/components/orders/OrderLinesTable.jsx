@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import ProductAutoComplete from '../ProductAutoComplete'
 
 class OrderLinesTable extends React.Component {
 
@@ -11,13 +12,18 @@ class OrderLinesTable extends React.Component {
                 <tbody>
                 <tr>
                     <th>productCode</th>
+                    <th>name</th>
                     <th>amount</th>
                 </tr>
                 {Object.keys(orderLines)
                     .map(index => {
                         return (
                             <tr key={index}>
-                                <td><input name="productCode" value={orderLines[index].productCode} onChange={(e) => this.props.onOrderLineChange(e, index)}/></td>
+                                <td>{orderLines[index].productCode}</td>
+                                <td>
+                                    <ProductAutoComplete selectCallback={(product) => this.props.onProductSelected(product, index)} selectedId={orderLines[index].productId}/>
+                                </td>
+
                                 <td><input name="amount" type="number" value={orderLines[index].amount} onChange={(e) => this.props.onOrderLineChange(e, index)}/></td>
                             </tr>
                         )
@@ -31,8 +37,8 @@ class OrderLinesTable extends React.Component {
 
 OrderLinesTable.propTypes = {
     orderLines: PropTypes.array.isRequired,
-    onOrderLineChange: PropTypes.func.isRequired
+    onOrderLineChange: PropTypes.func.isRequired,
+    onProductSelected: PropTypes.func.isRequired
 };
-
 
 export default OrderLinesTable;

@@ -17,6 +17,7 @@ class EditOrder extends React.Component {
         this.addOrderLine = this.addOrderLine.bind(this);
         this.ordererSelected = this.ordererSelected.bind(this);
         this.onOrderLineChange = this.onOrderLineChange.bind(this);
+        this.onProductSelected = this.onProductSelected.bind(this);
     }
 
     addError(error) {
@@ -87,6 +88,20 @@ class EditOrder extends React.Component {
         this.setState({order});
     }
 
+    onProductSelected(product, index) {
+
+        const order = {...this.state.order};
+
+        if (product) {
+            order.orderLines[index].productId = product.id;
+            order.orderLines[index].productCode = product.productCode;
+        } else {
+            order.orderLines[index].productId = undefined;
+            order.orderLines[index].productCode = undefined;
+        }
+        this.setState({order});
+    }
+
     render () {
         const order = this.state.order;
         if (order) {
@@ -99,7 +114,7 @@ class EditOrder extends React.Component {
                         <CustomerAutoComplete selectCallback={this.ordererSelected} selectedId={order.ordererID}/>
                     </div>
 
-                    <OrderLinesTable orderLines={order.orderLines} onOrderLineChange={this.onOrderLineChange} />
+                    <OrderLinesTable orderLines={order.orderLines} onOrderLineChange={this.onOrderLineChange} onProductSelected={this.onProductSelected}/>
 
                     <button onClick={(e) => this.addOrderLine(e)}>Add Order Line</button>
                     <button onClick={(e) => this.saveOrder(e)}>Save</button>

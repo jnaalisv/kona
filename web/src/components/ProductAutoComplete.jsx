@@ -21,7 +21,7 @@ class ProductAutoComplete extends React.Component {
     }
 
     selectCallback(product) {
-        this.props.selectCallback(product.id);
+        this.props.selectCallback(product);
         this.setState({query: product.name});
     }
 
