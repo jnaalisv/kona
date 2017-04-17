@@ -6,7 +6,9 @@ import AutoComplete from './AutoComplete'
 class CustomerAutoComplete extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {initialQuery: undefined};
+        this.state = {query: undefined};
+        this.selectCallback = this.selectCallback.bind(this);
+        this.searchCallback = this.searchCallback.bind(this);
     }
 
     renderCustomerChoice = (customer) => <span>{customer.id} {customer.name}</span>;
@@ -15,25 +17,38 @@ class CustomerAutoComplete extends React.Component {
         if (this.props.selectedId) {
             getCustomer(this.props.selectedId)
                 .then(customer => {
-                    this.setState({initialQuery: customer.name});
+                    this.setState({query: customer.name});
                 });
         }
     }
 
-    render() {
-        if (this.state.initialQuery) {
-            return (
-                <span>
-                    Orderer:
-                    <AutoComplete
-                        renderResult={this.renderCustomerChoice}
-                        searchCallback={getCustomers}
-                        selectCallback={this.props.selectCallback}
-                        initialQuery={this.state.initialQuery}/>
-                </span>
-            )
+    selectCallback(customer) {
+        this.props.selectCallback(customer.id);
+        this.setState({query: customer.name});
+    }
+
+    searchCallback(query) {
+        this.setState({query});
+
+        if (query && query.length > 1) {
+            return getCustomers(query);
         }
-        return (<span>loading</span>)
+
+        this.props.selectCallback(undefined);
+        return Promise.resolve([]);
+    }
+
+    render() {
+        return (
+            <span>
+                Orderer:
+                <AutoComplete
+                    renderResult={this.renderCustomerChoice}
+                    searchCallback={this.searchCallback}
+                    selectCallback={this.selectCallback}
+                    query={this.state.query}/>
+            </span>
+        )
     }
 }
 

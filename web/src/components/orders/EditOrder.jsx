@@ -72,9 +72,9 @@ class EditOrder extends React.Component {
         this.setState({order});
     }
 
-    ordererSelected(customer) {
+    ordererSelected(customerId) {
         const order = {...this.state.order};
-        order.ordererID = customer.id;
+        order.ordererID = customerId;
         this.setState({order});
     }
 

@@ -4,29 +4,25 @@ import PropTypes from 'prop-types'
 class AutoComplete extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {query: props.initialQuery, results:[]};
+        this.state = {results:[]};
         this.onChange = this.onChange.bind(this);
     }
 
     onChange(event) {
         event.preventDefault();
-        const newQuery = event.target.value;
-        this.setState({query: newQuery, results: []});
-        if (newQuery && newQuery.length > 1) {
-            this.props.searchCallback(newQuery).then(response => this.setState({results: response}));
-        }
+        this.props.searchCallback(event.target.value).then(response => this.setState({results: response}));
     }
 
     select(index) {
         const newSelection = {...this.state.results[index]};
-        this.setState({query: newSelection.name, results: []});
+        this.setState({results: []});
         this.props.selectCallback(newSelection);
     }
 
     render() {
         return (
             <span>
-                <input value={this.state.query} onChange={this.onChange}/>
+                <input value={this.props.query} onChange={this.onChange}/>
                 {
                     Object
                         .keys(this.state.results)
@@ -48,7 +44,7 @@ AutoComplete.propTypes = {
     searchCallback: PropTypes.func.isRequired,
     selectCallback: PropTypes.func.isRequired,
     renderResult: PropTypes.func.isRequired,
-    initialQuery: PropTypes.string
+    query: PropTypes.string
 };
 
 export default AutoComplete;
