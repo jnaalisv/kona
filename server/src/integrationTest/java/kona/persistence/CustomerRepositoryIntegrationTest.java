@@ -25,7 +25,7 @@ public class CustomerRepositoryIntegrationTest extends AbstractTransactionalJUni
     @Sql({"classpath:init-database.sql", "classpath:customers.sql"})
     @Test
     public void shouldGetAllCustomers() {
-        assertThat(customerRepository.getAll().size()).isEqualTo(4);
+        assertThat(customerRepository.getAll().size()).isEqualTo(9);
     }
 
     @Sql({"classpath:init-database.sql"})
