@@ -96,7 +96,7 @@ class EditOrder extends React.Component {
                     <div>id: {order.id}</div>
                     <div>version: {order.version}</div>
                     <div>created: {order.createTime}</div>
-                    <div>ordererID: {order.ordererID + ', '}
+                    <div>ordererID: {order.ordererID}
                         <CustomerAutoComplete selectCallback={this.ordererSelected} selectedId={order.ordererID}/>
                     </div>
 
