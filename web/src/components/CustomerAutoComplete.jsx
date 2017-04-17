@@ -40,14 +40,11 @@ class CustomerAutoComplete extends React.Component {
 
     render() {
         return (
-            <span>
-                Orderer:
-                <AutoComplete
-                    renderResult={this.renderCustomerChoice}
-                    searchCallback={this.searchCallback}
-                    selectCallback={this.selectCallback}
-                    query={this.state.query}/>
-            </span>
+            <AutoComplete
+                renderResult={this.renderCustomerChoice}
+                searchCallback={this.searchCallback}
+                selectCallback={this.selectCallback}
+                query={this.state.query}/>
         )
     }
 }

@@ -38,14 +38,11 @@ class ProductAutoComplete extends React.Component {
 
     render() {
         return (
-            <span>
-                Product:
-                <AutoComplete
-                    renderResult={(product) => <span>{product.productCode} {product.name}</span>}
-                    searchCallback={this.searchCallback}
-                    selectCallback={this.selectCallback}
-                    query={this.state.query}/>
-            </span>
+            <AutoComplete
+                renderResult={(product) => <span>{product.productCode} {product.name}</span>}
+                searchCallback={this.searchCallback}
+                selectCallback={this.selectCallback}
+                query={this.state.query}/>
         )
     }
 }
