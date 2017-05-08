@@ -9,6 +9,9 @@ wrapper {
 subprojects {
     repositories {
         jcenter()
+        maven {
+            url 'https://repo.spring.io/libs-milestone'
+        }
     }
 }
 
@@ -23,9 +26,9 @@ ext {
     servletApiVersion = "3.1.0"
 
     // Spring Framework dependency versions
-    springVersion = "4.3.8.RELEASE"
+    springVersion = "5.0.0.RC1"
     springSecurityVersion = "4.2.2.RELEASE"
-    jacksonVersion = "2.8.6"
+    jacksonVersion = "2.9.0.pr3"
 
     // Data access dependency versions
     hibernateVersion = "5.2.10.Final"
