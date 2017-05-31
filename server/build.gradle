@@ -4,7 +4,7 @@ import org.flywaydb.gradle.task.FlywayMigrateTask
 
 plugins {
     id "groovy"
-    id "org.flywaydb.flyway" version "4.0.3"
+    id "org.flywaydb.flyway" version "4.2.0"
     id "war"
     //id "jacoco"
     id "org.akhikhl.gretty" version "1.4.0"

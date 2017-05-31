@@ -15,8 +15,8 @@ subprojects {
 ext {
 
     // Logging dependency versions
-    slf4jVersion = "1.7.24"
-    logbackVersion = "1.2.1"
+    slf4jVersion = "1.7.25"
+    logbackVersion = "1.2.3"
     groovyVersion = "2.4.9"
 
     // javax dependency versions
@@ -25,15 +25,14 @@ ext {
     // Spring Framework dependency versions
     springVersion = "4.3.8.RELEASE"
     springSecurityVersion = "4.2.2.RELEASE"
-    jacksonVersion = "2.8.6"
+    jacksonVersion = "2.8.8"
 
     // Data access dependency versions
     hibernateVersion = "5.2.10.Final"
-    hikariCPVersion = "2.6.1"
+    hikariCPVersion = "2.6.2"
     postgreSqlVersion = "42.1.1"
 
     // Test dependency versions
-    h2Version = "1.4.191"
     junitVersion = "4.12"
-    assertJVersion = "3.5.2"
+    assertJVersion = "3.8.0"
 }
