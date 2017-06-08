@@ -23,7 +23,7 @@ ext {
     servletApiVersion = "3.1.0"
 
     // Spring Framework dependency versions
-    springVersion = "4.3.8.RELEASE"
+    springVersion = "4.3.9.RELEASE"
     springSecurityVersion = "4.2.2.RELEASE"
     jacksonVersion = "2.8.8"
 
