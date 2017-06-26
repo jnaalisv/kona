@@ -1,3 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotFound renders some html 1`] = `
+<p>
+  Not found:(
+</p>
+`;
+
 exports[`test NotFound renders some html 1`] = `
 <p>
   Not found:(
