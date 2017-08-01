@@ -8,6 +8,7 @@ public class AddressDTO {
     public String street;
     public String postalCode;
     public String municipality;
+    public long version;
 
     public AddressDTO() {}
 
@@ -16,5 +17,6 @@ public class AddressDTO {
         this.street = address.getStreet();
         this.postalCode = address.getPostalCode();
         this.municipality = address.getMunicipality();
+        this.version = address.getVersion();
     }
 }

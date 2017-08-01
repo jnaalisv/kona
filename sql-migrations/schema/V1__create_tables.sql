@@ -26,6 +26,7 @@ CREATE TABLE Customer_addresses (
 
 CREATE TABLE Address (
     id INT8 NOT NULL,
+  version INT8 NOT NULL,
     municipality VARCHAR(255),
     postalCode VARCHAR(255),
     street VARCHAR(255),
