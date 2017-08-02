@@ -37,7 +37,8 @@ dependencies {
             "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
 
             "org.springframework.security:spring-security-web:$springSecurityVersion",
-            "org.springframework.security:spring-security-config:$springSecurityVersion"
+            "org.springframework.security:spring-security-config:$springSecurityVersion",
+            'net.ttddyy:datasource-proxy:1.4.2'
     )
 
     runtime (

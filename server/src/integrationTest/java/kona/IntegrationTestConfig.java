@@ -10,7 +10,7 @@ import java.util.Properties;
 public class IntegrationTestConfig {
 
     @Bean(destroyMethod = "close")
-    public DataSource dataSource() {
+    public DataSource actualDataSource() {
         Properties props = new Properties();
         props.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource");
         props.setProperty("dataSource.user", "kona_test");
