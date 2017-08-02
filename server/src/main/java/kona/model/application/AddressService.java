@@ -32,4 +32,9 @@ public class AddressService {
     public List<Address> loadAll() {
         return this.addressRepository.getAll();
     }
+
+    @Transactional
+    public void update(Address address) {
+        addressRepository.update(address);
+    }
 }

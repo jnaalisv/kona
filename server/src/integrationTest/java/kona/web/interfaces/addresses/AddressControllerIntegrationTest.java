@@ -44,4 +44,40 @@ public class AddressControllerIntegrationTest extends AbstractSpringRestMvcTest 
         assertThat(savedAddress.postalCode).isEqualTo(requestedAddress.postalCode);
         assertThat(savedAddress.municipality).isEqualTo(requestedAddress.municipality);
     }
+
+    @Sql({"classpath:init-database.sql"})
+    @Test
+    public void shouldUpdateAddress() {
+        AddressDTO aNewAddress = new AddressDTO();
+        aNewAddress.street = "Seutulantie 2";
+        aNewAddress.postalCode = "04410";
+        aNewAddress.municipality = "Jarvenpaa";
+
+        AddressDTO savedAddress = httpPost("/addresses")
+                .contentTypeApplicationJson()
+                .content(aNewAddress)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
+                .expect201()
+                .expectHeader("Location", "addresses/3")
+                .responseBodyAs(AddressDTO.class);
+
+        long firstVersion = savedAddress.version;
+
+        assertThat(savedAddress.ID).isGreaterThan(0l);
+        assertThat(firstVersion).isEqualTo(0);
+
+        savedAddress.street = "Mannerheimintie 1";
+
+        AddressDTO updatedAddress = httpPut("/addresses/{id}", savedAddress.ID)
+                .contentTypeApplicationJson()
+                .content(savedAddress)
+                .header(HttpHeaders.AUTHORIZATION, adminAuthToken)
+                .expect200()
+                .responseBodyAs(AddressDTO.class);
+
+        assertThat(updatedAddress.ID).isEqualTo(savedAddress.ID);
+        assertThat(updatedAddress.version).isGreaterThan(savedAddress.version);
+        assertThat(updatedAddress.municipality).isEqualTo(savedAddress.municipality);
+        assertThat(updatedAddress.street).isEqualTo(savedAddress.street);
+    }
 }

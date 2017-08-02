@@ -28,6 +28,11 @@ public class HibernateAddressRepository implements AddressRepository {
     }
 
     @Override
+    public void update(Address address) {
+        getCurrentSession().update(address);
+    }
+
+    @Override
     public Optional<Address> get(long id) {
         return getCurrentSession()
                 .createQuery("select a from Address a where a.id = :id", Address.class)

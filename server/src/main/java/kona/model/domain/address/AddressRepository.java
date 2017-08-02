@@ -7,6 +7,8 @@ public interface AddressRepository {
 
     void add(Address address);
 
+    void update(Address address);
+
     Optional<Address> get(long id);
 
     List<Address> getAll();
