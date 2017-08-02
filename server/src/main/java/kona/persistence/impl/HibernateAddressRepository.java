@@ -46,4 +46,12 @@ public class HibernateAddressRepository implements AddressRepository {
                 .createQuery("select a from Address a", Address.class)
                 .list();
     }
+
+    @Override
+    public Optional<Address> findAddressWithNativeQueryMappedToEntity(String street) {
+        return getCurrentSession()
+                .createNativeQuery("select a.* from Address a where a.street = :street", Address.class)
+                .setParameter("street", street)
+                .uniqueResultOptional();
+    }
 }

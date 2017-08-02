@@ -11,6 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Sql({"classpath:init-database.sql"})
@@ -54,6 +56,16 @@ public class AddressRepositoryIntegrationTest extends AbstractTransactionalJUnit
                 .orElseThrow(() -> new RuntimeException("test failure"));
 
         assertThat(addressFromRepository.getMunicipality()).isEqualTo(mannerheimintieYksi.getMunicipality());
+    }
+
+    @Test
+    public void shouldFindAddressWithNativeQueryMappedToEntity() {
+        addressRepository.add(new Address("Mannerheimintie 1", "00100", "Helsinki"));
+        sessionFactory.getCurrentSession().flush();
+
+        Optional<Address> address = addressRepository.findAddressWithNativeQueryMappedToEntity("Mannerheimintie 1");
+
+        assertThat(address).isNotEmpty();
     }
 
 }

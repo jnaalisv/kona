@@ -12,4 +12,6 @@ public interface AddressRepository {
     Optional<Address> get(long id);
 
     List<Address> getAll();
+
+    Optional<Address> findAddressWithNativeQueryMappedToEntity(String street);
 }
