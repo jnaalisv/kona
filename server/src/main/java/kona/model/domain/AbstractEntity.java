@@ -26,16 +26,8 @@ public class AbstractEntity {
 
     public AbstractEntity() {}
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
     }
 
     public void setUpdatedBy(String updatedBy) {

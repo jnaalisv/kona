@@ -39,7 +39,7 @@ public class EntityListener implements PreInsertEventListener, PreUpdateEventLis
 
         if (entity instanceof AbstractEntity){
             AbstractEntity abstractEntity = (AbstractEntity) entity;
-            abstractEntity.setCreatedBy(authenticatedUsernameProvider.getUsername());
+            abstractEntity.setUpdatedBy(authenticatedUsernameProvider.getUsername());
         }
 
         return false;
