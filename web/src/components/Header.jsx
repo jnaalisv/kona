@@ -13,9 +13,11 @@ class Header extends React.Component {
     render() {
         let username = isAuthenticated() ? getAuthentication().username : undefined;
 
+        console.log('render', this);
+
         return (
             <header>
-                <div id="location"> {location.pathname} </div>
+                <div id="location"> location.pathname </div>
 
                 <div id="greeting">hello,
                     {username && (

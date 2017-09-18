@@ -4,6 +4,7 @@ import kona.model.domain.address.Address;
 import kona.model.domain.address.AddressRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.event.spi.EventType;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

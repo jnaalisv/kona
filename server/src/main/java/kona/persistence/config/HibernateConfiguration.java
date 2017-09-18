@@ -52,4 +52,9 @@ public class HibernateConfiguration {
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }
+
+    @Bean
+    public EntityEventListenerRegistry entityEventListenerRegistry(final SessionFactory sessionFactory) {
+        return new EntityEventListenerRegistry(sessionFactory);
+    }
 }

@@ -19,7 +19,7 @@ import Home from './Home'
 const NoMatch = () => (
     <div>
         <h2>Whoops</h2>
-        <p>Sorry but {location.pathname} didn’t match any pages</p>
+        <p>Sorry but didn’t match any pages</p>
     </div>
 );
 

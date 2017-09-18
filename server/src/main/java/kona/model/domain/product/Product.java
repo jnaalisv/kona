@@ -1,5 +1,6 @@
 package kona.model.domain.product;
 
+import kona.model.domain.AbstractEntity;
 import kona.model.domain.CurrencyAmount;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.NaturalId;
@@ -9,10 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @DynamicUpdate
-public class Product {
-
-    @Version
-    private long version = 0L;
+public class Product extends AbstractEntity {
 
     @Column(insertable = false, updatable = false)
     private LocalDateTime createTime;
@@ -39,8 +37,7 @@ public class Product {
     }
 
     public Product(long id, long version, LocalDateTime createTime, String name, ProductCode productCode, CurrencyAmount price) {
-        this.id = id;
-        this.version = version;
+        super(id, version);
         this.createTime = createTime;
         this.name = name;
         this.productCode = productCode;
@@ -55,20 +52,7 @@ public class Product {
         return productCode;
     }
 
-    public long getVersion() {
-        return version;
-    }
-
-    /* surrogate key and no arg ctor for hibernate */
-    @Id
-    @GeneratedValue
-    private long id;
-
     public Product() {}
-
-    public long getId() {
-        return id;
-    }
 
     public LocalDateTime getCreateTime() {
         return createTime;
@@ -84,5 +68,9 @@ public class Product {
 
     public void setProductType(ProductType productType) {
         this.productType = productType;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
