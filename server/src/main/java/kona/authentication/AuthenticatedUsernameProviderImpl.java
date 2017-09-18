@@ -10,7 +10,7 @@ public class AuthenticatedUsernameProviderImpl implements AuthenticatedUsernameP
     @Override
     public String getUsername() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        final Object principal = authentication.getDetails();
+        final Object principal = authentication.getPrincipal();
 
         if (principal instanceof UserDetails) {
             final UserDetails userDetails = (UserDetails) principal;
