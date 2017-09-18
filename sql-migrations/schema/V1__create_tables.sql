@@ -44,6 +44,8 @@ CREATE TABLE PurchaseOrder (
 CREATE TABLE Product (
   id INT8 NOT NULL,
   version INT8 NOT NULL,
+  createdBy VARCHAR(255),
+  updatedBy VARCHAR(255),
   createTime TIMESTAMP NOT NULL DEFAULT localtimestamp,
   name TEXT,
   productCode VARCHAR(255),

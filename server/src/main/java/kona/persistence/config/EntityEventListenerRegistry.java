@@ -1,5 +1,6 @@
 package kona.persistence.config;
 
+import kona.persistence.AuthenticatedUsernameProvider;
 import org.hibernate.SessionFactory;
 import org.hibernate.engine.spi.SessionFactoryImplementor;
 import org.hibernate.event.service.spi.EventListenerRegistry;
@@ -10,16 +11,20 @@ import javax.annotation.PostConstruct;
 public class EntityEventListenerRegistry {
 
     private final SessionFactory sessionFactory;
+    private final AuthenticatedUsernameProvider authenticatedUsernameProvider;
 
-    public EntityEventListenerRegistry(final SessionFactory sessionFactory) {
+    public EntityEventListenerRegistry(final SessionFactory sessionFactory, final AuthenticatedUsernameProvider authenticatedUsernameProvider) {
         this.sessionFactory = sessionFactory;
+        this.authenticatedUsernameProvider = authenticatedUsernameProvider;
     }
 
     @PostConstruct
     public void registerListeners(){
-        EventListenerRegistry eventListenerRegistry = ((SessionFactoryImplementor) sessionFactory).getServiceRegistry().getService(EventListenerRegistry.class);
-        eventListenerRegistry.prependListeners(EventType.PRE_INSERT, EntityListener.class);
-        eventListenerRegistry.prependListeners(EventType.PRE_UPDATE, EntityListener.class);
+        final EventListenerRegistry eventListenerRegistry = ((SessionFactoryImplementor) sessionFactory).getServiceRegistry().getService(EventListenerRegistry.class);
+        final EntityListener entityListener = new EntityListener(authenticatedUsernameProvider);
+
+        eventListenerRegistry.appendListeners(EventType.PRE_INSERT, entityListener);
+        eventListenerRegistry.appendListeners(EventType.PRE_UPDATE, entityListener);
     }
 
 }

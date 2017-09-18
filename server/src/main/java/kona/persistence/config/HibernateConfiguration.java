@@ -1,5 +1,7 @@
 package kona.persistence.config;
 
+import kona.authentication.AuthenticatedUsernameProviderImpl;
+import kona.persistence.AuthenticatedUsernameProvider;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -55,6 +57,6 @@ public class HibernateConfiguration {
 
     @Bean
     public EntityEventListenerRegistry entityEventListenerRegistry(final SessionFactory sessionFactory) {
-        return new EntityEventListenerRegistry(sessionFactory);
+        return new EntityEventListenerRegistry(sessionFactory, new AuthenticatedUsernameProviderImpl());
     }
 }
