@@ -5,6 +5,7 @@ import kona.web.interfaces.address.AddressController;
 import kona.web.interfaces.authentication.AuthenticationController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -16,6 +17,7 @@ import org.springframework.security.web.authentication.preauth.PreAuthenticatedA
 
 import java.util.Arrays;
 
+@Configuration
 @ComponentScan("kona.web.authentication")
 public class SpringSecurityConfiguration {
 
