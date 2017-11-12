@@ -3,7 +3,6 @@ import org.flywaydb.gradle.task.FlywayInfoTask
 import org.flywaydb.gradle.task.FlywayMigrateTask
 
 plugins {
-    id "groovy"
     id "org.flywaydb.flyway" version "4.2.0"
     id "war"
     //id "jacoco"
@@ -52,8 +51,7 @@ dependencies {
 
     testCompile (
             "junit:junit:$junitVersion",
-            "org.assertj:assertj-core:$assertJVersion",
-            "org.spockframework:spock-core:1.0-groovy-2.4"
+            "org.assertj:assertj-core:$assertJVersion"
     )
 
     integrationTestCompile (
