@@ -15,7 +15,7 @@ configurations {
 
 task integrationTest(type: Test, dependsOn: compileTestJava) {
 
-    testClassesDir = sourceSets.integrationTest.output.classesDir
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
     classpath = sourceSets.integrationTest.runtimeClasspath
 
     reports.html.destination = file("${project.reporting.baseDir}/integrationTest")
