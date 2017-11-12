@@ -1,6 +1,11 @@
-.gradle
+# OS X
 **/.DS_Store
-classes/
-**/build
-.idea
 
+# gradle
+.gradle
+**/build
+
+# Idea
+.idea
+*.iml
+**/out
