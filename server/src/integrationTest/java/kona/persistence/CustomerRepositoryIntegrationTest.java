@@ -1,8 +1,8 @@
 package kona.persistence;
 
 import kona.IntegrationTestConfig;
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerRepository;
+import kona.domain.customer.Customer;
+import kona.domain.customer.CustomerRepository;
 import kona.persistence.config.HibernateConfiguration;
 import org.hibernate.SessionFactory;
 import org.junit.Test;

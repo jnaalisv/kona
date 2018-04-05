@@ -23,6 +23,9 @@ configurations {
 
 dependencies {
     compile (
+
+            project(":domain"),
+
             "org.slf4j:slf4j-api:$slf4jVersion",
             "com.zaxxer:HikariCP:$hikariCPVersion",
             "org.hibernate:hibernate-core:$hibernateVersion",

@@ -1,6 +1,6 @@
 package kona.persistence.impl;
 
-import kona.model.domain.user.User;
+import kona.domain.user.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

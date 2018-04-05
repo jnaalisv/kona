@@ -1,11 +1,11 @@
 package kona.hibernate.exporter;
 
-import kona.model.domain.address.Address;
-import kona.model.domain.customer.Customer;
-import kona.model.domain.orderhandling.PurchaseOrder;
-import kona.model.domain.orderhandling.OrderLine;
-import kona.model.domain.product.Product;
-import kona.model.domain.user.User;
+import kona.domain.address.Address;
+import kona.domain.customer.Customer;
+import kona.domain.orderhandling.PurchaseOrder;
+import kona.domain.orderhandling.OrderLine;
+import kona.domain.product.Product;
+import kona.domain.user.User;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.boot.registry.internal.StandardServiceRegistryImpl;

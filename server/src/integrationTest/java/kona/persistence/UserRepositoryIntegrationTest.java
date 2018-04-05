@@ -3,7 +3,7 @@ package kona.persistence;
 import kona.IntegrationTestConfig;
 import kona.persistence.config.HibernateConfiguration;
 import kona.persistence.impl.HibernateUserRepository;
-import kona.model.domain.user.User;
+import kona.domain.user.User;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

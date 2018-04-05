@@ -1,4 +1,4 @@
-package kona.model.domain.customer;
+package kona.domain.customer;
 
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;

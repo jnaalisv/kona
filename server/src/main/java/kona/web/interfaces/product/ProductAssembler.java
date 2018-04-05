@@ -1,7 +1,7 @@
 package kona.web.interfaces.product;
 
-import kona.model.domain.product.Product;
-import kona.model.domain.product.ProductCode;
+import kona.domain.product.Product;
+import kona.domain.product.ProductCode;
 
 public class ProductAssembler {
 

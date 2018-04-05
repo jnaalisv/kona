@@ -1,4 +1,4 @@
-package kona.model.domain.orderhandling;
+package kona.domain.orderhandling;
 
 import java.util.List;
 

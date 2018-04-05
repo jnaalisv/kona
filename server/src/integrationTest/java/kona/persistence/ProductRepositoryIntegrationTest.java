@@ -2,9 +2,9 @@ package kona.persistence;
 
 import kona.IntegrationTestConfig;
 import kona.persistence.config.HibernateConfiguration;
-import kona.model.domain.product.Product;
-import kona.model.domain.product.ProductCode;
-import kona.model.domain.product.ProductRepository;
+import kona.domain.product.Product;
+import kona.domain.product.ProductCode;
+import kona.domain.product.ProductRepository;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

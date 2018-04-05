@@ -1,4 +1,4 @@
-package kona.model.domain.product;
+package kona.domain.product;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

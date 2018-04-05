@@ -1,7 +1,7 @@
 package kona.model.application;
 
 import kona.persistence.impl.HibernateUserRepository;
-import kona.model.domain.user.User;
+import kona.domain.user.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,10 +27,8 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> maybeUser = hibernateUserRepository.loadUserByUsername(username);
 
-        if(maybeUser.isPresent()) {
-            return maybeUser.get();
-        }
-
-        throw new UsernameNotFoundException(username);
+        return maybeUser
+                .map(UserDetailsImpl::new)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }

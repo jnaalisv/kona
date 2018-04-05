@@ -1,6 +1,6 @@
-package kona.model.domain.orderhandling;
+package kona.domain.orderhandling;
 
-import kona.model.domain.product.ProductCode;
+import kona.domain.product.ProductCode;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

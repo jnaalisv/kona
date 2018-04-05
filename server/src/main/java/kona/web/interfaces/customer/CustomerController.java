@@ -1,7 +1,7 @@
 package kona.web.interfaces.customer;
 
 import kona.model.application.CustomerService;
-import kona.model.domain.customer.Customer;
+import kona.domain.customer.Customer;
 import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

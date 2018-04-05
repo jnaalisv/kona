@@ -1,7 +1,7 @@
 package kona.model.application;
 
-import kona.model.domain.orderhandling.PurchaseOrder;
-import kona.model.domain.orderhandling.PurchaseOrderRepository;
+import kona.domain.orderhandling.PurchaseOrder;
+import kona.domain.orderhandling.PurchaseOrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

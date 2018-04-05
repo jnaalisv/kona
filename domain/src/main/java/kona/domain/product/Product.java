@@ -1,14 +1,11 @@
-package kona.model.domain.product;
+package kona.domain.product;
 
-import kona.model.domain.CurrencyAmount;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.NaturalId;
+import kona.domain.CurrencyAmount;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@DynamicUpdate
 public class Product {
 
     @Version
@@ -17,7 +14,6 @@ public class Product {
     @Column(insertable = false, updatable = false)
     private LocalDateTime createTime;
 
-    @NaturalId
     @Embedded
     private ProductCode productCode;
 

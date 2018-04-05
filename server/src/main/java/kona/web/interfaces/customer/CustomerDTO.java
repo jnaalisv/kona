@@ -1,6 +1,6 @@
 package kona.web.interfaces.customer;
 
-import kona.model.domain.customer.Customer;
+import kona.domain.customer.Customer;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

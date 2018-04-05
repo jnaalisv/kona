@@ -1,7 +1,7 @@
 package kona.model.application;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerRepository;
+import kona.domain.customer.Customer;
+import kona.domain.customer.CustomerRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

@@ -2,8 +2,8 @@ package kona.persistence;
 
 import kona.IntegrationTestConfig;
 import kona.persistence.config.HibernateConfiguration;
-import kona.model.domain.address.Address;
-import kona.model.domain.address.AddressRepository;
+import kona.domain.address.Address;
+import kona.domain.address.AddressRepository;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;

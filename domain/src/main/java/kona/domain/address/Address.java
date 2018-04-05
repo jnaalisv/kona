@@ -1,6 +1,4 @@
-package kona.model.domain.address;
-
-import org.hibernate.annotations.DynamicUpdate;
+package kona.domain.address;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-@DynamicUpdate
 public class Address {
 
     @Id

@@ -45,7 +45,7 @@ public class HibernateConfiguration {
     public LocalSessionFactoryBean sessionFactory(DataSource dataSource) throws PropertyVetoException {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-        sessionFactory.setPackagesToScan("kona.model.domain");
+        sessionFactory.setPackagesToScan("kona.domain");
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

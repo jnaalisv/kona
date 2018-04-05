@@ -1,7 +1,7 @@
 package kona.persistence.impl;
 
-import kona.model.domain.orderhandling.PurchaseOrder;
-import kona.model.domain.orderhandling.PurchaseOrderRepository;
+import kona.domain.orderhandling.PurchaseOrder;
+import kona.domain.orderhandling.PurchaseOrderRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
@@ -29,7 +29,7 @@ public class HibernatePurchaseOrderRepository implements PurchaseOrderRepository
     @Override
     public PurchaseOrder get(long id) {
         return getCurrentSession()
-                .createQuery("select o from kona.model.domain.orderhandling.PurchaseOrder o left join fetch o.orderLines where o.id = :id", PurchaseOrder.class)
+                .createQuery("select o from kona.domain.orderhandling.PurchaseOrder o left join fetch o.orderLines where o.id = :id", PurchaseOrder.class)
                 .setParameter("id", id)
                 .uniqueResult();
     }
@@ -37,7 +37,7 @@ public class HibernatePurchaseOrderRepository implements PurchaseOrderRepository
     @Override
     public List<PurchaseOrder> getAll() {
         return getCurrentSession()
-                .createQuery("select distinct o from kona.model.domain.orderhandling.PurchaseOrder o left join fetch o.orderLines", PurchaseOrder.class)
+                .createQuery("select distinct o from kona.domain.orderhandling.PurchaseOrder o left join fetch o.orderLines", PurchaseOrder.class)
                 .getResultList();
     }
 

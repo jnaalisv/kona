@@ -1,7 +1,7 @@
 package kona.web.interfaces.customer;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerAddress;
+import kona.domain.customer.Customer;
+import kona.domain.customer.CustomerAddress;
 
 import java.util.stream.Collectors;
 

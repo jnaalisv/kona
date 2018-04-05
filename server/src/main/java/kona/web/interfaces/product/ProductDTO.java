@@ -1,8 +1,8 @@
 package kona.web.interfaces.product;
 
-import kona.model.domain.CurrencyAmount;
-import kona.model.domain.product.Product;
-import kona.model.domain.product.ProductType;
+import kona.domain.CurrencyAmount;
+import kona.domain.product.Product;
+import kona.domain.product.ProductType;
 
 import java.time.LocalDateTime;
 

@@ -1,7 +1,7 @@
 package kona.persistence.impl;
 
-import kona.model.domain.customer.Customer;
-import kona.model.domain.customer.CustomerRepository;
+import kona.domain.customer.Customer;
+import kona.domain.customer.CustomerRepository;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;

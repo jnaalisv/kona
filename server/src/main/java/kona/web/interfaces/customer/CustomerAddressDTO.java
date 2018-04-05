@@ -1,6 +1,6 @@
 package kona.web.interfaces.customer;
 
-import kona.model.domain.customer.CustomerAddress;
+import kona.domain.customer.CustomerAddress;
 
 public class CustomerAddressDTO {
 

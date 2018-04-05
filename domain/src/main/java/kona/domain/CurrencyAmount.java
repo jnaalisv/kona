@@ -1,4 +1,4 @@
-package kona.model.domain;
+package kona.domain;
 
 import javax.persistence.Embeddable;
 

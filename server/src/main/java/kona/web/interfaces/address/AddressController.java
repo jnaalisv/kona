@@ -1,7 +1,7 @@
 package kona.web.interfaces.address;
 
 import kona.model.application.AddressService;
-import kona.model.domain.address.Address;
+import kona.domain.address.Address;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

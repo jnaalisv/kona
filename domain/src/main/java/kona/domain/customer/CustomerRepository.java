@@ -1,4 +1,4 @@
-package kona.model.domain.customer;
+package kona.domain.customer;
 
 import java.util.List;
 import java.util.Optional;

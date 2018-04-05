@@ -1,7 +1,7 @@
 package kona.web.interfaces.product;
 
 import kona.model.application.ProductService;
-import kona.model.domain.product.Product;
+import kona.domain.product.Product;
 import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

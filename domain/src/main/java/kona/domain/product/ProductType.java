@@ -1,4 +1,4 @@
-package kona.model.domain.product;
+package kona.domain.product;
 
 public enum ProductType {
     EQUIPMENT,

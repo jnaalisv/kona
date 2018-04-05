@@ -1,7 +1,7 @@
 package kona.model.application;
 
-import kona.model.domain.address.Address;
-import kona.model.domain.address.AddressRepository;
+import kona.domain.address.Address;
+import kona.domain.address.AddressRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

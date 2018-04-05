@@ -1,7 +1,7 @@
 package kona.web.interfaces.orderhandling;
 
 import kona.model.application.PurchaseOrderService;
-import kona.model.domain.orderhandling.PurchaseOrder;
+import kona.domain.orderhandling.PurchaseOrder;
 import kona.web.interfaces.KonaWebResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

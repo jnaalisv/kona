@@ -1,8 +1,8 @@
 package kona.web.interfaces.orderhandling;
 
-import kona.model.domain.orderhandling.PurchaseOrder;
-import kona.model.domain.orderhandling.OrderLine;
-import kona.model.domain.product.ProductCode;
+import kona.domain.orderhandling.PurchaseOrder;
+import kona.domain.orderhandling.OrderLine;
+import kona.domain.product.ProductCode;
 
 import java.util.List;
 import java.util.stream.Collectors;
