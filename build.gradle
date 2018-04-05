@@ -20,14 +20,14 @@ ext {
 
     // Spring Framework dependency versions
     springVersion = "4.3.15.RELEASE"
-    springSecurityVersion = "4.2.4.RELEASE"
+    springSecurityVersion = "4.2.5.RELEASE"
     jacksonVersion = "2.9.1"
 
     // Data access dependency versions
     hibernateVersion = "5.2.16.Final"
     hikariCPVersion = "3.0.0"
-    postgreSqlVersion = "42.2.1"
-    dataSourceProxyVersion = "1.4.2"
+    postgreSqlVersion = "42.2.2"
+    dataSourceProxyVersion = "1.4.7"
 
     // Test dependency versions
     junitVersion = "4.12"
