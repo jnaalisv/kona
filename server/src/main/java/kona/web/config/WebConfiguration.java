@@ -22,23 +22,24 @@ import java.util.List;
  * @author jnaalisv
  *
  */
-@Configuration
-@EnableWebMvc
-@Import(SerializationConfig.class)
-@ComponentScan({"kona.web.interfaces"})
-public class WebConfiguration extends WebMvcConfigurerAdapter {
+//@Configuration
+//@EnableWebMvc
+//@Import(SerializationConfig.class)
+//@ComponentScan({"kona.web.interfaces"})
+public class WebConfiguration// extends WebMvcConfigurerAdapter
+{
 
-    private final ObjectMapper objectMapper;
-
-    public WebConfiguration(final ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper;
-    }
-
-    @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
-        converters.add(new StringHttpMessageConverter());
-    }
+//    private final ObjectMapper objectMapper;
+//
+//    public WebConfiguration(final ObjectMapper objectMapper) {
+//        this.objectMapper = objectMapper;
+//    }
+//
+//    @Override
+//    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+//        converters.add(new MappingJackson2HttpMessageConverter(objectMapper));
+//        converters.add(new StringHttpMessageConverter());
+//    }
 
 }
 

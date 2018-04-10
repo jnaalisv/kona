@@ -15,8 +15,8 @@ ext {
     logbackVersion = "1.2.3"
     groovyVersion = "2.4.11"
 
-    // javax dependency versions
-    servletApiVersion = "3.1.0"
+//    // javax dependency versions
+//    servletApiVersion = "3.1.0"
 
     // Spring Framework dependency versions
     springVersion = "4.3.15.RELEASE"

@@ -31,8 +31,7 @@ public final class RestErrorHandler extends ResponseEntityExceptionHandler {
      * @param request client request
      * @return ResponseEntity with a populated ErrorsDTO
      *
-     * @see org.springframework.web.servlet.mvc.method.annotation.
-     *      ResponseEntityExceptionHandler
+     * @see org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
      */
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {

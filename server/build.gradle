@@ -3,10 +3,12 @@ import org.flywaydb.gradle.task.FlywayInfoTask
 import org.flywaydb.gradle.task.FlywayMigrateTask
 
 plugins {
-    id "org.flywaydb.flyway" version "4.2.0"
+//    id "org.flywaydb.flyway" version "4.2.0"
     id "war"
     //id "jacoco"
-    id "org.akhikhl.gretty" version "1.4.0"
+//    id "org.akhikhl.gretty" version "1.4.0"
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+    id "org.springframework.boot" version "2.0.1.RELEASE"
 }
 
 apply from: "$rootDir/gradle/flyway-config.gradle"
@@ -24,31 +26,35 @@ configurations {
 dependencies {
     compile (
 
+            "org.springframework.boot:spring-boot-starter-web",
+
+            "org.springframework.boot:spring-boot-starter-security",
+
             project(":domain"),
 
             "org.slf4j:slf4j-api:$slf4jVersion",
             "com.zaxxer:HikariCP:$hikariCPVersion",
-            "org.hibernate:hibernate-core:$hibernateVersion",
+            "org.hibernate:hibernate-core",
 
-            "org.springframework:spring-orm:$springVersion",
-            "org.springframework:spring-webmvc:$springVersion",
+            "org.springframework:spring-orm",
+//            "org.springframework:spring-webmvc:$springVersion",
+//
+//            "javax.servlet:javax.servlet-api:$servletApiVersion",
 
-            "javax.servlet:javax.servlet-api:$servletApiVersion",
+//            "com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion",
+//            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
 
-            "com.fasterxml.jackson.module:jackson-module-parameter-names:$jacksonVersion",
-            "com.fasterxml.jackson.datatype:jackson-datatype-jsr310:$jacksonVersion",
-
-            "org.springframework.security:spring-security-web:$springSecurityVersion",
-            "org.springframework.security:spring-security-config:$springSecurityVersion",
+//            "org.springframework.security:spring-security-web:$springSecurityVersion",
+//            "org.springframework.security:spring-security-config:$springSecurityVersion",
             "net.ttddyy:datasource-proxy:$dataSourceProxyVersion"
     )
 
     runtime (
-            "org.slf4j:jcl-over-slf4j:$slf4jVersion",
-            "org.slf4j:log4j-over-slf4j:$slf4jVersion",
-            "org.slf4j:jul-to-slf4j:$slf4jVersion",
-            "org.codehaus.groovy:groovy:$groovyVersion",
-            "ch.qos.logback:logback-classic:$logbackVersion",
+//            "org.slf4j:jcl-over-slf4j:$slf4jVersion",
+//            "org.slf4j:log4j-over-slf4j:$slf4jVersion",
+//            "org.slf4j:jul-to-slf4j:$slf4jVersion",
+//            "org.codehaus.groovy:groovy:$groovyVersion",
+//            "ch.qos.logback:logback-classic:$logbackVersion",
             "org.postgresql:postgresql:$postgreSqlVersion"
     )
 
@@ -62,13 +68,13 @@ dependencies {
     )
 }
 
-gretty {
-    contextPath = "kona"
-    servletContainer = "jetty9"
-    debugSuspend = false
-    integrationTestTask = 'none'
-    port = 9999
-}
+//gretty {
+//    contextPath = "kona"
+//    servletContainer = "jetty9"
+//    debugSuspend = false
+//    integrationTestTask = 'none'
+//    port = 9999
+//}
 
 def integTestFlywayExtension;
 
