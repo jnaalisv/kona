@@ -1,0 +1,81 @@
+plugins {
+    id "java"
+    id "org.flywaydb.flyway" version "4.2.0"
+    //id "jacoco"
+}
+
+import org.flywaydb.gradle.FlywayExtension
+import org.flywaydb.gradle.task.FlywayInfoTask
+import org.flywaydb.gradle.task.FlywayMigrateTask
+
+apply from: "$rootDir/gradle/flyway-config.gradle"
+//apply from: "$rootDir/gradle/jacoco-config.gradle"
+apply from: "$rootDir/gradle/javac-options.gradle"
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+configurations {
+    compile.exclude group: "commons-logging"
+}
+
+dependencies {
+    compile (
+            project(":domain"),
+            "org.slf4j:slf4j-api:$slf4jVersion",
+            "com.zaxxer:HikariCP:$hikariCPVersion",
+            "org.hibernate:hibernate-core:$hibernateVersion",
+            "net.ttddyy:datasource-proxy:$dataSourceProxyVersion"
+    )
+
+    runtime (
+            "org.slf4j:jcl-over-slf4j:$slf4jVersion",
+            "org.slf4j:log4j-over-slf4j:$slf4jVersion",
+            "org.slf4j:jul-to-slf4j:$slf4jVersion",
+            "org.codehaus.groovy:groovy:$groovyVersion",
+            "ch.qos.logback:logback-classic:$logbackVersion",
+            "org.postgresql:postgresql:$postgreSqlVersion"
+    )
+
+    testCompile (
+            "junit:junit:$junitVersion",
+            "org.assertj:assertj-core:$assertJVersion",
+            "org.springframework:spring-test:$springVersion"
+    )
+}
+
+def integTestFlywayExtension;
+
+task initIntegTestFlywayExtension() {
+    integTestFlywayExtension = new FlywayExtension();
+    integTestFlywayExtension.locations = ["filesystem:$rootDir/sql-migrations/schema"]
+    integTestFlywayExtension.user = 'kona_test'
+    integTestFlywayExtension.password = 'kona_test'
+    integTestFlywayExtension.url = 'jdbc:postgresql://localhost:5432/kona_test'
+}
+
+task flywayInfoIntegTest(type: FlywayInfoTask, dependsOn: initIntegTestFlywayExtension) {
+    extension = integTestFlywayExtension
+}
+
+task flywayMigrateIntegTest(type: FlywayMigrateTask, dependsOn: initIntegTestFlywayExtension) {
+    extension = integTestFlywayExtension
+}
+
+test.dependsOn flywayMigrateIntegTest
+
+compileJava.options*.compilerArgs = [
+        "-Xlint:serial", "-Xlint:varargs", "-Xlint:cast", "-Xlint:classfile",
+        "-Xlint:dep-ann", "-Xlint:divzero", "-Xlint:empty", "-Xlint:finally",
+        "-Xlint:overrides", "-Xlint:path", "-Xlint:processing", "-Xlint:static",
+        "-Xlint:try", "-Xlint:fallthrough", "-Xlint:rawtypes", "-Xlint:deprecation",
+        "-Xlint:unchecked", "-Xlint:-options", "-Werror"
+]
+
+compileTestJava.options*.compilerArgs = [
+        "-Xlint:serial", "-Xlint:-varargs", "-Xlint:cast", "-Xlint:classfile",
+        "-Xlint:dep-ann", "-Xlint:divzero", "-Xlint:empty", "-Xlint:finally",
+        "-Xlint:overrides", "-Xlint:path", "-Xlint:processing", "-Xlint:static",
+        "-Xlint:try", "-Xlint:-fallthrough", "-Xlint:-rawtypes", "-Xlint:-deprecation",
+        "-Xlint:-unchecked", "-Xlint:-options"]
+

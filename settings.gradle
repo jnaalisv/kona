@@ -1,1 +1,1 @@
-include 'server', 'hibernate-exporter', 'domain'
+include 'server', 'hibernate-exporter', 'domain', 'persistence', 'http-api' , 'application-services'

@@ -1,13 +1,35 @@
 plugins {
     id "idea"
+    id "java"
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+    id "org.springframework.boot" version "2.0.1.RELEASE"
 }
 
-subprojects {
-    repositories {
-        jcenter()
-    }
+version = "0.0.1-SNAPSHOT"
+
+dependencies {
+    compile "org.springframework.boot:spring-boot-starter-web"
+
+    compile(
+            "com.zaxxer:HikariCP",
+            "org.hibernate:hibernate-core",
+            "org.springframework:spring-orm",
+            "net.ttddyy:datasource-proxy",
+            project(":http-api"),
+            project(":persistence")
+    )
 }
 
+
+//
+//dependencies {
+//    compile (
+//            "org.springframework:spring-orm:$springVersion",//
+//            "org.springframework.security:spring-security-web:$springSecurityVersion",
+//            "org.springframework.security:spring-security-config:$springSecurityVersion",
+//    )
+//}
+//
 ext {
 
     // Logging dependency versions
@@ -33,3 +55,12 @@ ext {
     junitVersion = "4.12"
     assertJVersion = "3.8.0"
 }
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+
+

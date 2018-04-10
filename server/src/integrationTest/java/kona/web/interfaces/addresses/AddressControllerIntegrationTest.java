@@ -1,7 +1,7 @@
 package kona.web.interfaces.addresses;
 
 import kona.web.interfaces.AbstractSpringRestMvcTest;
-import kona.web.interfaces.address.AddressDTO;
+import kona.http.address.AddressDTO;
 import org.junit.Test;
 import org.springframework.http.HttpHeaders;
 import org.springframework.test.context.jdbc.Sql;

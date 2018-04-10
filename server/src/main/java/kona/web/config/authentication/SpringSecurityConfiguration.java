@@ -1,8 +1,8 @@
 package kona.web.config.authentication;
 
 import kona.web.authentication.PreAuthUserDetailsService;
-import kona.web.interfaces.address.AddressController;
-import kona.web.interfaces.authentication.AuthenticationController;
+import kona.http.address.AddressController;
+import kona.http.authentication.AuthenticationController;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
