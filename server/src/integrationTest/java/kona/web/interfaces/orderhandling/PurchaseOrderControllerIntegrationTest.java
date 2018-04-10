@@ -16,7 +16,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class PurchaseOrderControllerIntegrationTest extends AbstractSpringRestMvcTest {
 
-    @Sql({"classpath:products.sql", "classpath:customers.sql"})
+    @Sql({"classpath:init-database.sql", "classpath:products.sql", "classpath:customers.sql"})
     @Test
     public void shouldPostNewPurchaseOrder() {
 
