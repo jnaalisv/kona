@@ -79,6 +79,11 @@ httpstat http://localhost:9999/kona/customers?name=jeppe -X GET \
 ```
 
 ### Database creation commands 
+
+```
+$ sudo docker run --name kona-postgres -e POSTGRES_PASSWORD=password -p 5432:5432 -d postgres:10.3
+```
+
 ```sql
 create user kona with encrypted password 'kona';
 create database kona owner kona;
