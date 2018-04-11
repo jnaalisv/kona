@@ -3,3 +3,13 @@ spring:
     url: jdbc:postgresql://localhost:5432/kona
     password: kona
     username: kona
+
+spring:
+  output:
+    ansi:
+      enabled: always
+
+logging:
+  level:
+    root: DEBUG
+    org.springframework: DEBUG
