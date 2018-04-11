@@ -10,11 +10,14 @@ import kona.web.config.authentication.WebSecurityConfig;
 import org.junit.Before;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.core.token.KeyBasedPersistenceTokenService;
 import org.springframework.security.web.FilterChainProxy;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -24,24 +27,27 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
+@RunWith(SpringRunner.class)
+//@WebAppConfiguration
 @Sql({"classpath:init-database.sql"})
-@ContextConfiguration(classes = {
-        DomainConfiguration.class,
-        HibernateConfiguration.class,
-        SpringSecurityConfiguration.class,
-        WebConfiguration.class,
-        WebSecurityConfig.class,
-        IntegrationTestConfig.class
-})
+//@ContextConfiguration(classes = {
+//        DomainConfiguration.class,
+//        HibernateConfiguration.class,
+//        SpringSecurityConfiguration.class,
+//        WebConfiguration.class,
+//        WebSecurityConfig.class,
+//        IntegrationTestConfig.class
+//})
+//
+@SpringBootTest
+@AutoConfigureMockMvc
 public abstract class AbstractSpringRestMvcTest {
 
-    @Autowired
-    private FilterChainProxy springSecurityFilterChain;
-
-    @Autowired
-    private WebApplicationContext webApplicationContext;
+//    @Autowired
+//    private FilterChainProxy springSecurityFilterChain;
+//
+//    @Autowired
+//    private WebApplicationContext webApplicationContext;
 
     @Autowired
     protected KeyBasedPersistenceTokenService keyBasedPersistenceTokenService;
@@ -51,14 +57,15 @@ public abstract class AbstractSpringRestMvcTest {
     @Autowired
     protected ObjectMapper objectMapper;
 
+    @Autowired
     protected MockMvc mockMvc;
 
     @Before
     public void initMockMvc() {
-        mockMvc = MockMvcBuilders
-                .webAppContextSetup(webApplicationContext)
-                .addFilters(springSecurityFilterChain)
-                .build();
+//        mockMvc = MockMvcBuilders
+//                .webAppContextSetup(webApplicationContext)
+//                .addFilters(springSecurityFilterChain)
+//                .build();
 
         adminAuthToken = keyBasedPersistenceTokenService.allocateToken("admin").getKey();
     }

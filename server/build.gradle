@@ -64,7 +64,7 @@ dependencies {
     )
 
     integrationTestCompile (
-            "org.springframework:spring-test:$springVersion"
+            "org.springframework.boot:spring-boot-starter-test"
     )
 }
 
