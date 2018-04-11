@@ -13,7 +13,6 @@ import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 @Configuration
-@Import(DatasourceConfiguration.class)
 @ComponentScan(basePackages = {"kona.persistence.impl"})
 public class HibernateConfiguration {
 
