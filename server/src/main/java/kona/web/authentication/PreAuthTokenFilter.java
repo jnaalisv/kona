@@ -7,22 +7,20 @@ import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
-//@Component
-public class PreAuthTokenFilter// extends AbstractPreAuthenticatedProcessingFilter
-{
+@Component
+public class PreAuthTokenFilter extends AbstractPreAuthenticatedProcessingFilter {
+    public PreAuthTokenFilter(AuthenticationManager authenticationManager) {
+        this.setAuthenticationManager(authenticationManager);
+    }
 
-//    public PreAuthTokenFilter(AuthenticationManager authenticationManager) {
-//        this.setAuthenticationManager(authenticationManager);
-//    }
-//
-//    @Override
-//    protected Object getPreAuthenticatedPrincipal(HttpServletRequest request) {
-//        return request.getHeader(HttpHeaders.AUTHORIZATION);
-//    }
-//
-//    @Override
-//    protected Object getPreAuthenticatedCredentials(HttpServletRequest request) {
-//        return request.getHeader(HttpHeaders.AUTHORIZATION);
-//    }
+    @Override
+    protected Object getPreAuthenticatedPrincipal(HttpServletRequest request) {
+        return request.getHeader(HttpHeaders.AUTHORIZATION);
+    }
+
+    @Override
+    protected Object getPreAuthenticatedCredentials(HttpServletRequest request) {
+        return request.getHeader(HttpHeaders.AUTHORIZATION);
+    }
 }
 

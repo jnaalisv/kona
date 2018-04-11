@@ -13,7 +13,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class PreAuthUserDetailsService implements AuthenticationUserDetailsService<PreAuthenticatedAuthenticationToken> {
 
-
     private final UserDetailsService userDetailsService;
     private final KeyBasedPersistenceTokenService keyBasedPersistenceTokenService;
 
