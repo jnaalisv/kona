@@ -14,7 +14,7 @@
 ## Test cases
 ### 1. ```/authenticate``` allows CORS preflight requests
 ```bash
-curl -I -X OPTIONS http://localhost:9999/kona/authenticate -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST"
+curl -I -X OPTIONS http://localhost:8080/authenticate -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: POST"
 ```
 =>
 ```bash
@@ -25,7 +25,7 @@ Access-Control-Allow-Methods: POST
 
 ### 2. ```/products``` allows CORS preflight requests
 ```bash
-curl -I -X OPTIONS http://localhost:9999/kona/products -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: GET" -H "Access-Control-Request-Headers: authorization"
+curl -I -X OPTIONS http://localhost:8080/products -H "Origin: http://localhost:3000" -H "Access-Control-Request-Method: GET" -H "Access-Control-Request-Headers: authorization"
 
 ```
 =>
@@ -39,7 +39,7 @@ Access-Control-Allow-Headers: authorization
 
 ### 3. ```/products``` is secured
 ```bash
-curl -I http://localhost:9999/kona/products
+curl -I http://localhost:8080/products
 ```
 =>
 ```bash
@@ -49,7 +49,7 @@ WWW-Authenticate: Authorization
 
 ### 4. ```/authenticate``` returns a token
 ```bash
-curl http://localhost:9999/kona/authenticate  -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
+curl http://localhost:8080/authenticate  -H "Content-Type: application/json" -d '{"username":"admin","password":"admin"}'
 ```
 =>
 ```bash
@@ -58,7 +58,7 @@ MTQ4NDcyODI0MDkwMzpmNzQ0MzhjOTExYmNmMTgxNmE0Y2Q0ZTRhODA3YWVjYjQxYjQzMDlkYWE5MDdl
 
 ### 5. returned token allows access to ```/products```
 ```bash
-curl -I http://localhost:9999/kona/products \
+curl -I http://localhost:8080/products \
     -H "Authorization: MTQ4NDcyODI0MDkwMzpmNzQ0MzhjOTExYmNmMTgxNmE0Y2Q0ZTRhODA3YWVjYjQxYjQzMDlkYWE5MDdlMWFjZmY0NjkxOTJkYjIxODMxOmFkbWluOmUwMTVjYjhhYWZiNmFlNDM2NDAzNWM3OGQxODIzMWQ5N2E4YTA3MDc4NzM1MjM0NzFlYmZiMWFmNWMwMmQ1NzAxZWJlYjE5MjQzZDg2MjQyNzk3YTc0YWZlY2Q1YzVkMmRmYTEwYzU5NDIwNDU2OGI0NDc0MTk4NTc1ZjdlMWRl" 
 ```
 =>
@@ -68,13 +68,13 @@ Content-Type: application/json;charset=UTF-8
 ```
 ### 6. Create a new Customer
 ```bash
-httpstat http://localhost:9999/kona/customers -H "Content-Type: application/json" \
+httpstat http://localhost:8080/customers -H "Content-Type: application/json" \
     -H "Authorization: AUTH_TOKEN" \
     -d '{"name": "Uusi asiakas"}'
 ```
 ### 7. Look up customers by name
 ```bash
-httpstat http://localhost:9999/kona/customers?name=jeppe -X GET \
+httpstat http://localhost:8080/customers?name=jeppe -X GET \
     -H "Authorization: MTQ3ODA3NjI4MzEwMDplNzAyMmYxZTc2MjA3MGI5NjI2YzNhZmEzMTA3NDc3ZjEwMTk1NDYwN2ZiOWM5MDg4ZWNlMzE5NjhiYzkxYzZkOmFkbWluOjJhYjY4ZTMxMDU1YTY4MzU0NTFlZDAyMTM5NjExMjBhNzZjNzZkODA3MGE2MjM0ZTE3OWQzYzY4NWMyNTQzNGNkZDlhYjQ4Y2I4ZGI2ZTY0Njk2MjFlZWEyYjMzYzE0ZjM0MzQzZGU5NTNkNWExY2MzZTBkYzIzYWM3MDFjN2M1" 
 ```
 
