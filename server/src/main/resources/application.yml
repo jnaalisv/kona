@@ -20,3 +20,5 @@ logging:
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
     org.hibernate.tool.hbm2ddl.SchemaExport: DEBUG
+
+  exception-conversion-word: "%msg%n%ex{full, org.springframework, java.lang, org.apache, sun, CGLIB}"
