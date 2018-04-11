@@ -15,10 +15,11 @@ import org.springframework.context.annotation.Primary;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
+// DIsable for now
+//@Configuration
 public class DatasourceConfiguration {
 
-    @Bean(destroyMethod = "close")
+    //@Bean(destroyMethod = "close")
     public DataSource actualDataSource() {
         Properties dsProperties = new Properties();
         dsProperties.setProperty("dataSourceClassName", "org.postgresql.ds.PGSimpleDataSource");
@@ -38,8 +39,8 @@ public class DatasourceConfiguration {
         }
     }
 
-    @Bean
-    @Primary
+    //@Bean
+    //@Primary
     public DataSource dataSource(DataSource actualDataSource) {
         // use pretty formatted query with multiline enabled
         PrettyQueryEntryCreator creator = new PrettyQueryEntryCreator();

@@ -1,5 +1,5 @@
-#spring:
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/kona
-#    password: kona
-#    username: kona
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/kona
+    password: kona
+    username: kona
