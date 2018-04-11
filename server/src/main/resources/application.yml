@@ -4,7 +4,6 @@ spring:
     password: kona
     username: kona
 
-spring:
   output:
     ansi:
       enabled: always
