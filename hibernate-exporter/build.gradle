@@ -1,9 +1,25 @@
 plugins {
     id "java"
+    id "io.spring.dependency-management" version "1.0.5.RELEASE"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.springframework.boot:spring-boot-starter-parent:2.0.1.RELEASE'
+    }
 }
 
 dependencies {
-    compile project(':server')
+    compile project(':domain')
+    compile "org.hibernate:hibernate-core"
+    compile "org.slf4j:slf4j-api"
+
+    runtime (
+            "org.slf4j:jcl-over-slf4j",
+            "org.slf4j:log4j-over-slf4j",
+            "org.slf4j:jul-to-slf4j",
+            "ch.qos.logback:logback-classic"
+ )
 }
 
 task exportDDL(type:JavaExec) {
