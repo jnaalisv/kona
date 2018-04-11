@@ -4,6 +4,9 @@ spring:
     password: kona
     username: kona
 
+  jpa:
+    open-in-view: false
+
   output:
     ansi:
       enabled: always
