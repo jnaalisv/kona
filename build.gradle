@@ -9,9 +9,5 @@ subprojects {
 }
 
 ext {
-    hibernateVersion = "5.2.16.Final"
-    hikariCPVersion = "3.0.0"
-    postgreSqlVersion = "42.2.2"
     dataSourceProxyVersion = "1.4.7"
-    junitVersion = "4.12"
 }

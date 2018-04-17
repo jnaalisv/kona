@@ -30,7 +30,7 @@ dependencies {
             project(":domain"),
 
             "org.slf4j:slf4j-api",
-            "com.zaxxer:HikariCP:$hikariCPVersion",
+            "com.zaxxer:HikariCP",
             "org.hibernate:hibernate-core",
             "org.springframework:spring-orm",
 
@@ -38,11 +38,11 @@ dependencies {
     )
 
     runtime (
-            "org.postgresql:postgresql:$postgreSqlVersion"
+            "org.postgresql:postgresql"
     )
 
     testCompile (
-            "junit:junit:$junitVersion",
+            "junit:junit",
             "org.assertj:assertj-core"
     )
 
