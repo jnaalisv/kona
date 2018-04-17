@@ -3,10 +3,9 @@ import org.flywaydb.gradle.task.FlywayInfoTask
 import org.flywaydb.gradle.task.FlywayMigrateTask
 
 plugins {
-//    id "org.flywaydb.flyway" version "4.2.0"
+    id "org.flywaydb.flyway" version "4.2.0"
     id "war"
     //id "jacoco"
-//    id "org.akhikhl.gretty" version "1.4.0"
     id "io.spring.dependency-management" version "1.0.5.RELEASE"
     id "org.springframework.boot" version "2.0.1.RELEASE"
 }
@@ -30,29 +29,21 @@ dependencies {
 
             project(":domain"),
 
-            "org.slf4j:slf4j-api:$slf4jVersion",
+            "org.slf4j:slf4j-api",
             "com.zaxxer:HikariCP:$hikariCPVersion",
             "org.hibernate:hibernate-core",
             "org.springframework:spring-orm",
 
-
-//            "org.springframework.security:spring-security-web:$springSecurityVersion",
-//            "org.springframework.security:spring-security-config:$springSecurityVersion",
             "net.ttddyy:datasource-proxy:$dataSourceProxyVersion"
     )
 
     runtime (
-//            "org.slf4j:jcl-over-slf4j:$slf4jVersion",
-//            "org.slf4j:log4j-over-slf4j:$slf4jVersion",
-//            "org.slf4j:jul-to-slf4j:$slf4jVersion",
-//            "org.codehaus.groovy:groovy:$groovyVersion",
-//            "ch.qos.logback:logback-classic:$logbackVersion",
             "org.postgresql:postgresql:$postgreSqlVersion"
     )
 
     testCompile (
             "junit:junit:$junitVersion",
-            "org.assertj:assertj-core:$assertJVersion"
+            "org.assertj:assertj-core"
     )
 
     integrationTestCompile (
