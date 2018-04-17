@@ -22,6 +22,10 @@ configurations {
     compile.exclude group: "commons-logging"
 }
 
+ext {
+    dataSourceProxyVersion = "1.4.7"
+}
+
 dependencies {
     compile (
             "org.springframework.boot:spring-boot-starter-web",
@@ -37,18 +41,12 @@ dependencies {
             "net.ttddyy:datasource-proxy:$dataSourceProxyVersion"
     )
 
-    runtime (
-            "org.postgresql:postgresql"
-    )
+    runtime "org.postgresql:postgresql"
 
-    testCompile (
-            "junit:junit",
-            "org.assertj:assertj-core"
-    )
+    testCompile "junit:junit"
+    testCompile "org.assertj:assertj-core"
 
-    integrationTestCompile (
-            "org.springframework.boot:spring-boot-starter-test"
-    )
+    integrationTestCompile "org.springframework.boot:spring-boot-starter-test"
 }
 
 def integTestFlywayExtension;
