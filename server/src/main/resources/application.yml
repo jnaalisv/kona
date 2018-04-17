@@ -6,6 +6,20 @@ spring:
 
   jpa:
     open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        hbm2ddl.auto: validate
+        generate_statistics: true
+        ejb:
+          naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
+
+        format_sql: true
+        order_updates: true
+        order_inserts: true
+        jdbc:
+          batch_size: 30
+          batch_versioned_data: true
 
   output:
     ansi:
