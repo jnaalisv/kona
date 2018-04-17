@@ -72,26 +72,6 @@ public class MockMvcRequestBuilder {
         return this;
     }
 
-    /**
-     * Use this method to post a list of items
-     */
-    @SafeVarargs
-    final public <T> MockMvcRequestBuilder contentAsListOf(Class<T> clazz, T...content)  {
-
-        JavaType type = objectMapper.getTypeFactory().constructCollectionType(List.class, clazz);
-
-        try {
-            servletRequestBuilder.content(
-                    objectMapper
-                            .writerFor(type)
-                            .writeValueAsString(Arrays.asList(content)));
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-
-        return this;
-    }
-
     public MockMvcResponseBuilder expect200() {
         return perform().expect200();
     }
