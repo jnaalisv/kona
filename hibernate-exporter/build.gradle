@@ -5,7 +5,7 @@ plugins {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.boot:spring-boot-starter-parent:2.0.1.RELEASE'
+        mavenBom 'org.springframework.boot:spring-boot-starter-parent:2.0.2.RELEASE'
     }
 }
 
