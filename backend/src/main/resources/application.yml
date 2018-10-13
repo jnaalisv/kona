@@ -9,7 +9,7 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        hbm2ddl.auto: validate
+        hbm2ddl.auto: create
         generate_statistics: true
         ejb:
           naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
