@@ -1,4 +1,4 @@
-package kona.model.application;
+package kona.services;
 
 import kona.domain.orderhandling.PurchaseOrder;
 import kona.domain.orderhandling.PurchaseOrderRepository;

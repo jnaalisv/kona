@@ -1,4 +1,4 @@
-package kona.model.application;
+package kona.services;
 
 import kona.domain.address.Address;
 import kona.domain.address.AddressRepository;

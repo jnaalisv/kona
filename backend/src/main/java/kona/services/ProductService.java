@@ -1,4 +1,4 @@
-package kona.model.application;
+package kona.services;
 
 import kona.domain.product.Product;
 import kona.domain.product.ProductRepository;

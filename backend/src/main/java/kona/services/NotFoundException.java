@@ -1,4 +1,4 @@
-package kona.model.application;
+package kona.services;
 
 public class NotFoundException extends RuntimeException {
 

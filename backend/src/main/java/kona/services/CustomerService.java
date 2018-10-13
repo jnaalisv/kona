@@ -1,4 +1,4 @@
-package kona.model.application;
+package kona.services;
 
 import kona.domain.customer.Customer;
 import kona.domain.customer.CustomerRepository;
@@ -25,7 +25,7 @@ public class CustomerService {
     public Customer load(long id) {
         return customerRepository
                 .get(id)
-                .orElseThrow(() -> NotFoundException.byId(Customer.class, id));
+                .orElseThrow(() -> new NotFoundException(Customer.class, " id="+id));
     }
 
     @Transactional
