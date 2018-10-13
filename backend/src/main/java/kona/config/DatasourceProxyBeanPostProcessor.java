@@ -1,4 +1,4 @@
-package kona.persistence.config;
+package kona.config;
 
 import net.ttddyy.dsproxy.listener.logging.DefaultQueryLogEntryCreator;
 import net.ttddyy.dsproxy.listener.logging.SLF4JLogLevel;
@@ -42,7 +42,7 @@ public class DatasourceProxyBeanPostProcessor implements BeanPostProcessor {
         public ProxyDataSourceInterceptor(final DataSource dataSource) {
             super();
 
-            DatasourceProxyBeanPostProcessor.PrettyQueryEntryCreator creator = new DatasourceProxyBeanPostProcessor.PrettyQueryEntryCreator();
+            PrettyQueryEntryCreator creator = new PrettyQueryEntryCreator();
             creator.setMultiline(true);
 
             SLF4JQueryLoggingListener listener = new SLF4JQueryLoggingListener();

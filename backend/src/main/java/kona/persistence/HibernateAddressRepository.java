@@ -1,4 +1,4 @@
-package kona.persistence.impl;
+package kona.persistence;
 
 import kona.domain.address.Address;
 import kona.domain.address.AddressRepository;

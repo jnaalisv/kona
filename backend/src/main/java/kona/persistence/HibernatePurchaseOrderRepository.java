@@ -1,4 +1,4 @@
-package kona.persistence.impl;
+package kona.persistence;
 
 import kona.domain.orderhandling.PurchaseOrder;
 import kona.domain.orderhandling.PurchaseOrderRepository;

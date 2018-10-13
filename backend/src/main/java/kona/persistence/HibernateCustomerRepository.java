@@ -1,4 +1,4 @@
-package kona.persistence.impl;
+package kona.persistence;
 
 import kona.domain.customer.Customer;
 import kona.domain.customer.CustomerRepository;

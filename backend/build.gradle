@@ -14,7 +14,18 @@ repositories {
     }
 }
 
+ext {
+    dataSourceProxyVersion = "1.4.7"
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile "javax.persistence:javax.persistence-api:2.2"
+
+    compile "org.hibernate:hibernate-core"
+    compile "org.springframework:spring-orm"
+    compile "net.ttddyy:datasource-proxy:$dataSourceProxyVersion"
+
+    runtime "com.zaxxer:HikariCP"
+    runtime "org.postgresql:postgresql"
 }

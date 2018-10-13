@@ -1,4 +1,4 @@
-package kona.persistence.config;
+package kona.config;
 
 import org.hibernate.SessionFactory;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -14,7 +14,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableConfigurationProperties
-@ComponentScan(basePackages = {"kona.persistence.impl"})
+@ComponentScan(basePackages = {"kona.persistence"})
 public class HibernateConfiguration {
 
     @Bean
