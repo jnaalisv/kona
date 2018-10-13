@@ -1,12 +1,11 @@
-package kona.web.interfaces;
+package kona.http;
 
-import kona.model.application.NotFoundException;
+import javassist.NotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -31,7 +30,7 @@ public final class RestErrorHandler extends ResponseEntityExceptionHandler {
      * @param request client request
      * @return ResponseEntity with a populated ErrorsDTO
      *
-     * @see org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
+     * @see ResponseEntityExceptionHandler
      */
     @Override
     protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -48,12 +47,6 @@ public final class RestErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<String> handleAuthenticationException(NotFoundException ex, HttpServletRequest httpRequest) {
         logBadRequest(httpRequest, ex);
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
-
-    @ExceptionHandler(AuthenticationException.class)
-    public ResponseEntity<String> handleAuthenticationException(AuthenticationException ex, HttpServletRequest httpRequest) {
-        logBadRequest(httpRequest, ex);
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(Exception.class)
@@ -77,12 +70,10 @@ public final class RestErrorHandler extends ResponseEntityExceptionHandler {
     }
 
     private static String buildRequestString(HttpServletRequest httpRequest) {
-        StringBuilder errorMessageBuilder = new StringBuilder(httpRequest.getRemoteAddr());
-        errorMessageBuilder.append(" ");
-        errorMessageBuilder.append(httpRequest.getMethod());
-        errorMessageBuilder.append(" ");
-        errorMessageBuilder.append(httpRequest.getRequestURI());
-        return errorMessageBuilder.toString();
+        return httpRequest.getRemoteAddr() + " " +
+                httpRequest.getMethod() +
+                " " +
+                httpRequest.getRequestURI();
     }
 
     private static Throwable getCause(Throwable throwable) {

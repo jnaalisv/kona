@@ -1,8 +1,8 @@
-package kona.web.interfaces.product;
+package kona.http.product;
 
-import kona.model.application.ProductService;
+import kona.services.ProductService;
 import kona.domain.product.Product;
-import kona.web.interfaces.KonaWebResources;
+import kona.http.KonaHttpResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(KonaWebResources.PRODUCTS)
+@RequestMapping(KonaHttpResources.PRODUCTS)
 public class ProductController {
 
     private final ProductService productService;

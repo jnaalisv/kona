@@ -1,4 +1,4 @@
-package kona.web.interfaces.customer;
+package kona.http.customer;
 
 import kona.domain.customer.Customer;
 import kona.domain.customer.CustomerAddress;

@@ -1,4 +1,4 @@
-package kona.web.interfaces.orderhandling;
+package kona.http.orderhandling;
 
 import java.math.BigDecimal;
 

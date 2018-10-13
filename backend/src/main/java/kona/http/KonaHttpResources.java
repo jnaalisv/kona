@@ -1,6 +1,6 @@
-package kona.web.interfaces;
+package kona.http;
 
-public interface KonaWebResources {
+public interface KonaHttpResources {
     String CUSTOMERS = "/customers";
     String PRODUCTS = "/products";
     String PRODUCT_TYPES = "/product-types";

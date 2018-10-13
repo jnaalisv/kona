@@ -1,4 +1,4 @@
-package kona.web.interfaces.orderhandling;
+package kona.http.orderhandling;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

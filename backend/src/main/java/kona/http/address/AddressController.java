@@ -1,6 +1,6 @@
-package kona.web.interfaces.address;
+package kona.http.address;
 
-import kona.model.application.AddressService;
+import kona.services.AddressService;
 import kona.domain.address.Address;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

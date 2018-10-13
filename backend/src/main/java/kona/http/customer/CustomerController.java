@@ -1,8 +1,8 @@
-package kona.web.interfaces.customer;
+package kona.http.customer;
 
-import kona.model.application.CustomerService;
+import kona.services.CustomerService;
 import kona.domain.customer.Customer;
-import kona.web.interfaces.KonaWebResources;
+import kona.http.KonaHttpResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(KonaWebResources.CUSTOMERS)
+@RequestMapping(KonaHttpResources.CUSTOMERS)
 public class CustomerController {
 
     private CustomerService customerService;

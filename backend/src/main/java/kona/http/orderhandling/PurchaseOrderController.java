@@ -1,8 +1,8 @@
-package kona.web.interfaces.orderhandling;
+package kona.http.orderhandling;
 
-import kona.model.application.PurchaseOrderService;
+import kona.services.PurchaseOrderService;
 import kona.domain.orderhandling.PurchaseOrder;
-import kona.web.interfaces.KonaWebResources;
+import kona.http.KonaHttpResources;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(KonaWebResources.PURCHASE_ORDERS)
+@RequestMapping(KonaHttpResources.PURCHASE_ORDERS)
 public class PurchaseOrderController {
 
     private final PurchaseOrderService purchaseOrderService;

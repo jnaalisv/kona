@@ -1,4 +1,4 @@
-package kona.web.interfaces.product;
+package kona.http.product;
 
 import kona.domain.CurrencyAmount;
 import kona.domain.product.Product;

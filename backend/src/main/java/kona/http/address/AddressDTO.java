@@ -1,4 +1,4 @@
-package kona.web.interfaces.address;
+package kona.http.address;
 
 import kona.domain.address.Address;
 

@@ -1,4 +1,4 @@
-package kona.web.interfaces.orderhandling;
+package kona.http.orderhandling;
 
 import kona.domain.orderhandling.PurchaseOrder;
 import kona.domain.orderhandling.OrderLine;

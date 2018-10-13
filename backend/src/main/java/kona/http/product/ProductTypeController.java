@@ -1,7 +1,7 @@
-package kona.web.interfaces.product;
+package kona.http.product;
 
 import kona.domain.product.ProductType;
-import kona.web.interfaces.KonaWebResources;
+import kona.http.KonaHttpResources;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping(KonaWebResources.PRODUCT_TYPES)
+@RequestMapping(KonaHttpResources.PRODUCT_TYPES)
 public class ProductTypeController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
