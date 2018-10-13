@@ -1,9 +1,0 @@
-jacocoTestReport {
-    reports {
-        xml.enabled false
-        csv.enabled false
-        html.destination "${buildDir}/reports/jacoco/test/html"
-    }
-}
-
-test.finalizedBy jacocoTestReport
