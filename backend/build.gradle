@@ -2,6 +2,8 @@ plugins {
     id "java"
     id "io.spring.dependency-management" version "1.0.6.RELEASE"
     id "org.springframework.boot" version "2.1.0.M4"
+
+    id "org.flywaydb.flyway" version "5.2.0"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -28,4 +30,13 @@ dependencies {
 
     runtime "com.zaxxer:HikariCP"
     runtime "org.postgresql:postgresql"
+
+    runtime "org.flywaydb:flyway-core"
+}
+
+flyway {
+    url = 'jdbc:postgresql://localhost:5433/kona'
+    user = 'kona'
+    password = 'kona'
+    schemas = ['kona']
 }

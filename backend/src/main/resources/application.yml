@@ -4,12 +4,16 @@ spring:
     password: kona
     username: kona
 
+  flyway:
+    schemas: ['kona']
+    baselineOnMigrate: true
+
   jpa:
     open-in-view: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        hbm2ddl.auto: create
+        hbm2ddl.auto: validate
         generate_statistics: true
         ejb:
           naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
