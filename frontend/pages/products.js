@@ -2,6 +2,14 @@ import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
 
+const ProductLink = (props) => (
+    <li>
+        <Link href={`/products?id=${props.id}`}>
+            <a>{props.name}</a>
+        </Link>
+    </li>
+);
+
 const Page = ({ products, errorMessage }) => {
     return (
         <Layout>
@@ -10,11 +18,7 @@ const Page = ({ products, errorMessage }) => {
 
             <ul>
                 {products.map(product => (
-                    <li key={product.id}>
-                        <Link as={`/products/${product.id}`} href={`/products/${product.id}`}>
-                            <a>{product.name}</a>
-                        </Link>
-                    </li>
+                    <ProductLink name={product.name} id={product.id}/>
                 ))}
             </ul>
         </Layout>
