@@ -1,9 +1,11 @@
+import Header from '../components/header'
 import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 
 const Page = ({ products, errorMessage }) => {
     return (
         <div>
+            <Header />
             <h4>Product listing</h4>
             {errorMessage && <p>{errorMessage}</p>}
 
