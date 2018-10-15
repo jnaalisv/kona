@@ -18,7 +18,7 @@ const Page = ({ products, errorMessage }) => {
 
             <ul>
                 {products.map(product => (
-                    <ProductLink name={product.name} id={product.id}/>
+                    <ProductLink key={product.id} name={product.name} id={product.id}/>
                 ))}
             </ul>
         </Layout>
@@ -26,8 +26,6 @@ const Page = ({ products, errorMessage }) => {
 };
 
 Page.getInitialProps = async ({ req }) => {
-    console.log('request ', req);
-
     let response;
     const url = 'http://localhost:8080/products';
     try {
