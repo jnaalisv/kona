@@ -3,32 +3,31 @@ import fetch from 'isomorphic-unfetch'
 const productsUrl = 'http://localhost:8080/products';
 
 export const getProductById = async productId => {
-    let response;
     const url = `${productsUrl}/${productId}`;
     try {
-        response = await fetch(url);
-        if (response.status === 404) {
-            return { product: {}, errorMessage: `Product Not found by id=${productId}, url was ${url}`};
-        }
+        const product = await httpGET(url);
+        return { product }
     } catch (err) {
         console.log('err ', err);
-        return { product: {}, errorMessage: `Http Request to ${url} failed, is the backend down?` }
+        return { product: {}, errorMessage: `Http Request to ${url} failed, ${err}` }
     }
-
-    const product = await response.json();
-    return { product }
 };
 
 export const getAllProducts = async () => {
-    let response;
     try {
-        response = await fetch(productsUrl);
+        const products = await httpGET(productsUrl);
+        return { products }
     } catch (err) {
-        return { products: [], errorMessage: `request to ${productsUrl} failed, is the backend down?` }
+        console.log('err ', err);
+        return { products: [], errorMessage: `Http Request to ${productsUrl} failed, ${err}` }
     }
-
-    const json = await response.json();
-    return { products: json }
 };
 
-
+const httpGET = (url) => fetch(url).then(response => {
+    if (response.status === 200) {
+        return response.json();
+    } else {
+        console.log('failed ', response);
+        throw `Error ${response.status}`
+    }
+});
