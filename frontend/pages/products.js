@@ -1,6 +1,6 @@
-import fetch from 'isomorphic-unfetch'
 import Link from 'next/link'
 import Layout from '../components/Layout'
+import { getAllProducts } from '../services/ProductService';
 
 const ProductLink = (props) => (
     <li>
@@ -26,16 +26,7 @@ const Page = ({ products, errorMessage }) => {
 };
 
 Page.getInitialProps = async ({ req }) => {
-    let response;
-    const url = 'http://localhost:8080/products';
-    try {
-        response = await fetch(url);
-    } catch (err) {
-        return { products: [], errorMessage: `request to ${url} failed, is the backend down?` }
-    }
-
-    const json = await response.json();
-    return { products: json }
+    return await getAllProducts();
 };
 
 export default Page
