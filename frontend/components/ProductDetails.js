@@ -7,10 +7,10 @@ class ProductDetails extends React.Component {
     constructor(props) {
         super(props);
         this.state = { product: {} };
-        this.onChange = this.onChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    onChange(event) {
+    handleChange(event) {
         event.preventDefault();
         const product = {...this.state.product};
         product[event.target.name] = event.target.value;
@@ -28,8 +28,8 @@ class ProductDetails extends React.Component {
             <div>
                 <h4>Product</h4>
 
-                <p>name: <input name='name' value={product.name} onChange={this.onChange}/></p>
-                <p>productCode: <input name='productCode' value={product.productCode} onChange={this.onChange}/></p>
+                <p>name: <input name='name' value={product.name} onChange={this.handleChange} /></p>
+                <p>productCode: <input name='productCode' value={product.productCode} onChange={this.handleChange}/></p>
                 <p>productType: {product.productType}</p>
                 {product.price && <CurrencyAmount currencyAmount={product.price} />}
 
