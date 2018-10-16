@@ -6,7 +6,12 @@ class ProductDetails extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = { product: {} };
+        this.state = {
+            product: {
+                name: '',
+                productCode: ''
+            }
+        };
         this.handleChange = this.handleChange.bind(this);
     }
 
