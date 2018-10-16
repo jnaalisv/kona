@@ -1,4 +1,5 @@
 import Header from './Header'
+import LastError from './LastError'
 
 const layoutStyle = {
     margin: 20,
@@ -6,10 +7,11 @@ const layoutStyle = {
     border: '1px solid #DDD'
 };
 
-const Layout = (props) => (
+const Layout = ({error, children}) => (
     <div style={layoutStyle}>
         <Header />
-        {props.children}
+        {error && <LastError error={error}/>}
+        {children}
     </div>
 );
 

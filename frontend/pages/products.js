@@ -12,9 +12,8 @@ const ProductLink = (props) => (
 
 const Page = ({ products, errorMessage }) => {
     return (
-        <Layout>
+        <Layout error={errorMessage}>
             <h4>Product listing</h4>
-            {errorMessage && <p>{errorMessage}</p>}
 
             <ul>
                 {products.map(product => (
