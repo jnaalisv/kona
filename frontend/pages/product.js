@@ -1,4 +1,3 @@
-import { withRouter } from 'next/router'
 import Layout from '../components/Layout'
 import { getProductById } from '../services/ProductService';
 
@@ -17,15 +16,11 @@ const ProductDetails = ({product}) => (
     </div>
 );
 
-const ProductPage = withRouter(({product, errorMessage, router, url}) => {
-    return (
-        <Layout>
-            <p>Location: {router.asPath}</p>
-            {errorMessage && <p>{errorMessage}</p>}
-            <ProductDetails product={product} />
-        </Layout>
-    )
-});
+const ProductPage = ({product, errorMessage}) => (
+    <Layout error={errorMessage}>
+        <ProductDetails product={product} />
+    </Layout>
+);
 
 ProductPage.getInitialProps = async props => {
     return await getProductById(props.query.id);
