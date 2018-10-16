@@ -1,14 +1,14 @@
 import Link from 'next/link'
 
-const ProductLink = props => (
+const ProductLink = ({ id, name }) => (
     <li>
-        <Link href={`/product?id=${props.id}`}>
-            <a>{props.name}</a>
+        <Link href={`/product?id=${id}`}>
+            <a>{name}</a>
         </Link>
     </li>
 );
 
-const ProductListing = ({products}) => (
+const ProductListing = ({ products }) => (
     <div>
         <h4>Product listing</h4>
         <ul>

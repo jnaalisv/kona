@@ -8,7 +8,7 @@ const ProductListingPage = ({ products, errorMessage }) => (
     </Layout>
 );
 
-ProductListingPage.getInitialProps = async ({ req }) => {
+ProductListingPage.getInitialProps = async props => {
     return await getAllProducts();
 };
 
