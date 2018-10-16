@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 const ProductLink = props => (
     <li>
-        <Link href={`/products?id=${props.id}`}>
+        <Link href={`/product?id=${props.id}`}>
             <a>{props.name}</a>
         </Link>
     </li>
