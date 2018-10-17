@@ -2,7 +2,7 @@ import React from 'react'
 import { withRouter } from 'next/router'
 import Layout from '../components/Layout'
 import ProductForm from '../components/ProductForm'
-import { getProductById } from '../services/ProductService';
+import { getProductById, saveOrUpdateProduct } from '../services/ProductService';
 
 class ProductPage extends React.Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class ProductPage extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.saveProduct = this.saveProduct.bind(this);
     }
 
     componentDidMount() {
@@ -35,11 +36,23 @@ class ProductPage extends React.Component {
         this.setState({ product });
     }
 
+    saveProduct() {
+
+        saveOrUpdateProduct(this.state.product)
+            .then(product => {
+                this.setState({ product });
+            }, err => {
+                console.log('Error ', err);
+                this.setState({ errorMessage: err.message });
+            });
+    }
+
     render() {
         const { product, errorMessage } = this.state;
         return (
             <Layout error={errorMessage}>
                 <ProductForm product={product} handleChange={this.handleChange}/>
+                <button onClick={this.saveProduct}>Save</button>
             </Layout>
         );
     }
