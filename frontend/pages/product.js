@@ -3,7 +3,7 @@ import { withRouter } from 'next/router'
 import Layout from '../components/Layout'
 import Notifications from '../components/Notifications'
 import ProductForm from '../components/ProductForm'
-import { getProductById, saveOrUpdateProduct } from '../services/ProductService';
+import { getProductById, saveOrUpdateProduct } from '../services/productsHttp';
 
 class ProductPage extends React.Component {
     constructor(props) {

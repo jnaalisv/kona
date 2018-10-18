@@ -1,6 +1,6 @@
 import Layout from '../components/Layout'
 import ProductListing from '../components/ProductListing'
-import { getAllProducts } from '../services/ProductService';
+import { getAllProducts } from '../services/productsHttp';
 import React from 'react'
 import Notifications from "../components/Notifications";
 

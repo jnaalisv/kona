@@ -1,11 +1,8 @@
 import { httpGET, httpPUT, httpPOST } from './http'
-const productsUrl = 'http://localhost:8080/products';
 
-export const getProductById = productId =>
-    httpGET(`${productsUrl}/${productId}`);
+export const getProductById = productId => httpGET(`${productsUrl}/${productId}`);
 
-export const getAllProducts = () =>
-    httpGET(productsUrl);
+export const getAllProducts = () => httpGET(productsUrl);
 
 export const saveOrUpdateProduct = product => {
     if (product.id > 0) {
@@ -14,3 +11,5 @@ export const saveOrUpdateProduct = product => {
         return httpPOST(productsUrl, product);
     }
 };
+
+const productsUrl = 'http://localhost:8080/products';
