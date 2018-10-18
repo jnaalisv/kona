@@ -19,6 +19,7 @@ class ProductPage extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.saveProduct = this.saveProduct.bind(this);
+        this.addError = this.addError.bind(this);
     }
 
     componentDidMount() {
