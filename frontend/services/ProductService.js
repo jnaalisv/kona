@@ -4,15 +4,8 @@ const productsUrl = 'http://localhost:8080/products';
 export const getProductById = productId =>
     httpGET(`${productsUrl}/${productId}`);
 
-export const getAllProducts = async () => {
-    try {
-        const products = await httpGET(productsUrl);
-        return { products }
-    } catch (err) {
-        console.log('err ', err);
-        return { products: [], errorMessage: `Http Request to ${productsUrl} failed, ${err}` }
-    }
-};
+export const getAllProducts = () =>
+    httpGET(productsUrl);
 
 export const saveOrUpdateProduct = product => {
     if (product.id > 0) {
