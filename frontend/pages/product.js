@@ -1,6 +1,7 @@
 import React from 'react'
 import { withRouter } from 'next/router'
 import Layout from '../components/Layout'
+import Notifications from '../components/Notifications'
 import ProductForm from '../components/ProductForm'
 import { getProductById, saveOrUpdateProduct } from '../services/ProductService';
 
@@ -12,7 +13,8 @@ class ProductPage extends React.Component {
                 name: '',
                 productCode: ''
             },
-            errorMessage: ''
+            errorMessage: '',
+            notifications: []
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -37,22 +39,46 @@ class ProductPage extends React.Component {
     }
 
     saveProduct() {
+        this.setState({ notifications: [] });
 
         saveOrUpdateProduct(this.state.product)
             .then(product => {
                 this.setState({ product });
-            }, err => {
-                console.log('Error ', err);
-                this.setState({ errorMessage: err.message });
-            });
+                this.addInfo('Product saved');
+            }, this.addError);
+    }
+
+    addInfo(message) {
+        this.addNotification('info', message);
+    }
+
+    addNotification(type, message) {
+        const notifications = [...this.state.notifications];
+        notifications.push({ type, message });
+        this.setState({ notifications });
+    }
+
+    addError(error) {
+        let errorMessage;
+
+        if (error instanceof TypeError) {
+            errorMessage = error.message;
+        } else if (typeof error === 'string') {
+            errorMessage = error;
+        } else {
+            console.log('Unknown error ', error);
+            errorMessage = "Unknown error, check console log."
+        }
+        this.addNotification('error', errorMessage);
     }
 
     render() {
-        const { product, errorMessage } = this.state;
+        const { product, errorMessage, notifications } = this.state;
         return (
             <Layout error={errorMessage}>
                 <ProductForm product={product} handleChange={this.handleChange}/>
                 <button onClick={this.saveProduct}>Save</button>
+                <Notifications notifications={notifications} />
             </Layout>
         );
     }
