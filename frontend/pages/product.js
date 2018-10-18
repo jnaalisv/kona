@@ -23,12 +23,10 @@ class ProductPage extends React.Component {
 
     componentDidMount() {
         getProductById(this.props.router.query.id)
-            .then(response => {
-                this.setState({
-                    product: response.product,
-                    errorMessage: response.errorMessage
-                });
-            });
+            .then(product => {
+                this.setState({ product });
+                this.addInfo('Product info loaded');
+            }, this.addError);
     }
 
     handleChange(event) {
