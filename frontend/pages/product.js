@@ -52,7 +52,7 @@ class ProductPage extends React.Component {
 
     addNotification(type, message) {
         const notifications = [...this.state.notifications];
-        notifications.push({ type, message });
+        notifications.push({ type, message: `${new Date().toLocaleTimeString()}: ${message}` });
         this.setState({ notifications });
     }
 
