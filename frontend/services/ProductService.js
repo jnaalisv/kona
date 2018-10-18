@@ -22,6 +22,23 @@ export const getAllProducts = async () => {
     }
 };
 
+export const saveOrUpdateProduct = product => {
+    if (product.id > 0) {
+        return httpPUT(`${productsUrl}/${product.id}`, product);
+    } else {
+        return httpPOST(productsUrl, product);
+    }
+};
+
+
+const defaultOptions = {
+    // mode: 'cors',
+    headers: {
+        'Content-Type': 'application/json;charset=UTF-8',
+//        'Accept': 'application/json;charset=UTF-8',
+    }
+};
+
 const httpGET = (url) => fetch(url).then(response => {
     if (response.status === 200) {
         return response.json();
@@ -31,11 +48,8 @@ const httpGET = (url) => fetch(url).then(response => {
     }
 });
 
-const defaultOptions = {
-    headers: {
-        'Content-Type': 'application/json;charset=UTF-8',
-    }
-};
+export const httpPOST = (url, body) => doHttp('POST', url, body);
+export const httpPUT = (url, body) => doHttp('PUT', url, body);
 
 const handleResponse = response => {
     if (response.status < 300) {
@@ -59,16 +73,4 @@ const doHttp = (method, url, body) => {
     }
 
     return fetch(url, options).then(handleResponse)
-};
-
-export const httpPOST = (url, body) => doHttp('POST', url, body);
-export const httpPUT = (url, body) => doHttp('PUT', url, body);
-
-
-export const saveOrUpdateProduct = product => {
-    if (product.id > 0) {
-        return httpPUT(`${productsUrl}/${product.id}`, product);
-    } else {
-        return httpPOST(productsUrl, product);
-    }
 };
