@@ -13,7 +13,6 @@ class ProductPage extends React.Component {
                 name: '',
                 productCode: ''
             },
-            errorMessage: '',
             notifications: []
         };
 
@@ -72,9 +71,9 @@ class ProductPage extends React.Component {
     }
 
     render() {
-        const { product, errorMessage, notifications } = this.state;
+        const { product, notifications } = this.state;
         return (
-            <Layout error={errorMessage}>
+            <Layout>
                 <ProductForm product={product} handleChange={this.handleChange}/>
                 <button onClick={this.saveProduct}>Save</button>
                 <Notifications notifications={notifications} />

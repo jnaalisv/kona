@@ -50,7 +50,7 @@ class ProductListingPage extends React.Component {
     render() {
         const { products, notifications } = this.state;
         return (
-            <Layout error={this.state.errorMessage}>
+            <Layout>
                 <ProductListing products={products} />
                 <Notifications notifications={notifications} />
             </Layout>
