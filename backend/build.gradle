@@ -41,3 +41,9 @@ flyway {
     password = 'kona'
     schemas = ['kona']
 }
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
