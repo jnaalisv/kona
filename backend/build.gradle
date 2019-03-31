@@ -13,13 +13,11 @@ repositories {
     jcenter()
 }
 
-ext {
-    dataSourceProxyVersion = "1.5.1"
-}
+ext['dataSourceProxyVersion'] = '1.5.1'
+ext['hibernate.version'] = '5.4.2.Final'
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile "javax.persistence:javax.persistence-api:2.2"
+    compile "org.springframework.boot:spring-boot-starter-web"
 
     compile "org.hibernate:hibernate-core"
     compile "org.springframework:spring-orm"
@@ -30,9 +28,6 @@ dependencies {
 
     runtime "org.flywaydb:flyway-core"
 
-    // JAXB (JSR 222) Standalone Implementation
-    runtime ("javax.xml.bind:jaxb-api:2.3.1")
-    runtime ("org.glassfish.jaxb:jaxb-runtime:2.3.1")
 }
 
 flyway {
