@@ -1,9 +1,11 @@
 package kona.domain.user;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Version;
 
 @Entity
-@Table(name ="Users")
 public class User {
 
     private String username;
@@ -21,7 +23,6 @@ public class User {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
     private long id;
 
     public String getUsername() {

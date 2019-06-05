@@ -17,11 +17,9 @@ public class PurchaseOrder {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
     private long id;
 
-    @Column(name = "orderer_id")
-    private long ordererID;
+    private long ordererId;
 
     @Column(insertable = false, updatable = false)
     private LocalDateTime createTime;
@@ -34,9 +32,9 @@ public class PurchaseOrder {
 
     public PurchaseOrder() { /* hibernate*/}
 
-    public PurchaseOrder(final long id, final long ordererID, final List<OrderLine> orderLines) {
+    public PurchaseOrder(final long id, final long ordererId, final List<OrderLine> orderLines) {
         this.id = id;
-        this.ordererID = ordererID;
+        this.ordererId = ordererId;
         this.orderLines = orderLines;
         this.orderLines.forEach(orderLine -> orderLine.setPurchaseOrder(this));
     }
@@ -49,8 +47,8 @@ public class PurchaseOrder {
         return id;
     }
 
-    public long getOrdererID() {
-        return ordererID;
+    public long getOrdererId() {
+        return ordererId;
     }
 
     public List<OrderLine> getOrderLines() {

@@ -1,5 +1,5 @@
 insert
-into product(id, version, name, productCode, productType)
+into product(id, version, name, product_code, product_type)
 values((select nextval('hibernate_sequence')), 0, 'Typewriter, Mk. I.', 'TW.I', 'EQUIPMENT')
   , ((select nextval('hibernate_sequence')), 0, 'Central Computing Unit', 'CCU', 'EQUIPMENT')
   , ((select nextval('hibernate_sequence')), 0, 'Liquid Crystal Display', 'LCD', 'EQUIPMENT')

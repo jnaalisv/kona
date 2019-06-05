@@ -1,3 +1,5 @@
+
+
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/kona
@@ -11,12 +13,13 @@ spring:
   jpa:
     open-in-view: false
     properties:
-      hibernate:
+        naming:
+          implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+          physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+
         dialect: org.hibernate.dialect.PostgreSQLDialect
         hbm2ddl.auto: validate
         generate_statistics: false
-        ejb:
-          naming_strategy: org.hibernate.cfg.ImprovedNamingStrategy
 
         format_sql: true
         order_updates: true
@@ -24,6 +27,10 @@ spring:
         jdbc:
           batch_size: 30
           batch_versioned_data: true
+    hibernate:
+      naming:
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 
   output:
     ansi:

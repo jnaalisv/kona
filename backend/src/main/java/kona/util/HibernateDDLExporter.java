@@ -2,8 +2,8 @@ package kona.util;
 
 import kona.domain.address.Address;
 import kona.domain.customer.Customer;
-import kona.domain.orderhandling.PurchaseOrder;
 import kona.domain.orderhandling.OrderLine;
+import kona.domain.orderhandling.PurchaseOrder;
 import kona.domain.product.Product;
 import kona.domain.user.User;
 import org.hibernate.boot.MetadataSources;
@@ -16,6 +16,8 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy;
+import org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy;
 
 import java.io.File;
 import java.util.EnumSet;
@@ -61,7 +63,12 @@ public class HibernateDDLExporter {
                 .applySetting(AvailableSettings.DIALECT, dialect)
                 .build();
 
-        MetadataImplementor metadata = (MetadataImplementor) createMetadataSources(serviceRegistry).buildMetadata();
+        MetadataImplementor metadata = (MetadataImplementor) createMetadataSources(serviceRegistry)
+                .getMetadataBuilder()
+                .applyImplicitNamingStrategy(new SpringImplicitNamingStrategy())
+                .applyPhysicalNamingStrategy(new SpringPhysicalNamingStrategy())
+                .build();
+
 
         new SchemaExport()
                 .setOutputFile(exportFile.getAbsolutePath())

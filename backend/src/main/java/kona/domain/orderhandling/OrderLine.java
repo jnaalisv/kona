@@ -14,12 +14,10 @@ public class OrderLine {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
     private long id;
 
     private ProductCode productCode;
 
-    @Column(name = "product_id")
     private long productId;
 
     private BigDecimal amount;

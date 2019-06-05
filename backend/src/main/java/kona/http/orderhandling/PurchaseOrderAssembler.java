@@ -34,7 +34,7 @@ public class PurchaseOrderAssembler {
 
         PurchaseOrderDTO purchaseOrderDTO = new PurchaseOrderDTO();
         purchaseOrderDTO.id = purchaseOrder.getId();
-        purchaseOrderDTO.ordererID = purchaseOrder.getOrdererID();
+        purchaseOrderDTO.ordererID = purchaseOrder.getOrdererId();
         purchaseOrderDTO.version = purchaseOrder.getVersion();
         purchaseOrderDTO.createTime = purchaseOrder.getCreateTime();
         purchaseOrderDTO.orderLines = purchaseOrder

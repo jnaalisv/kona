@@ -15,10 +15,8 @@ public class Customer {
 
     @Id
     @GeneratedValue
-    @Column(name = "id")
     private long id;
 
-    @Column
     private String name;
 
     @Column(insertable = false, updatable = false)
