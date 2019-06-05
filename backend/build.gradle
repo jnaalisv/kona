@@ -41,3 +41,8 @@ task unpack(type: Copy) {
     from(zipTree(tasks.bootJar.outputs.files.singleFile))
     into("build/dependency")
 }
+
+task exportDDL(type:JavaExec) {
+    main = "kona.util.HibernateDDLExporter"
+    classpath = sourceSets.main.runtimeClasspath
+}
