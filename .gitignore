@@ -4,3 +4,8 @@
 # Idea
 .idea
 *.iml
+
+/.gradle
+/build
+
+/dump
