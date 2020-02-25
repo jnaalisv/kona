@@ -4,10 +4,10 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
-    Link
+    Link,
 } from "react-router-dom";
 
-import ProductTable from "./components/ProductTable";
+import ProductsComponent from "./components/ProductsComponent";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -27,14 +27,16 @@ const App = () => {
                         </li>
                     </ul>
                 </nav>
+
                 <Switch>
                     <Route path="/products">
-                        <ProductTable />
+                        <ProductsComponent />
                     </Route>
                     <Route path="/">
                         <Home />
                     </Route>
                 </Switch>
+
                 <Footer />
             </div>
         </Router>

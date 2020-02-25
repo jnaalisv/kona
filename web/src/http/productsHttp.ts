@@ -24,7 +24,7 @@ export function deleteProduct(productId: number) {
     return httpDELETE(`${productsUrl}/${productId}`)
 }
 
-export function getProduct(productId: number) {
+export function getProduct(productId: number): Promise<Product> {
     return httpGET(`${productsUrl}/${productId}`);
 }
 
