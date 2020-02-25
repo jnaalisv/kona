@@ -8,11 +8,15 @@ import {
 } from "react-router-dom";
 
 import ProductTable from "./components/ProductTable";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 const App = () => {
     return (
         <Router>
             <div>
+                <Header />
+
                 <nav>
                     <ul>
                         <li>
@@ -31,6 +35,7 @@ const App = () => {
                         <Home />
                     </Route>
                 </Switch>
+                <Footer />
             </div>
         </Router>
     );
