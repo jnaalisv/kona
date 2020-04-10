@@ -7,11 +7,11 @@ import java.time.LocalDateTime;
 
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public record Product(
-        long id
-        , long version
-        , LocalDateTime created
-        , String name
-        , String code
-        , ProductType productType
-        , BigDecimal price
+        long id,
+        long version,
+        LocalDateTime created,
+        String name,
+        String code,
+        ProductType productType,
+        BigDecimal price
 ) { }
