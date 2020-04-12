@@ -31,7 +31,7 @@ const ProductEdit = ({ productId }: ProductEditProps) => {
         <div>
             <div>created: {product.created}</div>
             <div>name: <input name="name" value={product.name} onChange={onChange}/></div>
-            <div>productCode: <input name="productCode" value={product.code} onChange={onChange}/></div>
+            <div>productCode: <input name="code" value={product.code} onChange={onChange}/></div>
             <div>price: {product.price}</div>
             <div>version: {product.version}</div>
             <div>product type:{product.productType}
