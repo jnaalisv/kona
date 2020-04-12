@@ -6,10 +6,6 @@ plugins {
 
 version = "0.0.1-SNAPSHOT"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_14
-}
-
 repositories {
     mavenCentral()
 }
@@ -26,11 +22,15 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_14
+}
+
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
     options.fork = true
     options.deprecation = true
-    options.compilerArgs += ["-Xlint:unchecked", "-Xlint:deprecation", "--enable-preview", "-Xlint:preview"]
+    options.compilerArgs += ["-Xlint:all", "--enable-preview"]
 }
 
 tasks.withType(Test) {
