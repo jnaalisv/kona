@@ -28,15 +28,16 @@ const App = () => {
                     </ul>
                 </nav>
 
-                <Switch>
-                    <Route path="/products">
-                        <ProductsComponent />
-                    </Route>
-                    <Route path="/">
-                        <Home />
-                    </Route>
-                </Switch>
-
+                <div id={"content"}>
+                    <Switch>
+                        <Route path="/products">
+                            <ProductsComponent />
+                        </Route>
+                        <Route path="/">
+                            <Home />
+                        </Route>
+                    </Switch>
+                </div>
                 <Footer />
             </div>
         </Router>
