@@ -1,5 +1,7 @@
 import HttpError from './HttpError'
 
+const baseUrl = 'http://localhost:8080/';
+
 const handleResponse = (response: Response): Promise<any> => {
     if (response.status < 300) {
 
@@ -9,12 +11,12 @@ const handleResponse = (response: Response): Promise<any> => {
             const responseJson: Promise<any> = response.json();
             return responseJson;
         }
-        //return response.text();
+        return response.text();
     }
     return Promise.reject(new HttpError(response));
 };
 
-const doHttp = <T> (method: string, url: string, body: object): Promise<T> => {
+const doHttp = <T> (method: string, path: string, body?: object): Promise<T> => {
 
     const requestInit: RequestInit = {
         method,
@@ -26,16 +28,15 @@ const doHttp = <T> (method: string, url: string, body: object): Promise<T> => {
         }
     };
 
-    /*
+
     if (body) {
         requestInit.body = JSON.stringify(body);
-    }*/
+    }
 
-    return fetch(url, requestInit).then(handleResponse)
+    return fetch(baseUrl + path, requestInit).then(handleResponse)
 };
 
-export const httpGET = <T>(url: string):Promise<T> => doHttp('GET', url, {});
-
-export const httpPOST = (url: string, body: object) => doHttp('POST', url, body);
-export const httpPUT = (url: string, body: object) => doHttp('PUT', url, body);
-export const httpDELETE = (url: string) => doHttp('DELETE', url, {});
+export const httpGET = <T>(path: string): Promise<T> => doHttp('GET', path, undefined);
+export const httpPOST = <T>(path: string, body: object): Promise<T> => doHttp('POST', path, body);
+export const httpPUT = <T>(path: string, body: object): Promise<T> => doHttp('PUT', path, body);
+export const httpDELETE = (path: string) => doHttp('DELETE', path, {});

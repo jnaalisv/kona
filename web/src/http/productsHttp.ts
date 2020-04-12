@@ -6,25 +6,25 @@ import {
 } from './http'
 import {Product} from "../components/Product";
 
-const productsUrl = 'http://localhost:8080/products';
+const productsPath = 'products';
 
-export const saveOrUpdateProduct = (product: Product) => {
+export const saveOrUpdateProduct = (product: Product): Promise<Product> => {
     if (product.id > 0) {
-        return httpPUT(`${productsUrl}/${product.id}`, product);
+        return httpPUT(`${productsPath}/${product.id}`, product);
     } else {
-        return httpPOST(productsUrl, product);
+        return httpPOST(productsPath, product);
     }
 };
 
 export function getProducts(): Promise<Product[]> {
-    return httpGET(productsUrl);
+    return httpGET(productsPath);
 }
 
 export function deleteProduct(productId: number) {
-    return httpDELETE(`${productsUrl}/${productId}`)
+    return httpDELETE(`${productsPath}/${productId}`)
 }
 
 export function getProduct(productId: number): Promise<Product> {
-    return httpGET(`${productsUrl}/${productId}`);
+    return httpGET(`${productsPath}/${productId}`);
 }
 
