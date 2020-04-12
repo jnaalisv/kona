@@ -1,70 +1,44 @@
-import React, {ChangeEvent} from 'react'
+import React from 'react'
 import {Product} from "./Product";
-import {getProduct} from "../http/productsHttp";
+import {getProduct, saveOrUpdateProduct} from "../http/productsHttp";
 
 export interface ProductEditProps {
     productId: number;
 }
 
-interface ProductEditState {
-    product?: Product;
-}
+const initialState: Product = {code: "", created: "", id: 0, name: "", price: 0, productType: "", version: 0};
 
-class ProductEdit extends React.Component<ProductEditProps, ProductEditState> {
-    constructor(props: ProductEditProps) {
-        super(props);
-        this.state = {product: undefined};
+const ProductEdit = ({ productId }: ProductEditProps) => {
 
-        this.onChange = this.onChange.bind(this);
-    };
+    const [product, setProduct] = React.useState(initialState);
 
-    componentDidMount() {
-        const { productId } = this.props;
+    React.useEffect(() => {getProduct(productId).then(setProduct);}, [productId]);
 
-        getProduct(productId)
-                .then(
-                    product => this.setState({ product }),
-                        err => { console.log('err ', err); });
-    }
-
-    render () {
-        const { product } = this.state;
-
-        if (!product) {
-            return <div>loading data</div>;
-        }
-
-        return (
-            <div>
-                <div>created: {product.created}</div>
-                <div>name: <input name="name" value={product.name} onChange={this.onChange}/></div>
-                <div>productCode: <input name="productCode" value={product.code} onChange={this.onChange}/></div>
-                <div>price: {product.price}</div>
-                <div>version: {product.version}</div>
-                <div>product type:{product.productType}
-                </div>
-                <button onClick={(e) => this.saveProduct(e)}>Save</button>
-            </div>
-        )
-    }
-
-    private onChange(event: React.ChangeEvent<HTMLInputElement>) {
-        //console.log('onChange ', event);
-        const newValue = event.target.value;
-
-        // TODO
-        /*
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();
-        const product = { ...this.state.product };
-        product[event.target.name] = event.target.value;
-        this.setState({ product });
-        */
+        const updatedProd: Product = {
+            ...product,
+            [event.target.name]: event.target.value
+        }
+        setProduct(updatedProd);
     }
 
-
-    private saveProduct(event: React.MouseEvent<HTMLButtonElement>) {
-        console.log('saveProduct', event);
+    const saveProduct = (event: React.MouseEvent<HTMLButtonElement>) => {
+        saveOrUpdateProduct(product).then(setProduct);
     }
+
+    return (
+        <div>
+            <div>created: {product.created}</div>
+            <div>name: <input name="name" value={product.name} onChange={onChange}/></div>
+            <div>productCode: <input name="productCode" value={product.code} onChange={onChange}/></div>
+            <div>price: {product.price}</div>
+            <div>version: {product.version}</div>
+            <div>product type:{product.productType}
+            </div>
+            <button onClick={(event: React.MouseEvent<HTMLButtonElement>) => saveProduct(event)}>Save</button>
+        </div>
+    )
 }
 
 export default ProductEdit;
